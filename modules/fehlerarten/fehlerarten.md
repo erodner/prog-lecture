@@ -59,13 +59,5 @@ Logikfehler sind **am schwierigsten zu finden**, weil das Programm nicht abstür
 
 Für Laufzeit- und Logikfehler ist der **Debugger** das wichtigste Werkzeug. Er erlaubt es, das Programm Schritt für Schritt auszuführen, an beliebigen Stellen anzuhalten (Breakpoints) und den aktuellen Wert jeder Variable zu inspizieren. Visual Studio hat einen vollständigen Debugger direkt eingebaut — eine Einführung bietet die [offizielle Dokumentation auf Microsoft Learn](https://learn.microsoft.com/de-de/visualstudio/debugger/debugger-feature-tour).
 
-## Übersicht
-
-| Fehlerart | Wann erkennbar | Beispiel |
-| :--- | :--- | :--- |
-| Syntaxfehler | Beim Kompilieren | Fehlendes `;` |
-| Laufzeitfehler | Beim Ausführen | Division durch 0 |
-| Logikfehler | Durch Testen | Falsche Formel |
-
 Übung: Welche Fehlerart liegt vor? `int x = 10 / 0;` – Syntaxfehler, Laufzeitfehler oder Logikfehler?
 {: .notice--info}
