@@ -9,32 +9,32 @@ toc: false
 classes: wide
 ---
 
-Warum kann man auf eine Variable in einer Methode nicht von einer anderen aus zugreifen? Und warum bleibt eine Zahl nach dem Methodenaufruf manchmal unverändert, obwohl sie darin verändert wurde? Diese Fragen beantwortet das Konzept der Gültigkeitsbereiche und der Parameterübergabe.
+Wenn Methoden Daten austauschen, stellen sich zwei grundlegende Fragen: Welche Variablen sind wo sichtbar? Und was passiert genau, wenn man einer Methode einen Wert übergibt – arbeitet sie mit dem Original oder mit einer Kopie? Diese Fragen sind entscheidend, um Fehler zu vermeiden, die auf den ersten Blick rätselhaft wirken.
 
 ## Gültigkeitsbereiche (Scope)
 
-Eine Variable existiert nur innerhalb des Blocks `{ }`, in dem sie deklariert wurde:
+Jede Variable existiert nur innerhalb des Blocks `{ }`, in dem sie deklariert wurde. Sobald der Block endet, ist die Variable verschwunden – sie ist nicht mehr zugänglich und ihr Speicher wird freigegeben.
 
 ```csharp
 void Beispiel()
 {
-    int x = 10; // x ist hier sichtbar
+    int x = 10;
 
     if (x > 5)
     {
-        int y = 20; // y ist nur hier sichtbar
-        Console.WriteLine(x + y); // OK
+        int y = 20;               // y lebt nur in diesem if-Block
+        Console.WriteLine(x + y); // OK: x ist aus dem äußeren Block sichtbar
     }
 
-    Console.WriteLine(y); // Compilerfehler! y ist hier nicht sichtbar
+    Console.WriteLine(y); // Compilerfehler! y existiert hier nicht mehr
 }
 ```
 
-## Parameterübergabe: Wert vs. Referenz
+Das klingt zunächst wie eine Einschränkung, ist aber ein Schutzmechanismus: Man kann nicht versehentlich eine Variable aus einem anderen Kontext verändern. Jede Methode hat ihren eigenen, isolierten Bereich – Variablen aus `Main` sind in `Kreisfläche` nicht sichtbar, und umgekehrt. Genau das ermöglicht es, Methoden unabhängig voneinander zu entwickeln und zu testen.
 
-### Call by Value (Standard)
+## Parameterübergabe: Call by Value
 
-Primitive Typen (`int`, `double`, `bool`, …) werden als **Kopie** übergeben:
+Wenn man einen Wert an eine Methode übergibt, bekommt die Methode standardmäßig eine **Kopie** – nicht das Original. Änderungen innerhalb der Methode bleiben dort, ohne auf die aufrufende Stelle durchzuschlagen:
 
 ```csharp
 static void Verdoppeln(int x)
@@ -48,7 +48,11 @@ Verdoppeln(zahl);
 Console.WriteLine($"Nach Aufruf: {zahl}"); // 10 – unverändert!
 ```
 
-### Call by Reference mit `ref`
+Das ist das Standardverhalten für alle primitiven Typen (`int`, `double`, `bool`, `char`). Der Vorteil: Man kann einer Methode Werte übergeben, ohne befürchten zu müssen, dass sie diese unbeabsichtigt verändert. Die Methode ist eine Black Box – sie bekommt ihre Eingabe und liefert eine Ausgabe, ohne Seiteneffekte.
+
+## Call by Reference mit `ref`
+
+Manchmal soll eine Methode den ursprünglichen Wert tatsächlich verändern. Dafür gibt es `ref` – die Methode bekommt dann eine Referenz auf die originale Variable, nicht auf eine Kopie:
 
 ```csharp
 static void Verdoppeln(ref int x)
@@ -61,9 +65,14 @@ Verdoppeln(ref zahl);
 Console.WriteLine(zahl); // 20 – geändert!
 ```
 
-### Ausgabe-Parameter mit `out`
+Das `ref`-Schlüsselwort muss sowohl in der Methodensignatur als auch beim Aufruf stehen – das ist bewusst so, damit es keine versteckten Seiteneffekte gibt. Wer `ref` sieht, weiß sofort: diese Variable kann nach dem Aufruf einen anderen Wert haben.
 
-Wenn eine Methode mehrere Werte zurückgeben soll:
+`ref` sollte sparsam eingesetzt werden. Meist ist es klarer, einen Wert per `return` zurückzugeben, statt eine Variable von außen zu verändern.
+{: .notice--primary}
+
+## Ausgabe-Parameter mit `out`
+
+Eine Methode kann nur einen Wert per `return` zurückgeben. Wenn mehrere Ergebnisse benötigt werden, bietet `out` eine Möglichkeit: Die Methode schreibt ihre Ergebnisse direkt in die angegebenen Variablen. Anders als `ref` muss die Variable vorher nicht initialisiert sein – die Methode ist verpflichtet, ihr einen Wert zuzuweisen:
 
 ```csharp
 static void MinMax(int[] arr, out int min, out int max)
@@ -81,3 +90,8 @@ int[] zahlen = { 3, 1, 7, 2, 9 };
 MinMax(zahlen, out int minimum, out int maximum);
 Console.WriteLine($"Min: {minimum}, Max: {maximum}"); // Min: 1, Max: 9
 ```
+
+Ein bekanntes Beispiel aus der BCL ist `int.TryParse`: Es gibt per `return` einen `bool` zurück (Erfolg ja/nein) und schreibt das geparste Ergebnis per `out` in eine Variable.
+
+Übung: Schreibe eine Methode `Statistik(double[] werte, out double min, out double max, out double durchschnitt)`, die alle drei Kennzahlen in einem Durchlauf berechnet.
+{: .notice--info}
