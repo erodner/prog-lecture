@@ -55,6 +55,10 @@ double korrekt = (a + b + c) / 3.0;
 Logikfehler sind **am schwierigsten zu finden**, weil das Programm nicht abstürzt.
 {: .notice--warning}
 
+## Der Debugger
+
+Für Laufzeit- und Logikfehler ist der **Debugger** das wichtigste Werkzeug. Er erlaubt es, das Programm Schritt für Schritt auszuführen, an beliebigen Stellen anzuhalten (Breakpoints) und den aktuellen Wert jeder Variable zu inspizieren. Visual Studio hat einen vollständigen Debugger direkt eingebaut — eine Einführung bietet die [offizielle Dokumentation auf Microsoft Learn](https://learn.microsoft.com/de-de/visualstudio/debugger/debugger-feature-tour).
+
 ## Übersicht
 
 | Fehlerart | Wann erkennbar | Beispiel |
