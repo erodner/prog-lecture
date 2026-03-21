@@ -29,7 +29,19 @@ for (int i = temperaturen.Length - 1; i >= 0; i--)
     Console.Write(temperaturen[i] + " ");
 ```
 
-## Arrays und `foreach`
+## foreach – über alle Elemente
+
+Wenn alle Elemente der Reihe nach verarbeitet werden sollen und kein Index benötigt wird, bietet `foreach` eine kompaktere und lesbarere Alternative zu `for`:
+
+```csharp
+foreach (Typ element in Array)
+{
+    // element enthält den aktuellen Wert
+}
+```
+
+Mit `foreach` kann man Elemente nur **lesen**, nicht verändern – für Schreibzugriff muss `for` mit Index genutzt werden.
+{: .notice--warning}
 
 Wenn nur die Werte gebraucht werden (kein Index):
 

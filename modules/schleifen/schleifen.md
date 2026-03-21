@@ -99,26 +99,6 @@ for (int zeile = 1; zeile <= 5; zeile++)
 // *****
 ```
 
-## foreach – über Sammlungen
-
-Wenn alle Elemente einer Sammlung der Reihe nach verarbeitet werden sollen und kein Index benötigt wird, ist `foreach` die klarste Wahl.
-
-```csharp
-foreach (Typ element in Sammlung)
-{
-    // element enthält das aktuelle Element
-}
-```
-
-```csharp
-string[] städte = { "Berlin", "Hamburg", "München" };
-foreach (string stadt in städte)
-    Console.WriteLine(stadt);
-```
-
-Mit `foreach` kann man Elemente nur **lesen**, nicht verändern. Sollen Elemente geändert werden, muss `for` mit Index genutzt werden.
-{: .notice--warning}
-
 ## break und continue
 
 Manchmal soll eine Schleife vorzeitig enden oder ein einzelner Durchlauf übersprungen werden.
@@ -126,9 +106,9 @@ Manchmal soll eine Schleife vorzeitig enden oder ein einzelner Durchlauf übersp
 `break` bricht die Schleife sofort ab:
 
 ```csharp
-foreach (int z in zahlen)
+for (int i = 0; i < zahlen.Length; i++)
 {
-    if (z == gesucht)
+    if (zahlen[i] == gesucht)
     {
         gefunden = true;
         break;  // gefunden – kein weiteres Suchen nötig
@@ -156,9 +136,10 @@ for (int i = 1; i <= 10; i++)
 | Situation | Schleife |
 | :--- | :--- |
 | Anzahl der Durchläufe bekannt | `for` |
-| Alle Elemente einer Sammlung, kein Index nötig | `foreach` |
 | Abbruchbedingung, Anzahl unbekannt | `while` |
 | Mindestens ein Durchlauf garantiert | `do-while` |
+
+`foreach` kommt später bei Arrays und Collections zum Einsatz – dort macht die Syntax am meisten Sinn.
 
 Übung: Schreibe ein Ratespiel – das Programm denkt sich eine Zufallszahl zwischen 1 und 100, der Spieler rät mit Hinweisen „zu groß" / „zu klein", bis er richtig liegt.
 {: .notice--info}
