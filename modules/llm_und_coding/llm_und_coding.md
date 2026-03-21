@@ -92,3 +92,7 @@ Wer verstehen möchte, was unter der Haube eines LLM passiert, dem empfehle ich 
 - [Attention in transformers, step-by-step](https://www.youtube.com/watch?v=eMlx5fFNoYc) – der Attention-Mechanismus im Detail (ca. 27 Min.)
 
 Das Verständnis dieser Videos ist keine Voraussetzung für die Vorlesung – aber es hilft, LLMs als das einzuordnen, was sie sind: sehr leistungsfähige statistische Mustererkennungssysteme, keine denkenden Maschinen.
+
+[![XKCD 1838 – Machine Learning](https://imgs.xkcd.com/comics/machine_learning.png)](https://xkcd.com/1838/)
+
+[„Machine Learning"](https://xkcd.com/1838/) – Randall Munroe, [xkcd.com](https://xkcd.com), lizenziert unter [CC BY-NC 2.5](https://creativecommons.org/licenses/by-nc/2.5/)
