@@ -11,6 +11,8 @@ classes: wide
 
 Stell dir vor, du erklärst jemandem, wie man eine Treppe hinuntergeht: „Geh eine Stufe runter – und dann geh die restliche Treppe runter." Das ist Rekursion: ein Problem lösen, indem man es auf eine kleinere Version desselben Problems zurückführt. Elegant, aber man braucht immer einen Punkt, an dem es aufhört.
 
+Rekursion ist **Algorithmenentwicklung** (*Algorithm Design*) in besonders klarer Form – eines der vier Grundprinzipien des Computational Thinking. Der Trick liegt darin, eine präzise Handlungsvorschrift zu finden, die das Problem schrittweise verkleinert und einen klaren Endpunkt definiert. Das lässt sich gut im Pseudocode durchdenken, bevor man auch nur eine Zeile Code schreibt.
+
 ## Was ist Rekursion?
 
 Eine Methode ist **rekursiv**, wenn sie sich selbst aufruft. Jede rekursive Methode braucht:
@@ -18,6 +20,16 @@ Eine Methode ist **rekursiv**, wenn sie sich selbst aufruft. Jede rekursive Meth
 2. einen **rekursiven Fall** – der das Problem verkleinert
 
 ## Klassisches Beispiel: Fakultät
+
+Zuerst der Algorithmus als Pseudocode:
+
+```
+fakultät(n):
+    wenn n <= 1: gib 1 zurück          // Basisfall
+    sonst:       gib n × fakultät(n-1) zurück  // rekursiver Fall
+```
+
+Die Expansion zeigt, wie sich das Problem verkleinert:
 
 ```
 5! = 5 × 4! = 5 × 4 × 3! = 5 × 4 × 3 × 2! = 5 × 4 × 3 × 2 × 1

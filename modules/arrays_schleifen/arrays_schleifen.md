@@ -11,6 +11,8 @@ classes: wide
 
 Arrays und Schleifen gehören zusammen wie Topf und Deckel – kaum etwas ist nützlicher, als eine strukturierte Datenreihe systematisch zu durchlaufen, zu summieren oder auszuwerten. Die Wahl zwischen `for` und `foreach` hängt davon ab, ob man den Index benötigt.
 
+Beim Durchlaufen eines Arrays zeigt sich **Mustererkennung** (*Pattern Recognition*) als Grundprinzip des Computational Thinking besonders deutlich: Ob man Temperaturen auswertet, Noten summiert oder Würfelergebnisse zählt – das zugrunde liegende Muster ist immer dasselbe. Wer dieses Muster einmal verstanden hat, kann es auf beliebige Probleme anwenden.
+
 ## Arrays und `for`
 
 Wenn der Index benötigt wird, ist `for` die richtige Wahl:
@@ -52,7 +54,19 @@ foreach (int q in quadrate)
     Console.Write(q + " ");
 ```
 
-## Praxisbeispiel: Häufigster Wert
+## Häufigster Wert
+
+Bevor man Code schreibt, lohnt es sich, den Algorithmus als Pseudocode zu formulieren:
+
+```
+häufigsterWert(würfe):
+    lege ein Zählarray für alle möglichen Werte an
+    für jeden Wurf: erhöhe den Zähler für diesen Wert
+    durchsuche das Zählarray nach dem Maximum
+    gib den Index des Maximums zurück
+```
+
+In C#:
 
 ```csharp
 int[] würfe = { 3, 1, 4, 1, 5, 9, 2, 6, 5, 3, 5 };

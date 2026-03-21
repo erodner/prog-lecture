@@ -11,6 +11,8 @@ classes: wide
 
 In der realen Welt gibt es viele Dinge, die ähnlich aufgebaut sind – jeder Student hat einen Namen, eine Matrikelnummer und einen Notendurchschnitt. Klassen erlauben es, genau solche Konzepte im Code abzubilden: als Bauplan für Objekte, die Daten und Verhalten in sich vereinen.
 
+Das ist **Abstraktion** (*Abstraction*) in Reinform – eines der vier Grundprinzipien des Computational Thinking. Wer eine Klasse `Student` definiert, blendet alle Details der Implementierung aus und arbeitet stattdessen mit einem klaren, benannten Konzept. Der Rest des Programms muss nicht wissen, wie ein Student intern gespeichert ist – nur was er kann und was er hat.
+
 ## Was ist eine Klasse?
 
 Eine **Klasse** ist ein Bauplan für Objekte. Sie beschreibt, welche **Daten** (Felder/Properties) und welches **Verhalten** (Methoden) Objekte dieses Typs haben.

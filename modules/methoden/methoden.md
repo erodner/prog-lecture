@@ -11,6 +11,8 @@ classes: wide
 
 Stell dir vor, du bräuchtest dieselbe Berechnung an zehn verschiedenen Stellen in deinem Programm – und dann ändert sich die Formel. Ohne Methoden müsstest du zehn Stellen anpassen. Mit einer Methode änderst du einmal und alles funktioniert. Das ist der Kern von wiederverwendbarem Code.
 
+Methoden sind direkter Ausdruck von **Zerlegung** (*Decomposition*) als einem der Grundprinzipien des Computational Thinking: Ein komplexes Problem wird in kleinere, benennbare Teilprobleme aufgeteilt – jede Methode löst genau eines davon. Wer lernt, Aufgaben sauber in Methoden zu zerlegen, denkt bereits wie eine Softwareentwicklerin.
+
 ## Warum Methoden?
 
 Ohne Methoden wiederholt man denselben Code an vielen Stellen. Methoden erlauben es, Code zu **benennen**, **wiederzuverwenden** und **zu testen**.
