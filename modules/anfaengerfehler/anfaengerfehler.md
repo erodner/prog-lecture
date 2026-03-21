@@ -9,6 +9,10 @@ toc: false
 classes: wide
 ---
 
+[![XKCD 979 – Wisdom of the Ancients](https://imgs.xkcd.com/comics/wisdom_of_the_ancients.png)](https://xkcd.com/979/)
+
+[„Wisdom of the Ancients"](https://xkcd.com/979/) – Randall Munroe, [xkcd.com](https://xkcd.com), lizenziert unter [CC BY-NC 2.5](https://creativecommons.org/licenses/by-nc/2.5/)
+
 Manche Fehler begegnen fast allen, die C# neu lernen – und das Tückische ist, dass viele davon keinen Kompilierfehler auslösen, sondern still falsche Ergebnisse liefern. Wer diese Klassiker kennt, erkennt sie sofort, wenn er ihnen begegnet.
 
 ## 1. `=` statt `==`
