@@ -35,6 +35,8 @@ Die einzelnen Bestandteile haben klare Aufgaben:
 - **`class Program`** – in C# muss jeder Code in einer Klasse stehen
 - **`static void Main`** – der Einstiegspunkt: hier beginnt die Ausführung des Programms
 
+Was `class`, `static` und `void` genau bedeuten, wird erst im Laufe der Vorlesung klar — insbesondere wenn es um objektorientiertes Programmieren und Methoden geht. Für den Moment reicht es, die klassische Struktur als festes Gerüst zu akzeptieren und den eigenen Code innerhalb von `Main` zu schreiben.
+
 ## Moderne Schreibweise (ab .NET 6)
 
 Ab .NET 6 darf man für einfache Programme auf `namespace`, `class` und `Main` verzichten – der Compiler ergänzt diese Struktur automatisch im Hintergrund:
