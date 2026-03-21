@@ -9,7 +9,7 @@ toc: false
 classes: wide
 ---
 
-Große Sprachmodelle wie GitHub Copilot, ChatGPT oder Claude können auf Anfrage Code erzeugen. Das wirft eine naheliegende Frage auf: **Warum sollte ich Programmieren noch selbst lernen?**
+Große Sprachmodelle so wie sie in GitHub Copilot, ChatGPT oder Claude integriert sind, können auf Anfrage Code erzeugen. Das wirft eine naheliegende Frage auf: **Warum sollte ich Programmieren überhaupt noch selbst lernen?**
 
 ## Was LLMs tatsächlich können
 
@@ -20,18 +20,18 @@ LLMs sind beeindruckende Werkzeuge. Sie können:
 - Fehlermeldungen erklären und Lösungsvorschläge machen
 - Dokumentation und Tests für vorhandenen Code schreiben
 
-Das klingt nach viel. Aber es gibt eine entscheidende Einschränkung.
+Das klingt nach viel. Aber es gibt entscheidende Einschränkungen.
 
 ## Was LLMs nicht können
 
-LLMs erzeugen Code, indem sie statistische Muster aus Milliarden von Textbeispielen kombinieren. Sie **verstehen** das Problem nicht – sie produzieren etwas, das wie eine Lösung *aussieht*.
+LLMs erzeugen Code, indem sie statistische Muster aus Milliarden von Textbeispielen kombinieren. Sie **verstehen** das Problem nicht (jedenfalls nicht so wie wir es tun) – sie produzieren etwas, das wie eine Lösung *aussieht*.
 
 Das hat praktische Konsequenzen:
 
-- **Falsche Antworten wirken überzeugend.** LLMs „halluzinieren" – sie erfinden Funktionen, die nicht existieren, oder schreiben Code, der subtile Logikfehler enthält.
-- **Du kannst Fehler nur erkennen, wenn du die Grundlagen beherrschst.** Wer nicht verstehen kann, was der generierte Code tut, kann auch nicht beurteilen, ob er korrekt ist.
-- **Neue und domänenspezifische Probleme sind schwierig.** Bei ungewöhnlichen Anforderungen, sicherheitskritischen Systemen oder firmeneigenem Kontext liefern LLMs deutlich schlechtere Ergebnisse.
-- **Debugging bleibt deine Aufgabe.** Ein LLM kann bei einem Fehler raten – du musst wissen, wo und warum er auftritt.
+- **Falsche Antworten wirken überzeugend.** LLMs „halluzinieren" – sie erfinden Funktionen, die nicht existieren, oder schreiben Code, der subtile Logikfehler enthalten kann - meist wie ein Praktikant der sehr von sich überzeugt ist.
+- **Du kannst Fehler nur erkennen, wenn du die Grundlagen beherrschst.** Wer nicht verstehen kann, was der generierte Code tut und wie er funktioniert, kann auch nicht beurteilen, ob er korrekt ist.
+- **Neue und domänenspezifische Probleme sind schwierig.** Bei ungewöhnlichen Anforderungen, sicherheitskritischen Systemen oder firmeneigenem Kontext liefern LLMs aktuell noch deutlich schlechtere Ergebnisse.
+- **Debugging bleibt deine Aufgabe.** Ein LLM kann bei einem Fehler raten und unterstützen – du musst wissen, wo und warum er auftritt.
 
 Ein LLM ist ein Werkzeug – so wie ein Taschenrechner. Wer nicht rechnen kann, merkt nicht, wenn das Ergebnis falsch ist.
 {: .notice--warning}
@@ -41,11 +41,11 @@ Ein LLM ist ein Werkzeug – so wie ein Taschenrechner. Wer nicht rechnen kann, 
 Stell dir vor, du bittest ein LLM, eine Funktion zu schreiben, die eine Liste von Studierenden nach Notendurchschnitt sortiert. Es liefert etwas. Aber:
 
 - Ist der Algorithmus effizient genug für große Datensätze?
-- Werden Randfall korrekt behandelt (leere Liste, gleiche Noten)?
+- Werden Randfälle korrekt behandelt (leere Liste, gleiche Noten)?
 - Ist der Code lesbar und wartbar?
 - Passt er zur restlichen Architektur eurer Anwendung?
 
-Alle diese Fragen erfordern **fundamentale Programmierkenntnisse**. Ohne sie kannst du die Ausgabe des LLM weder bewerten noch sinnvoll einsetzen.
+Alle diese Fragen erfordern **fundamentale Programmierkenntnisse**. Ohne sie kannst du die Ausgabe des LLM weder bewerten noch sinnvoll einsetzen und in größere komplexe Systeme integrieren.
 
 ## Computational Thinking – die eigentliche Kompetenz
 
@@ -67,7 +67,7 @@ Unwichtige Details weglassen und sich auf das Wesentliche konzentrieren.
 Eine präzise, schrittweise Handlungsanweisung entwickeln, die das Problem löst.
 *Beispiel: Wie sortiere ich eine Liste? Welche Schritte müssen in welcher Reihenfolge erfolgen?*
 
-Diese Fähigkeiten lassen sich nicht delegieren – weder an ein LLM noch an eine andere Person. Sie sind der Kern dessen, was einen Softwareentwickler ausmacht.
+Diese Fähigkeiten lassen sich nicht vollständig delegieren – weder an ein LLM noch an eine andere Person. Sie sind der Kern dessen, was einen Softwareentwickler oder eine Softwareentwicklerin ausmacht.
 {: .notice--primary}
 
 ## Die richtige Einstellung
@@ -87,6 +87,7 @@ Wer die Grundlagen nicht beherrscht, ist vollständig abhängig von einem Werkze
 
 Wer verstehen möchte, was unter der Haube eines LLM passiert, dem empfehle ich die folgende visuelle Einführung von 3Blue1Brown:
 
+- [But what is a GPT? Visual intro to transformers](https://www.youtube.com/watch?v=LPZh9BOjkQs) – kurze Einführung in GPT und Transformer
 - [Transformers, the tech behind LLMs](https://www.youtube.com/watch?v=wjZofJX0v4M) – Tokenisierung, Embeddings und die Transformer-Architektur (ca. 27 Min.)
 - [Attention in transformers, step-by-step](https://www.youtube.com/watch?v=eMlx5fFNoYc) – der Attention-Mechanismus im Detail (ca. 27 Min.)
 
