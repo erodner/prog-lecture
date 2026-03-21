@@ -93,5 +93,40 @@ Console.WriteLine($"Min: {minimum}, Max: {maximum}"); // Min: 1, Max: 9
 
 Ein bekanntes Beispiel aus der BCL ist `int.TryParse`: Es gibt per `return` einen `bool` zurück (Erfolg ja/nein) und schreibt das geparste Ergebnis per `out` in eine Variable.
 
-Übung: Schreibe eine Methode `Statistik(double[] werte, out double min, out double max, out double durchschnitt)`, die alle drei Kennzahlen in einem Durchlauf berechnet.
+## Mehrere Rückgabewerte mit Tupeln
+
+Eine modernere und oft lesbarere Alternative zu `out` ist die Rückgabe eines **Tupels**. Ein Tupel fasst mehrere Werte zu einem einzigen Rückgabetyp zusammen, ohne dass man dafür eine eigene Klasse definieren muss:
+
+```csharp
+static (int min, int max) MinMax(int[] arr)
+{
+    int min = arr[0];
+    int max = arr[0];
+    foreach (int x in arr)
+    {
+        if (x < min) min = x;
+        if (x > max) max = x;
+    }
+    return (min, max);
+}
+```
+
+Der Aufrufer kann die Rückgabe entweder als ganzes Tupel speichern oder direkt in einzelne Variablen **dekonstruieren**:
+
+```csharp
+int[] zahlen = { 3, 1, 7, 2, 9 };
+
+// Als Tupel:
+var ergebnis = MinMax(zahlen);
+Console.WriteLine($"Min: {ergebnis.min}, Max: {ergebnis.max}");
+
+// Dekonstruiert in einzelne Variablen:
+var (minimum, maximum) = MinMax(zahlen);
+Console.WriteLine($"Min: {minimum}, Max: {maximum}"); // Min: 1, Max: 9
+```
+
+Tupel eignen sich gut, wenn eine Methode zwei bis drei zusammengehörige Werte zurückgibt. Für komplexere Datenstrukturen mit eigenem Verhalten ist eine Klasse die bessere Wahl.
+{: .notice--primary}
+
+Übung: Schreibe eine Methode `Statistik(double[] werte)`, die ein Tupel `(double min, double max, double durchschnitt)` zurückgibt und alle drei Kennzahlen in einem Durchlauf berechnet.
 {: .notice--info}
