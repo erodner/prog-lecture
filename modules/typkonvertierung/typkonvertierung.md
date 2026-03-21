@@ -22,13 +22,9 @@ double d = i;     // int → double: kein Datenverlust
 float f = i;      // int → float: funktioniert, aber Genauigkeit begrenzt
 ```
 
-Die implizit erlaubten Konvertierungen in C# folgen einer festen Hierarchie:
+Die implizit erlaubten Konvertierungen in C# folgen einer festen Hierarchie (gestrichelte Pfeile: `decimal` hat keinen impliziten Weg nach `float`/`double`):
 
-```
-byte → short → int → long → float → double
-                           ↘
-                          decimal
-```
+![Hierarchie impliziter Typkonvertierungen](/assets/images/typkonvertierung_implicit.svg)
 
 Gemischte Ausdrücke werden automatisch auf den „größeren" Typ gebracht:
 
@@ -105,16 +101,6 @@ double x = 3.9;
 int perCast    = (int)x;              // 3
 int perConvert = Convert.ToInt32(x);  // 4
 ```
-
-## Übersicht: Welche Methode wann?
-
-| Situation | Empfehlung |
-| :--- | :--- |
-| Konvertierung zwischen Zahlentypen (verlustfrei) | Implizit – nichts schreiben |
-| Konvertierung mit möglichem Datenverlust | `(Typ)x` – Cast |
-| String aus sicherer Quelle parsen | `int.Parse(s)` |
-| Benutzereingabe parsen | `int.TryParse(s, out x)` |
-| `null`-sicheres Parsen oder Runden gewünscht | `Convert.ToInt32(s)` |
 
 Übung: Schreibe ein Programm, das zwei Zahlen von der Konsole einliest und ihren Quotienten als `double` ausgibt. Behandle ungültige Eingaben mit `TryParse` und Division durch null.
 {: .notice--info}
