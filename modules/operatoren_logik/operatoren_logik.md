@@ -63,5 +63,43 @@ if (alter >= 18 && DatenbankPrüfung())
 
 Dies ist wichtig, wenn der zweite Ausdruck aufwändig oder fehleranfällig ist.
 
-Übung: Schreibe eine Bedingung, die prüft ob eine Zahl zwischen 1 und 100 liegt (inklusive).
+## De Morgansche Gesetze
+
+Beim Vereinfachen oder Umformulieren von Bedingungen sind die De Morganschen Gesetze unverzichtbar. Sie beschreiben, wie Negation und logische Operatoren ineinandergreifen:
+
+```
+!(A && B)  ==  !A || !B
+!(A || B)  ==  !A && !B
+```
+
+Auf Deutsch: „Nicht (A und B)" ist dasselbe wie „Nicht-A oder Nicht-B". Und „Nicht (A oder B)" ist dasselbe wie „Nicht-A und Nicht-B".
+
+Ein praktisches Beispiel: Man möchte prüfen, ob eine Eingabe **nicht** gültig ist. Eine Eingabe gilt als gültig, wenn sie nicht leer und nicht null ist:
+
+```csharp
+// Ursprüngliche Bedingung (gültig):
+if (eingabe != null && eingabe.Length > 0)
+    Verarbeite(eingabe);
+
+// Negiert mit De Morgan (ungültig):
+if (eingabe == null || eingabe.Length == 0)
+    Console.WriteLine("Ungültige Eingabe.");
+```
+
+Die De Morganschen Gesetze helfen auch dabei, verschachtelte Negationen zu entfernen, die Code schwer lesbar machen:
+
+```csharp
+// Schwer lesbar:
+if (!(alter < 18 || !hatTicket))
+    { ... }
+
+// Nach De Morgan: !(A || B) == !A && !B, und !!hatTicket == hatTicket
+if (alter >= 18 && hatTicket)
+    { ... }
+```
+
+Die Regel lässt sich merken als: **Negation reinziehen → Operatoren umkehren** (`&&` wird `||` und umgekehrt).
+{: .notice--primary}
+
+Übung: Schreibe eine Bedingung, die prüft ob eine Zahl zwischen 1 und 100 liegt (inklusive). Formuliere sie dann mit De Morgan so um, dass sie prüft ob die Zahl **außerhalb** dieses Bereichs liegt.
 {: .notice--info}

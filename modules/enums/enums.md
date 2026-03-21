@@ -69,13 +69,46 @@ Console.WriteLine(farbe);     // "Grün"
 Ampelfarbe zurück = (Ampelfarbe)1; // Gelb
 ```
 
-## Flags (mehrere Werte kombinieren)
+## Flags-Enumerationen: mehrere Werte kombinieren
+
+Normale Enumerationen modellieren genau einen Zustand. Manchmal braucht man aber eine Kombination: eine Datei kann gleichzeitig lesbar und schreibbar sein, ein Benutzer kann mehrere Rollen gleichzeitig haben. Dafür gibt es `[Flags]`.
+
+Die Werte müssen **Zweierpotenzen** sein, damit jeder Wert genau ein Bit belegt und sich Kombinationen eindeutig darstellen lassen:
 
 ```csharp
 [Flags]
-enum Berechtigung { Lesen = 1, Schreiben = 2, Ausführen = 4 }
-
-Berechtigung b = Berechtigung.Lesen | Berechtigung.Schreiben;
-Console.WriteLine(b.HasFlag(Berechtigung.Lesen));    // true
-Console.WriteLine(b.HasFlag(Berechtigung.Ausführen)); // false
+enum Berechtigung
+{
+    Keine    = 0,
+    Lesen    = 1,   // Bit 0: 001
+    Schreiben = 2,  // Bit 1: 010
+    Ausführen = 4,  // Bit 2: 100
+    Alle     = Lesen | Schreiben | Ausführen  // 111 = 7
+}
 ```
+
+Kombinieren erfolgt mit `|` (bitweises ODER), prüfen mit `HasFlag`:
+
+```csharp
+Berechtigung nutzer = Berechtigung.Lesen | Berechtigung.Schreiben;
+
+Console.WriteLine(nutzer);                              // Lesen, Schreiben
+Console.WriteLine(nutzer.HasFlag(Berechtigung.Lesen));  // true
+Console.WriteLine(nutzer.HasFlag(Berechtigung.Ausführen)); // false
+Console.WriteLine((int)nutzer);                         // 3 (001 | 010 = 011)
+```
+
+Einzelne Flags lassen sich hinzufügen oder entfernen:
+
+```csharp
+// Ausführen hinzufügen:
+nutzer |= Berechtigung.Ausführen;
+
+// Schreiben entfernen:
+nutzer &= ~Berechtigung.Schreiben;
+
+Console.WriteLine(nutzer); // Lesen, Ausführen
+```
+
+Ohne `[Flags]` würde `Console.WriteLine` nur die Zahl ausgeben statt der lesbaren Kombination – das Attribut aktiviert die sprechende `ToString()`-Darstellung.
+{: .notice--primary}

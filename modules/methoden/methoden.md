@@ -108,5 +108,33 @@ static double Kreisfläche(double radius) => Math.PI * radius * radius;
 
 Beide Varianten sind identisch – die Kurzform ist bei einfachen Berechnungen lesbarer, die Standardform besser geeignet, wenn mehrere Schritte nötig sind.
 
-Übung: Schreibe Methoden `Maximum(int a, int b)`, `Minimum(int a, int b)` und `Durchschnitt(double[] werte)`. Nutze wo sinnvoll die Kurzform mit `=>`.
+## Variable Parameteranzahl mit `params`
+
+Manchmal weiß man beim Schreiben einer Methode nicht, wie viele Argumente übergeben werden – man will eine Methode aufrufen wie `Summe(1, 2, 3)` oder `Summe(1, 2, 3, 4, 5)`, ohne für jede Anzahl eine eigene Überladung zu schreiben. Dafür gibt es das Schlüsselwort `params`:
+
+```csharp
+static int Summe(params int[] zahlen)
+{
+    int summe = 0;
+    foreach (int z in zahlen)
+        summe += z;
+    return summe;
+}
+```
+
+Der Aufrufer kann beliebig viele Argumente übergeben – oder auch ein Array:
+
+```csharp
+Console.WriteLine(Summe(1, 2, 3));          // 6
+Console.WriteLine(Summe(10, 20, 30, 40));   // 100
+Console.WriteLine(Summe());                 // 0 – auch kein Argument ist erlaubt
+
+int[] werte = { 5, 10, 15 };
+Console.WriteLine(Summe(werte));            // 30 – Array direkt übergeben
+```
+
+`params` muss der letzte Parameter in der Signatur sein und darf nur einmal vorkommen. Ein bekanntes Beispiel aus der BCL: `Console.WriteLine("{0} und {1}", a, b)` nutzt intern `params object[]`.
+{: .notice--primary}
+
+Übung: Schreibe Methoden `Maximum(int a, int b)`, `Minimum(int a, int b)` und `Durchschnitt(params double[] werte)`. Nutze wo sinnvoll die Kurzform mit `=>`.
 {: .notice--info}
