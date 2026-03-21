@@ -1,0 +1,83 @@
+---
+title: "List<T> – Dynamische Listen"
+layout: single
+author_profile: true
+author: Erik Rodner
+licence: "CC-BY"
+licence_desc: 2025 | HTW Berlin
+toc: false
+classes: wide
+---
+
+Im Alltag weiß man selten im Voraus, wie viele Einträge eine Liste haben wird – ob Einkaufszettel, Kontakte oder Suchergebnisse. `List<T>` ist die flexibelste und meistgenutzte Collection in C#: sie wächst und schrumpft dynamisch und bietet alle grundlegenden Operationen zum Verwalten von Sammlungen.
+
+## Wozu `List<T>`?
+
+Arrays haben eine feste Größe – einmal angelegt, kann die Länge nicht mehr geändert werden. `List<T>` wächst und schrumpft dynamisch.
+
+```csharp
+using System.Collections.Generic;
+
+List<string> namen = new List<string>();
+namen.Add("Anna");
+namen.Add("Ben");
+namen.Add("Clara");
+Console.WriteLine(namen.Count); // 3
+```
+
+## Wichtige Methoden
+
+```csharp
+List<int> zahlen = new List<int> { 5, 2, 8, 1, 9 };
+
+zahlen.Add(3);              // ans Ende anfügen
+zahlen.Insert(0, 99);       // an Position 0 einfügen
+zahlen.Remove(8);           // ersten Wert 8 entfernen
+zahlen.RemoveAt(0);         // Element an Index 0 entfernen
+zahlen.Sort();              // sortieren
+zahlen.Reverse();           // umkehren
+
+bool hat = zahlen.Contains(5);   // true
+int idx = zahlen.IndexOf(9);     // Index von 9
+zahlen.Clear();                  // alle entfernen
+```
+
+## Iteration
+
+```csharp
+List<string> städte = new List<string> { "Berlin", "Hamburg", "München" };
+
+foreach (string stadt in städte)
+    Console.WriteLine(stadt);
+
+// Mit Index:
+for (int i = 0; i < städte.Count; i++)
+    Console.WriteLine($"{i}: {städte[i]}");
+```
+
+## Praxisbeispiel: Einkaufsliste
+
+```csharp
+List<string> einkauf = new List<string>();
+string eingabe;
+
+do {
+    Console.Write("Artikel (leer = fertig): ");
+    eingabe = Console.ReadLine();
+    if (!string.IsNullOrWhiteSpace(eingabe))
+        einkauf.Add(eingabe);
+} while (!string.IsNullOrWhiteSpace(eingabe));
+
+Console.WriteLine($"\nEinkaufsliste ({einkauf.Count} Artikel):");
+foreach (string artikel in einkauf)
+    Console.WriteLine($"  - {artikel}");
+```
+
+## `List<T>` vs. Array
+
+| | Array | `List<T>` |
+| :--- | :--- | :--- |
+| Größe | Fest | Dynamisch |
+| Zugriff per Index | Ja | Ja |
+| Einfügen/Entfernen | Aufwändig | Einfach |
+| Speicher | Etwas effizienter | Etwas mehr Overhead |
