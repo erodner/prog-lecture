@@ -138,3 +138,8 @@ Console.WriteLine(Summe(werte));            // 30 – Array direkt übergeben
 
 Übung: Schreibe Methoden `Maximum(int a, int b)`, `Minimum(int a, int b)` und `Durchschnitt(params double[] werte)`. Nutze wo sinnvoll die Kurzform mit `=>`.
 {: .notice--info}
+
+## Weitere Quellen
+
+- [Methoden – Microsoft Learn](https://learn.microsoft.com/de-de/dotnet/csharp/programming-guide/classes-and-structs/methods)
+- [params-Schlüsselwort – Microsoft Learn](https://learn.microsoft.com/de-de/dotnet/csharp/language-reference/keywords/params)

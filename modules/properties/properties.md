@@ -84,3 +84,8 @@ class Student
     }
 }
 ```
+
+## Weitere Quellen
+
+- [Properties – Microsoft Learn](https://learn.microsoft.com/de-de/dotnet/csharp/programming-guide/classes-and-structs/properties)
+- [Auto-implementierte Properties – Microsoft Learn](https://learn.microsoft.com/de-de/dotnet/csharp/programming-guide/classes-and-structs/auto-implemented-properties)

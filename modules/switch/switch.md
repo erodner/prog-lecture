@@ -85,3 +85,7 @@ switch (befehl.ToLower())
 
 Übung: Schreibe mit einer switch-Expression einen einfachen Rechner: Operator (`+`, `-`, `*`, `/`) und zwei Zahlen einlesen, Ergebnis ausgeben.
 {: .notice--info}
+
+## Weitere Quellen
+
+- [switch-Anweisung und switch-Ausdruck – Microsoft Learn](https://learn.microsoft.com/de-de/dotnet/csharp/language-reference/statements/selection-statements#the-switch-statement)

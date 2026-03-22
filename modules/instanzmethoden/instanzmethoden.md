@@ -80,3 +80,7 @@ class Punkt
 var p = new Punkt { X = 3, Y = 4 };
 Console.WriteLine(p); // (3, 4)
 ```
+
+## Weitere Quellen
+
+- [Instanzmethoden – Microsoft Learn](https://learn.microsoft.com/de-de/dotnet/csharp/programming-guide/classes-and-structs/methods)

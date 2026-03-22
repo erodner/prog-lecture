@@ -100,3 +100,8 @@ Console.WriteLine($"Häufigster Wert: {häufigstes} (kam {max}× vor)");
 
 Übung: Generiere ein Array mit 20 Zufallszahlen zwischen 1 und 6 (`Random.Shared.Next(1, 7)`) und zähle, wie oft jede Zahl vorkommt.
 {: .notice--info}
+
+## Weitere Quellen
+
+- [Arrays und foreach – Microsoft Learn](https://learn.microsoft.com/de-de/dotnet/csharp/programming-guide/arrays/using-foreach-with-arrays)
+- [Array-Suchalgorithmen visualisiert – VisuAlgo](https://visualgo.net/en/bst)

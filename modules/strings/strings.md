@@ -69,3 +69,8 @@ Console.WriteLine(sb.ToString()); // "0 1 2 3 4 "
 
 Übung: Lies einen Satz ein und gib die Anzahl der Wörter, die Anzahl der Zeichen (ohne Leerzeichen) und den Satz rückwärts aus.
 {: .notice--info}
+
+## Weitere Quellen
+
+- [Strings in C# – Microsoft Learn](https://learn.microsoft.com/de-de/dotnet/csharp/programming-guide/strings/)
+- [String-Klasse (Methoden) – Microsoft Learn](https://learn.microsoft.com/de-de/dotnet/api/system.string)

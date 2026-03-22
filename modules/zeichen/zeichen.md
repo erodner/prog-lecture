@@ -65,3 +65,8 @@ foreach (char c in wort)
 
 Übung: Zähle in einem eingelesenen Satz die Anzahl der Vokale (a, e, i, o, u – Groß und Klein).
 {: .notice--info}
+
+## Weitere Quellen
+
+- [char-Typ – Microsoft Learn](https://learn.microsoft.com/de-de/dotnet/csharp/language-reference/builtin-types/char)
+- [Char-Klasse (Methoden) – Microsoft Learn](https://learn.microsoft.com/de-de/dotnet/api/system.char)

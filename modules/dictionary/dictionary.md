@@ -82,3 +82,8 @@ foreach (var (wort, anzahl) in häufigkeit)
 
 Übung: Lies einen Satz ein und zähle, wie oft jeder Buchstabe (Groß-/Kleinschreibung ignorieren) vorkommt.
 {: .notice--info}
+
+## Weitere Quellen
+
+- [Dictionary\<TKey,TValue\> – Microsoft Learn](https://learn.microsoft.com/de-de/dotnet/api/system.collections.generic.dictionary-2)
+- [Hash-Tabellen visualisiert – VisuAlgo](https://visualgo.net/en/hashtable)

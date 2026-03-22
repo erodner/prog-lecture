@@ -55,3 +55,7 @@ double bmi = gewicht / (groesse * groesse);  // Klammern nötig!
 
 Übung: Berechne ohne Computer: `10 - 2 * 3 + 4 / 2`. Prüfe danach mit C#.
 {: .notice--info}
+
+## Weitere Quellen
+
+- [Operatoren und Ausdrücke (Rangfolge) – Microsoft Learn](https://learn.microsoft.com/de-de/dotnet/csharp/language-reference/operators/)

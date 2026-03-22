@@ -86,3 +86,8 @@ catch (UngedeckterBetragException ex)
 - Name endet immer auf `Exception`
 - Erbt von `Exception` oder einer passenden Basisklasse
 - Enthält mindestens den Konstruktor mit `string message`
+
+## Weitere Quellen
+
+- [Eigene Ausnahmen erstellen – Microsoft Learn](https://learn.microsoft.com/de-de/dotnet/csharp/fundamentals/exceptions/creating-and-throwing-exceptions)
+- [Ausnahmen entwerfen – Microsoft Learn](https://learn.microsoft.com/de-de/dotnet/standard/design-guidelines/exceptions)

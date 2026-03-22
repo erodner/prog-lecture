@@ -142,3 +142,8 @@ Genau genommen wird auch bei Arrays die Referenz als Kopie übergeben (call by v
 
 Übung: Lies 5 Noten ein, speichere sie in einem Array und berechne Minimum, Maximum und Durchschnitt. Schreibe außerdem eine Methode `Normalisiere(double[] werte)`, die alle Werte so skaliert, dass das Maximum 1.0 ergibt, und prüfe, ob das originale Array verändert wurde.
 {: .notice--info}
+
+## Weitere Quellen
+
+- [Eindimensionale Arrays – Microsoft Learn](https://learn.microsoft.com/de-de/dotnet/csharp/programming-guide/arrays/single-dimensional-arrays)
+- [Sortieralgorithmen visualisiert – VisuAlgo](https://visualgo.net/en/sorting)

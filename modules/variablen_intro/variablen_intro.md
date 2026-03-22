@@ -53,3 +53,7 @@ Console.WriteLine($"{name} ist {alter} Jahre alt und hat die Note {note}.");
 
 Übung: Deklariere Variablen für deinen Namen, dein Alter und deine Lieblingsfarbe. Gib alle drei in einem Satz aus.
 {: .notice--info}
+
+## Weitere Quellen
+
+- [Deklarationsanweisungen – Microsoft Learn](https://learn.microsoft.com/de-de/dotnet/csharp/language-reference/statements/declarations)

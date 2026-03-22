@@ -112,3 +112,8 @@ Console.WriteLine(nutzer); // Lesen, Ausführen
 
 Ohne `[Flags]` würde `Console.WriteLine` nur die Zahl ausgeben statt der lesbaren Kombination – das Attribut aktiviert die sprechende `ToString()`-Darstellung.
 {: .notice--primary}
+
+## Weitere Quellen
+
+- [Enumerationstypen – Microsoft Learn](https://learn.microsoft.com/de-de/dotnet/csharp/language-reference/builtin-types/enum)
+- [Flags-Enumerationen – Microsoft Learn](https://learn.microsoft.com/de-de/dotnet/api/system.flagsattribute)

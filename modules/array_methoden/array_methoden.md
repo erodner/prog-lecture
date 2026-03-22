@@ -75,3 +75,7 @@ Array.Fill(nullen, -1);
 | `Array.Copy(src, dst, n)` | Erste n Elemente kopieren |
 | `Array.Fill(arr, val)` | Alle Elemente auf Wert setzen |
 | `arr.Length` | Anzahl der Elemente |
+
+## Weitere Quellen
+
+- [Array-Klasse – Microsoft Learn](https://learn.microsoft.com/de-de/dotnet/api/system.array)

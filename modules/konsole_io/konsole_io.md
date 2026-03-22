@@ -64,3 +64,7 @@ else
 
 Übung: Schreibe einen einfachen Taschenrechner: zwei Zahlen einlesen, addieren, Ergebnis formatiert ausgeben.
 {: .notice--info}
+
+## Weitere Quellen
+
+- [Console-Klasse – Microsoft Learn](https://learn.microsoft.com/de-de/dotnet/api/system.console)

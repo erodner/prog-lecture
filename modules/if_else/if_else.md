@@ -77,3 +77,7 @@ Tiefe Verschachtelung vermeiden – meist gibt es eine klarere Lösung mit `&&`/
 
 Übung: Schreibe ein Programm, das eine Zahl einliest und ausgibt, ob sie positiv, negativ oder null ist.
 {: .notice--info}
+
+## Weitere Quellen
+
+- [if-Anweisung – Microsoft Learn](https://learn.microsoft.com/de-de/dotnet/csharp/language-reference/statements/selection-statements#the-if-statement)

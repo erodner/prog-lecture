@@ -67,3 +67,8 @@ class Passwortmanager
     private string gespeicherterHash = "...";
 }
 ```
+
+## Weitere Quellen
+
+- [Zugriffsmodifizierer – Microsoft Learn](https://learn.microsoft.com/de-de/dotnet/csharp/programming-guide/classes-and-structs/access-modifiers)
+- [Zugriffsebenen – Microsoft Learn](https://learn.microsoft.com/de-de/dotnet/csharp/language-reference/keywords/accessibility-levels)

@@ -54,3 +54,7 @@ string vorzeichen = zahl >= 0 ? "+" : "-";
 // Schlecht: verschachtelte ternäre Operatoren vermeiden
 string note = p >= 90 ? "A" : p >= 75 ? "B" : p >= 60 ? "C" : "F"; // schwer lesbar
 ```
+
+## Weitere Quellen
+
+- [Bedingungsoperator `?:` – Microsoft Learn](https://learn.microsoft.com/de-de/dotnet/csharp/language-reference/operators/conditional-operator)

@@ -86,3 +86,7 @@ static int Endlos(int n)
 
 Übung: Schreibe eine rekursive Methode `Summe(int n)`, die `1 + 2 + ... + n` berechnet.
 {: .notice--info}
+
+## Weitere Quellen
+
+- [Rekursive Algorithmen visualisiert – VisuAlgo](https://visualgo.net/en/recursion)

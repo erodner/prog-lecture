@@ -9,7 +9,7 @@ toc: false
 classes: wide
 ---
 
-Große Sprachmodelle so wie sie in GitHub Copilot, ChatGPT oder Claude integriert sind, können auf Anfrage Code erzeugen. Das wirft eine naheliegende Frage auf: **Warum sollte ich Programmieren überhaupt noch selbst lernen?**
+Große Sprachmodelle, sogenannte Large Language Models (LLMs), so wie sie in GitHub Copilot, ChatGPT oder Claude integriert sind, können auf Anfrage Code erzeugen. Das wirft eine naheliegende Frage auf: **Warum sollte ich Programmieren überhaupt noch selbst lernen?**
 
 ## Was LLMs tatsächlich können
 
@@ -24,12 +24,12 @@ Das klingt nach viel. Aber es gibt entscheidende Einschränkungen.
 
 ## Was LLMs nicht können
 
-LLMs erzeugen Code, indem sie statistische Muster aus Milliarden von Textbeispielen kombinieren. Sie **verstehen** das Problem nicht (jedenfalls nicht so wie wir es tun) – sie produzieren etwas, das wie eine Lösung *aussieht*.
+LLMs erzeugen Code, indem sie statistische Muster aus Milliarden von Textbeispielen kombinieren. Sie **verstehen** das Problem nicht (jedenfalls nicht so wie wir es tun) – sie produzieren etwas, das wie eine Lösung *aussieht* (und in vielen Fällen auch ist).
 
-Das hat praktische Konsequenzen:
+Die Art und Weise wie LLMs Code erzeugen hat aber folgende Konsequenzen:
 
 - **Falsche Antworten wirken überzeugend.** LLMs „halluzinieren" – sie erfinden Funktionen, die nicht existieren, oder schreiben Code, der subtile Logikfehler enthalten kann - meist wie ein Praktikant der sehr von sich überzeugt ist.
-- **Du kannst Fehler nur erkennen, wenn du die Grundlagen beherrschst.** Wer nicht verstehen kann, was der generierte Code tut und wie er funktioniert, kann auch nicht beurteilen, ob er korrekt ist.
+- **Du kannst Fehler nur erkennen, wenn du die Grundlagen beherrschst.** Wer nicht verstehen kann, was der generierte Code tut und wie er funktioniert, kann auch nicht beurteilen, ob er in allen Fällen korrekt ist.
 - **Neue und domänenspezifische Probleme sind schwierig.** Bei ungewöhnlichen Anforderungen, sicherheitskritischen Systemen oder firmeneigenem Kontext liefern LLMs aktuell noch deutlich schlechtere Ergebnisse.
 - **Debugging bleibt deine Aufgabe.** Ein LLM kann bei einem Fehler raten und unterstützen – du musst wissen, wo und warum er auftritt.
 
@@ -72,7 +72,7 @@ Diese Fähigkeiten lassen sich nicht vollständig delegieren – weder an ein LL
 
 ## Die richtige Einstellung
 
-LLMs werden ein Teil eurer Arbeitswelt sein – das ist keine Frage. Aber der Wert, den ihr als Entwicklerinnen und Entwickler einbringt, liegt darin, dass ihr:
+LLMs werden ein wichtiger Teil eurer Arbeitswelt in der Softwareentwicklung sein – das ist keine Frage. Aber der Wert, den ihr als Entwicklerinnen und Entwickler einbringt, liegt darin, dass ihr:
 
 1. **Probleme präzise formulieren** könnt (schlechte Prompts → schlechter Code)
 2. **Ergebnisse kritisch bewerten** könnt

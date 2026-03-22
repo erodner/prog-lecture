@@ -58,3 +58,8 @@ Console.WriteLine($"In 10 Jahren bist du {alter + 10} Jahre alt.");
 
 Übung: Schreibe ein Programm, das nach Vorname und Nachname fragt und dann „Guten Tag, [Vorname] [Nachname]!" ausgibt.
 {: .notice--info}
+
+## Weitere Quellen
+
+- [Console-Klasse – Microsoft Learn](https://learn.microsoft.com/de-de/dotnet/api/system.console)
+- [Hello World – Erstes Programm – Microsoft Learn](https://learn.microsoft.com/de-de/dotnet/csharp/programming-guide/inside-a-program/hello-world-your-first-program)

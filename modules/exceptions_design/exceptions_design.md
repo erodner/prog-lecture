@@ -86,3 +86,8 @@ using (var reader = new StreamReader("datei.txt"))
     string inhalt = reader.ReadToEnd();
 } // reader.Dispose() wird automatisch aufgerufen – auch bei Exception
 ```
+
+## Weitere Quellen
+
+- [Ausnahmen entwerfen – Microsoft Learn](https://learn.microsoft.com/de-de/dotnet/standard/design-guidelines/exceptions)
+- [Best Practices für Ausnahmen – Microsoft Learn](https://learn.microsoft.com/de-de/dotnet/standard/exceptions/best-practices-for-exceptions)

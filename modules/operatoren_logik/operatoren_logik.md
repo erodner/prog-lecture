@@ -103,3 +103,8 @@ Die Regel lässt sich merken als: **Negation reinziehen → Operatoren umkehren*
 
 Übung: Schreibe eine Bedingung, die prüft ob eine Zahl zwischen 1 und 100 liegt (inklusive). Formuliere sie dann mit De Morgan so um, dass sie prüft ob die Zahl **außerhalb** dieses Bereichs liegt.
 {: .notice--info}
+
+## Weitere Quellen
+
+- [Boolesche Logikoperatoren – Microsoft Learn](https://learn.microsoft.com/de-de/dotnet/csharp/language-reference/operators/boolean-logical-operators)
+- [Vergleichsoperatoren – Microsoft Learn](https://learn.microsoft.com/de-de/dotnet/csharp/language-reference/operators/comparison-operators)

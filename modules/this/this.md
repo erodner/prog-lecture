@@ -82,3 +82,7 @@ string query = new QueryBuilder()
     .Wo("Semester > 3")
     .Build();
 ```
+
+## Weitere Quellen
+
+- [this-Schlüsselwort – Microsoft Learn](https://learn.microsoft.com/de-de/dotnet/csharp/language-reference/keywords/this)

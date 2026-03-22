@@ -81,3 +81,8 @@ for (int i = 0; i < dreieck.Length; i++)
 }
 // [[1], [1,2], [1,2,3], [1,2,3,4]]
 ```
+
+## Weitere Quellen
+
+- [Mehrdimensionale Arrays – Microsoft Learn](https://learn.microsoft.com/de-de/dotnet/csharp/programming-guide/arrays/multidimensional-arrays)
+- [Gezackte Arrays (Jagged Arrays) – Microsoft Learn](https://learn.microsoft.com/de-de/dotnet/csharp/programming-guide/arrays/jagged-arrays)

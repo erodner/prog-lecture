@@ -59,3 +59,9 @@ s2.Gpa = 1.7;
 
 Übung: Modelliere eine Klasse `Konto` mit Kontonummer, Inhaber und Kontostand. Füge Methoden `Einzahlen` und `Auszahlen` hinzu.
 {: .notice--info}
+
+## Weitere Quellen
+
+- [Klassen – Microsoft Learn](https://learn.microsoft.com/de-de/dotnet/csharp/programming-guide/classes-and-structs/classes)
+- [Objektorientierung in C# – Microsoft Learn](https://learn.microsoft.com/de-de/dotnet/csharp/fundamentals/object-oriented/)
+- [OOP-Konzepte visuell erklärt – refactoring.guru](https://refactoring.guru/refactoring/what-is-refactoring)

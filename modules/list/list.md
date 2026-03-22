@@ -81,3 +81,8 @@ foreach (string artikel in einkauf)
 | Zugriff per Index | Ja | Ja |
 | Einfügen/Entfernen | Aufwändig | Einfach |
 | Speicher | Etwas effizienter | Etwas mehr Overhead |
+
+## Weitere Quellen
+
+- [List\<T\> – Microsoft Learn](https://learn.microsoft.com/de-de/dotnet/api/system.collections.generic.list-1)
+- [Generische Collections – Microsoft Learn](https://learn.microsoft.com/de-de/dotnet/standard/generics/collections)

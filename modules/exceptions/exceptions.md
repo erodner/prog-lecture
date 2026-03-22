@@ -98,3 +98,8 @@ catch (FormatException ex)
     // zeigt den genauen Aufrufpfad zur Fehlerstelle
 }
 ```
+
+## Weitere Quellen
+
+- [Ausnahmen und Fehlerbehandlung – Microsoft Learn](https://learn.microsoft.com/de-de/dotnet/csharp/fundamentals/exceptions/)
+- [Exception-Klasse – Microsoft Learn](https://learn.microsoft.com/de-de/dotnet/api/system.exception)

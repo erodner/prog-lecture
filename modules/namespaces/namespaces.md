@@ -71,3 +71,8 @@ class Kreis
     public double Radius { get; set; }
 }
 ```
+
+## Weitere Quellen
+
+- [Namespaces – Microsoft Learn](https://learn.microsoft.com/de-de/dotnet/csharp/language-reference/keywords/namespace)
+- [using-Direktive – Microsoft Learn](https://learn.microsoft.com/de-de/dotnet/csharp/language-reference/keywords/using-directive)

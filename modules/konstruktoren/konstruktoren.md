@@ -80,3 +80,7 @@ class Student
 
 Übung: Erweitere die Klasse `Rechteck` um einen Konstruktor, der nur eine Seitenlänge nimmt (für ein Quadrat).
 {: .notice--info}
+
+## Weitere Quellen
+
+- [Konstruktoren – Microsoft Learn](https://learn.microsoft.com/de-de/dotnet/csharp/programming-guide/classes-and-structs/constructors)

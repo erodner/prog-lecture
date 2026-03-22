@@ -80,3 +80,7 @@ if (x > 0);          // Semikolon beendet die if-Anweisung sofort!
 
 Dieser Fehler erzeugt keinen Compilerfehler – er ist ein Logikfehler.
 {: .notice--warning}
+
+## Weitere Quellen
+
+- [Häufige C#-Fehler und Lösungen – Microsoft Learn](https://learn.microsoft.com/de-de/dotnet/csharp/misc/)

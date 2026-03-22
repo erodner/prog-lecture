@@ -79,3 +79,9 @@ Console.WriteLine($"Durchschnitt: {durchschnitt:F2}");
 
 LINQ-Methoden lassen sich beliebig verketten – jede Methode gibt wieder eine Sammlung zurück, auf der weitere Methoden aufgerufen werden können.
 {: .notice--primary}
+
+## Weitere Quellen
+
+- [LINQ-Übersicht – Microsoft Learn](https://learn.microsoft.com/de-de/dotnet/csharp/linq/)
+- [Standard Query Operators – Microsoft Learn](https://learn.microsoft.com/de-de/dotnet/csharp/linq/standard-query-operators/)
+- [101 LINQ-Beispiele – Microsoft Learn](https://learn.microsoft.com/de-de/samples/dotnet/try-samples/101-linq-samples/)

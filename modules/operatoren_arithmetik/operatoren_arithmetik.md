@@ -57,3 +57,7 @@ i--;  // i = 5  (Postfix-Dekrement)
 
 Übung: Schreibe ein Programm, das die Anzahl der Sekunden in einem Tag einliest und in Stunden, Minuten und Sekunden umrechnet.
 {: .notice--info}
+
+## Weitere Quellen
+
+- [Arithmetische Operatoren – Microsoft Learn](https://learn.microsoft.com/de-de/dotnet/csharp/language-reference/operators/arithmetic-operators)

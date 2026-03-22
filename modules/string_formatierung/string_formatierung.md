@@ -70,3 +70,8 @@ Heute wird fast ausschließlich String-Interpolation verwendet – sie ist lesba
 
 Übung: Formatiere eine Rechnung mit drei Produkten: Name (linksbündig, 20 Zeichen), Preis (rechtsbündig, Währungsformat).
 {: .notice--info}
+
+## Weitere Quellen
+
+- [Interpolierte Zeichenfolgen – Microsoft Learn](https://learn.microsoft.com/de-de/dotnet/csharp/language-reference/tokens/interpolated)
+- [Standardformate für numerische Werte – Microsoft Learn](https://learn.microsoft.com/de-de/dotnet/standard/base-types/standard-numeric-format-strings)

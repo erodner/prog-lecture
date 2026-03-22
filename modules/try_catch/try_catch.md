@@ -105,3 +105,8 @@ static double Teilen(double a, double b)
 
 Übung: Schreibe eine Methode, die sicher einen `int` aus einer Konsoleneingabe liest und bei ungültiger Eingabe immer wieder fragt (Schleife + try-catch).
 {: .notice--info}
+
+## Weitere Quellen
+
+- [Ausnahmebehandlungsanweisungen – Microsoft Learn](https://learn.microsoft.com/de-de/dotnet/csharp/language-reference/statements/exception-handling-statements)
+- [Best Practices für Ausnahmen – Microsoft Learn](https://learn.microsoft.com/de-de/dotnet/standard/exceptions/best-practices-for-exceptions)

@@ -123,3 +123,10 @@ checked
 
 Übung: Warum liefert `0.1 + 0.2 == 0.3` in C# `false`? Schreibe einen korrekten Vergleich. Prüfe außerdem: Was ist `int.MaxValue + 1`?
 {: .notice--info}
+
+## Weitere Quellen
+
+- [Eingebaute Typen – Microsoft Learn](https://learn.microsoft.com/de-de/dotnet/csharp/language-reference/builtin-types/built-in-types)
+- [Ganzzahltypen – Microsoft Learn](https://learn.microsoft.com/de-de/dotnet/csharp/language-reference/builtin-types/integral-numeric-types)
+- [Gleitkommatypen – Microsoft Learn](https://learn.microsoft.com/de-de/dotnet/csharp/language-reference/builtin-types/floating-point-numeric-types)
+- [IEEE 754 interaktiv visualisiert – float.exposed](https://float.exposed)

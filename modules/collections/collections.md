@@ -76,3 +76,10 @@ a.ExceptWith(b);     // Differenz
 | `Stack<T>` | LIFO | Ja | Nur oben |
 | `HashSet<T>` | Nein | Nein | Enthält-Prüfung |
 | `Dictionary<K,V>` | Nein | Nein (Keys) | Schlüssel |
+
+## Weitere Quellen
+
+- [Collections-Übersicht – Microsoft Learn](https://learn.microsoft.com/de-de/dotnet/csharp/programming-guide/concepts/collections)
+- [Stack\<T\> – Microsoft Learn](https://learn.microsoft.com/de-de/dotnet/api/system.collections.generic.stack-1)
+- [Queue\<T\> – Microsoft Learn](https://learn.microsoft.com/de-de/dotnet/api/system.collections.generic.queue-1)
+- [Stack und Queue visualisiert – VisuAlgo](https://visualgo.net/en/list)

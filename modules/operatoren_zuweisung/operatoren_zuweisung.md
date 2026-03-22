@@ -63,3 +63,7 @@ punkte *= 2;    // Doppelpunkte-Bonus
 
 Console.WriteLine($"Endpunktzahl: {punkte}"); // 110
 ```
+
+## Weitere Quellen
+
+- [Zuweisungsoperatoren – Microsoft Learn](https://learn.microsoft.com/de-de/dotnet/csharp/language-reference/operators/assignment-operator)

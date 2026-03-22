@@ -95,3 +95,8 @@ else
 
 Übung: Schreibe eine Methode `LeseInt()`, die eine Konsoleneingabe liest und als `int?` zurückgibt – `null` wenn die Eingabe keine gültige Zahl ist. Nutze `TryParse`.
 {: .notice--info}
+
+## Weitere Quellen
+
+- [Nullable-Werttypen – Microsoft Learn](https://learn.microsoft.com/de-de/dotnet/csharp/language-reference/builtin-types/nullable-value-types)
+- [Null-Operatoren (`??`, `?.`) – Microsoft Learn](https://learn.microsoft.com/de-de/dotnet/csharp/language-reference/operators/null-coalescing-operator)

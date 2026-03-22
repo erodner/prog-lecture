@@ -143,3 +143,7 @@ for (int i = 1; i <= 10; i++)
 
 Übung: Schreibe ein Ratespiel – das Programm denkt sich eine Zufallszahl zwischen 1 und 100, der Spieler rät mit Hinweisen „zu groß" / „zu klein", bis er richtig liegt.
 {: .notice--info}
+
+## Weitere Quellen
+
+- [Iterationsanweisungen – Microsoft Learn](https://learn.microsoft.com/de-de/dotnet/csharp/language-reference/statements/iteration-statements)

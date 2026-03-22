@@ -11,7 +11,7 @@ toc: false
 classes: wide
 ---
 
-Willkommen zur Veranstaltung **Programmierung 1** an der HTW Berlin. Diese Veranstaltung richtet sich an Studierende ohne Vorkenntnisse in der Programmierung und führt systematisch in die Programmierung mit **C#** ein.
+Willkommen zur Veranstaltung **Programmierung 1** für den Studiengang Ingenieurinformatik an der HTW Berlin. Diese Veranstaltung richtet sich an Studierende ohne Vorkenntnisse in der Programmierung und führt systematisch in die Programmierung mit **C#** ein.
 
 ## ➤ Worum geht es?
 
@@ -21,10 +21,8 @@ Programmieren zu lernen bedeutet, eine neue Art des Denkens zu erlernen: präzis
 
 Die Vorlesung besteht aus:
 - einer **Vorlesung** mit Theorie und Beispielen,
-- **Übungen** mit praktischen Aufgaben (über Moodle/VPL), und
-- einem **Praktikum**, in dem wir gemeinsam programmieren.
-
-Alle Programmieraufgaben werden über das **Virtual Programming Lab (VPL)** in Moodle abgegeben und automatisch bewertet.
+- **Übungen** mit praktischen Aufgaben und
+- einem **Tutorium** als zusätzliche Unterstützung
 
 ## ➤ Inhalt der Veranstaltung
 

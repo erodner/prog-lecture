@@ -61,3 +61,8 @@ Für Laufzeit- und Logikfehler ist der **Debugger** das wichtigste Werkzeug. Er 
 
 Übung: Welche Fehlerart liegt vor? `int x = 10 / 0;` – Syntaxfehler, Laufzeitfehler oder Logikfehler?
 {: .notice--info}
+
+## Weitere Quellen
+
+- [Debugger-Einführung – Microsoft Learn](https://learn.microsoft.com/de-de/visualstudio/debugger/debugger-feature-tour)
+- [Ausnahmen und Fehlerbehandlung – Microsoft Learn](https://learn.microsoft.com/de-de/dotnet/csharp/fundamentals/exceptions/)

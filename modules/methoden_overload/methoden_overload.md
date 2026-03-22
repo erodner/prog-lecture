@@ -89,3 +89,7 @@ Optionale Parameter stehen immer am Ende der Parameterliste – ein Parameter mi
 
 Übung: Schreibe eine überladene Methode `Beschreibe`, die entweder einen `int`, einen `double` oder einen `string` entgegennimmt und jeweils eine passende Beschreibung ausgibt (z.B. „Ganzzahl: 42", „Kommazahl: 3,14", „Text: Hallo").
 {: .notice--info}
+
+## Weitere Quellen
+
+- [Methodenüberladung – Microsoft Learn](https://learn.microsoft.com/de-de/dotnet/standard/design-guidelines/member-overloading)

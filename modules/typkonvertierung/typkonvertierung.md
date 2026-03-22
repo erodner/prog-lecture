@@ -104,3 +104,8 @@ int perConvert = Convert.ToInt32(x);  // 4
 
 Übung: Schreibe ein Programm, das zwei Zahlen von der Konsole einliest und ihren Quotienten als `double` ausgibt. Behandle ungültige Eingaben mit `TryParse` und Division durch null.
 {: .notice--info}
+
+## Weitere Quellen
+
+- [Typkonvertierungen – Microsoft Learn](https://learn.microsoft.com/de-de/dotnet/csharp/programming-guide/types/casting-and-type-conversions)
+- [Implizite numerische Konvertierungen – Microsoft Learn](https://learn.microsoft.com/de-de/dotnet/csharp/language-reference/builtin-types/numeric-conversions)

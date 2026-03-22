@@ -63,3 +63,8 @@ Mit einer Klasse würde `a.X` ebenfalls 99 sein, da beide auf dasselbe Objekt ze
 ## Wann `struct`?
 
 Structs eignen sich für **kleine, unveränderliche Datencontainer** ohne komplexes Verhalten: Koordinaten, Farben, Zeitspannen, Vektoren. Für komplexere Modelle mit Vererbung und Identität immer `class` verwenden.
+
+## Weitere Quellen
+
+- [Strukturtypen – Microsoft Learn](https://learn.microsoft.com/de-de/dotnet/csharp/language-reference/builtin-types/struct)
+- [Wählen zwischen Klasse und Struktur – Microsoft Learn](https://learn.microsoft.com/de-de/dotnet/standard/design-guidelines/choosing-between-class-and-struct)

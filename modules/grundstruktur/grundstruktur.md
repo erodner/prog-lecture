@@ -47,3 +47,8 @@ Console.WriteLine("Hallo, Welt!");
 
 Das Ergebnis ist identisch. In dieser Vorlesung verwenden wir beide Formen: die kurze Schreibweise für schnelle Experimente, die klassische für größere Programme, bei denen die Struktur hilft.
 {: .notice--primary}
+
+## Weitere Quellen
+
+- [Einführung in C# – Microsoft Learn](https://learn.microsoft.com/de-de/dotnet/csharp/tour-of-csharp/)
+- [Struktur eines C#-Programms – Microsoft Learn](https://learn.microsoft.com/de-de/dotnet/csharp/fundamentals/program-structure/)

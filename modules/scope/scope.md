@@ -130,3 +130,8 @@ Tupel eignen sich gut, wenn eine Methode zwei bis drei zusammengehörige Werte z
 
 Übung: Schreibe eine Methode `Statistik(double[] werte)`, die ein Tupel `(double min, double max, double durchschnitt)` zurückgibt und alle drei Kennzahlen in einem Durchlauf berechnet.
 {: .notice--info}
+
+## Weitere Quellen
+
+- [Parameterübergabe – Microsoft Learn](https://learn.microsoft.com/de-de/dotnet/csharp/programming-guide/classes-and-structs/passing-parameters)
+- [Tupel in C# – Microsoft Learn](https://learn.microsoft.com/de-de/dotnet/csharp/language-reference/builtin-types/value-tuples)
