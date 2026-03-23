@@ -34,11 +34,18 @@ Console.WriteLine(7.0 / 2);         // 3.5 (ein Operand ist double)
 
 ## Modulo – praktische Anwendungen
 
-```csharp
-int n = 13;
-Console.WriteLine(n % 2 == 0 ? "gerade" : "ungerade"); // ungerade
+Der Modulo-Operator `%` liefert den Rest einer Division. Der einfachste Anwendungsfall: die letzte Ziffer einer Zahl extrahieren, oder prüfen ob eine Zahl gerade ist:
 
-// Uhrzeit: Sekunden in Stunden/Minuten umrechnen
+```csharp
+int n = 1234;
+Console.WriteLine(n % 10);  // 4 – letzte Ziffer
+
+Console.WriteLine(13 % 2 == 0 ? "gerade" : "ungerade"); // ungerade
+```
+
+Ein etwas umfangreicheres Beispiel — Sekunden in Stunden, Minuten und Restsekunden umrechnen:
+
+```csharp
 int sekunden = 3725;
 int stunden  = sekunden / 3600;
 int minuten  = (sekunden % 3600) / 60;

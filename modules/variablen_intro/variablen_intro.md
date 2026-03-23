@@ -26,6 +26,19 @@ int punkte = 100;  // beides in einem Schritt
 
 Der Typ legt fest, welche Art von Wert die Variable aufnehmen darf — eine ganze Zahl (`int`), eine Kommazahl (`double`), einen Text (`string`) usw. Der Compiler prüft das bereits beim Übersetzen: Wer versucht, einen Text in eine `int`-Schublade zu legen, bekommt sofort einen Fehler.
 
+## Namenskonventionen
+
+In C# schreibt man lokale Variablen in **camelCase** — der erste Buchstabe klein, jedes weitere Wort groß:
+
+```csharp
+int aktuellerPunktestand = 0;
+string vorName = "Anna";
+double durchschnittsNote = 2.3;
+```
+
+Variablennamen sollten aussagekräftig sein. `x` oder `a` sind in kurzen Beispielen okay, aber in echtem Code ist `alter` besser als `a` und `gesamtPreis` besser als `gp`.
+{: .notice--primary}
+
 ## Wert ändern
 
 Der Name „Variable" kommt daher, dass der gespeicherte Wert jederzeit geändert werden kann — die Schublade wird einfach neu befüllt:

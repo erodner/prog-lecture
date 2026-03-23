@@ -24,6 +24,19 @@ int x = ;                   // Fehler: kein Wert zugewiesen
 
 Syntaxfehler sind **am einfachsten zu finden** – Visual Studio markiert sie sofort rot.
 
+## Compiler-Fehlermeldungen lesen
+
+Wenn der Compiler einen Fehler meldet, liefert er drei wichtige Informationen: die **Fehlernummer** (z.B. `CS1002`), die **Datei und Zeile** und eine **Beschreibung**:
+
+```
+Program.cs(5,42): error CS1002: ; expected
+```
+
+Das heißt: In `Program.cs`, Zeile 5, Spalte 42 fehlt ein Semikolon. Die Fehlernummer lässt sich direkt in einer Suchmaschine nachschlagen. Visual Studio zeigt dieselben Informationen in der **Fehlerliste** (Error List) — ein Doppelklick springt direkt zur betroffenen Zeile.
+
+Fehlermeldungen immer von oben nach unten abarbeiten. Oft löst ein einzelner Fehler (z.B. eine fehlende Klammer) eine ganze Kaskade von Folgefehlern aus — den ersten beheben und neu kompilieren.
+{: .notice--primary}
+
 ## 2. Laufzeitfehler (Runtime Errors)
 
 Der Code ist syntaktisch korrekt, aber beim Ausführen tritt ein Fehler auf.

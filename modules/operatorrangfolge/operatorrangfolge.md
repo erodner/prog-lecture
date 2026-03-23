@@ -36,7 +36,8 @@ int ergebnis = 2 + 3 * 4;   // = 14, nicht 20
 
 ## Klammern setzen
 
-Im Zweifel immer Klammern setzen – das erhöht die Lesbarkeit und vermeidet Fehler:
+Die Rangfolge aller Operatoren muss man sich nicht merken. Die einfachste Regel: **Im Zweifel klammern.** Das erhöht die Lesbarkeit und vermeidet Fehler — auch für den, der den Code Wochen später nochmal liest.
+{: .notice--primary}
 
 ```csharp
 // Unklar und fehleranfällig:

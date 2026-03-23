@@ -37,15 +37,21 @@ Die einzelnen Bestandteile haben klare Aufgaben:
 
 Was `class`, `static` und `void` genau bedeuten, wird erst im Laufe der Vorlesung klar — insbesondere wenn es um objektorientiertes Programmieren und Methoden geht. Für den Moment reicht es, die klassische Struktur als festes Gerüst zu akzeptieren und den eigenen Code innerhalb von `Main` zu schreiben.
 
-## Moderne Schreibweise (ab .NET 6)
+## Moderne Schreibweise: Top-Level Statements (ab .NET 6)
 
-Ab .NET 6 darf man für einfache Programme auf `namespace`, `class` und `Main` verzichten – der Compiler ergänzt diese Struktur automatisch im Hintergrund:
+Ab .NET 6 darf man für einfache Programme auf `namespace`, `class` und `Main` verzichten – der Compiler ergänzt diese Struktur automatisch im Hintergrund. Diese Kurzform heißt offiziell **Top-Level Statements**:
 
 ```csharp
 Console.WriteLine("Hallo, Welt!");
 ```
 
-Das Ergebnis ist identisch. In dieser Vorlesung verwenden wir beide Formen: die kurze Schreibweise für schnelle Experimente, die klassische für größere Programme, bei denen die Struktur hilft.
+Hier fällt auf, dass auch die Zeile `using System;` fehlt. Das liegt daran, dass neue .NET-Projekte standardmäßig **Implicit Usings** aktiviert haben – häufig benötigte Namensräume wie `System` werden automatisch importiert, ohne dass man sie hinschreiben muss. In der Projektdatei (`.csproj`) steht dafür:
+
+```xml
+<ImplicitUsings>enable</ImplicitUsings>
+```
+
+Das Ergebnis ist identisch zur klassischen Form. In dieser Vorlesung verwenden wir beide Formen: die kurze Schreibweise für schnelle Experimente, die klassische für größere Programme, bei denen die Struktur hilft.
 {: .notice--primary}
 
 ## Weitere Quellen

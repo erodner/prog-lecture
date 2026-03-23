@@ -65,10 +65,9 @@ Konsoleneingaben und Dateien liefern immer Strings – diese müssen in den rich
 **`Parse`** konvertiert direkt, wirft aber eine Exception wenn der String kein gültiger Wert ist:
 
 ```csharp
-int i      = int.Parse("100");
-double d   = double.Parse("3.14");
-bool b     = bool.Parse("true");
-DateTime t = DateTime.Parse("2025-03-21");
+int i    = int.Parse("100");
+double d = double.Parse("3.14");
+bool b   = bool.Parse("true");
 ```
 
 **`TryParse`** ist die sichere Variante: bei ungültigem Input gibt sie `false` zurück, statt abzustürzen. Das `out`-Keyword schreibt das Ergebnis direkt in eine Variable:

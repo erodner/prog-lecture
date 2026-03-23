@@ -15,14 +15,18 @@ Bevor ein Programm irgendetwas sinnvoll tun kann, muss es Daten speichern – un
 
 | Typ | Beschreibung | Größe | Wertebereich (ca.) |
 | :--- | :--- | :--- | :--- |
+| `byte` | Ganze Zahl (ohne Vorzeichen) | 8-bit | 0 bis 255 |
+| `short` | Ganze Zahl | 16-bit | −32.768 bis +32.767 |
 | `int` | Ganze Zahl | 32-bit | −2,1 Mrd. bis +2,1 Mrd. |
 | `long` | Ganze Zahl | 64-bit | ±9,2 · 10¹⁸ |
-| `double` | Gleitkommazahl | 64-bit | ±1,7 · 10³⁰⁸, ~15–16 Stellen Genauigkeit |
 | `float` | Gleitkommazahl | 32-bit | ±3,4 · 10³⁸, ~6–7 Stellen Genauigkeit |
+| `double` | Gleitkommazahl | 64-bit | ±1,7 · 10³⁰⁸, ~15–16 Stellen Genauigkeit |
 | `decimal` | Dezimalzahl | 128-bit | hohe Präzision, für Geldbeträge |
 | `bool` | Wahrheitswert | 1-bit (logisch) | `true`, `false` |
 | `char` | Einzelnes Zeichen | 16-bit (UTF-16) | `'A'`, `'\n'` |
 | `string` | Zeichenkette | variabel | `"Hallo"` |
+
+Im Alltag reicht fast immer `int` für ganze Zahlen und `double` für Kommazahlen. Die kleineren Typen (`byte`, `short`) begegnen einem eher beim Lesen von Dateiformaten oder Netzwerkprotokollen.
 
 ## Deklaration und Initialisierung
 
@@ -42,6 +46,14 @@ Mit `var` erkennt der Compiler den Typ automatisch aus dem zugewiesenen Wert –
 var zahl = 42;       // int
 var text = "Hallo";  // string
 var preis = 9.99;    // double
+```
+
+`var` ist praktisch, wenn der Typ aus der rechten Seite offensichtlich ist. Wenn nicht, lieber den Typ hinschreiben — das macht den Code lesbarer:
+
+```csharp
+var name = "Anna";              // klar: string
+var ergebnis = Berechne(x, y);  // unklar: welcher Typ kommt zurück?
+double ergebnis = Berechne(x, y);  // besser: Typ ist sofort sichtbar
 ```
 
 Für Werte, die sich nie ändern sollen, gibt es `const`:

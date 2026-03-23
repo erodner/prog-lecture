@@ -32,25 +32,6 @@ n /= 4;   // n = n / 4  → 6
 n %= 4;   // n = n % 4  → 2
 ```
 
-## Inkrement und Dekrement
-
-```csharp
-int i = 5;
-i++;   // i = 6  (nach der Auswertung erhöhen)
-i--;   // i = 5  (nach der Auswertung verringern)
-```
-
-Präfix- vs. Postfix-Unterschied (für Fortgeschrittene):
-
-```csharp
-int a = 5;
-int b = a++;  // b = 5, a = 6  (erst zuweisen, dann erhöhen)
-int c = ++a;  // c = 7, a = 7  (erst erhöhen, dann zuweisen)
-```
-
-In einfachen Schleifen (`i++`) macht der Unterschied keinen Unterschied – er ist nur relevant, wenn der Ausdruck direkt in einer Zuweisung steht.
-{: .notice--primary}
-
 ## Praxisbeispiel: Punkte in einem Spiel
 
 ```csharp

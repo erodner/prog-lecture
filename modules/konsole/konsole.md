@@ -27,7 +27,16 @@ Hallo, Welt!
 Kein Umbruch hier. Weiter auf gleicher Zeile.
 ```
 
-Variablen lassen sich direkt in die Ausgabe einbetten. Die sogenannte **String-Interpolation** mit `$"..."` ist dabei die lesbarste Variante:
+Innerhalb von Strings haben einige Zeichen eine besondere Bedeutung — sie werden mit `\` eingeleitet:
+
+```csharp
+Console.WriteLine("Zeile 1\nZeile 2");   // \n = Zeilenumbruch
+Console.WriteLine("Spalte1\tSpalte2");    // \t = Tabulator
+Console.WriteLine("Er sagte \"Hallo\"");  // \" = Anführungszeichen im String
+Console.WriteLine("Pfad: C:\\Users");     // \\ = ein einzelner Backslash
+```
+
+Variablen lassen sich direkt in die Ausgabe einbetten. Das `$` vor dem String ermöglicht es, Variablen in `{...}` einzubetten — diese Technik heißt **String-Interpolation** und wird später noch im Detail behandelt:
 
 ```csharp
 string name = "Anna";
