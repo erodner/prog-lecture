@@ -35,10 +35,10 @@ Die folgende Tabelle zeigt die Rangfolge aller bisher bekannten Operatoren. Oper
 | 5 | `<`, `>`, `<=`, `>=` | `alter >= 18` |
 | 6 | `==`, `!=` | `x == 0` |
 | 7 | `&&` | `a && b` |
-| 8 | `\|\|` | `a \|\| b` |
+| 8 | `||` | `a || b` |
 | 9 (niedrigste) | `=`, `+=`, `-=`, … | `x = 10`, `n += 1` |
 
-Einige Details, die sich aus der Tabelle ergeben: Vergleiche (Stufe 5–6) binden stärker als Logikoperatoren (Stufe 7–8) — deshalb funktioniert `alter >= 18 && hatAusweis` ohne Klammern um die Vergleiche. Und `&&` bindet stärker als `||`, genau wie `*` stärker als `+` bindet.
+Einige Details, die sich aus der Tabelle ergeben: Vergleiche (Stufe 5–6) binden stärker als Logikoperatoren (Stufe 7–8) — deshalb funktioniert `alter >= 18 && hatAusweis` ohne Klammern um die Vergleiche. Die logische Operation `&&` bindet stärker als `||`, genau wie `*` stärker als `+` bindet.
 
 ## Klammern setzen
 
@@ -53,7 +53,7 @@ bool ok = x > 0 && y < 10 || z == 5;
 bool ok = (x > 0 && y < 10) || (z == 5);
 ```
 
-Beide Zeilen sind syntaktisch korrekt, aber nur die zweite ist sofort verständlich. In professionellem Code sieht man fast immer Klammern bei gemischten `&&`/`||`-Ausdrücken — nicht weil der Compiler sie braucht, sondern weil der nächste Leser sie braucht.
+Beide Zeilen sind syntaktisch korrekt, aber nur die zweite ist sofort verständlich. In professionellem Code sieht man fast immer Klammern bei gemischten `&&`/`||`-Ausdrücken — nicht weil der Compiler sie braucht, sondern für den nächsten Leser.
 
 ## Typische Fehler durch falsche Rangfolge
 
@@ -74,9 +74,6 @@ bool ok = !(x > 0);      // RICHTIG: Klammern um den Vergleich
 ```
 
 All diese Fehler lassen sich mit einer einfachen Faustregel vermeiden: Wenn ein Ausdruck mehr als einen Operator enthält und die Reihenfolge nicht offensichtlich ist — Klammern setzen.
-
-Übung: Berechne ohne Computer: `10 - 2 * 3 + 4 / 2`. Prüfe danach mit C#. Setze dann Klammern so, dass das Ergebnis 6 wird.
-{: .notice--info}
 
 ## Weitere Quellen
 

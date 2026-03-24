@@ -46,7 +46,10 @@ Console.WriteLine(sonnig || warm);   // true  – ODER: mindestens einer muss tr
 Console.WriteLine(!sonnig);          // false – NICHT: kehrt den Wert um
 ```
 
-In der Praxis werden Vergleiche und Logikoperatoren fast immer zusammen verwendet. Ein Vergleich liefert einen `bool`-Wert, und Logikoperatoren verknüpfen diese `bool`-Werte zu komplexeren Bedingungen:
+In der Praxis werden Vergleiche und Logikoperatoren fast immer zusammen verwendet. Ein Vergleich liefert einen `bool`-Wert, und Logikoperatoren verknüpfen diese `bool`-Werte zu komplexeren Bedingungen. 
+
+Im Folgenden greifen wir ein wenig vor und nutzen sogenannte `if`-Anweisungen um die Funktionsweise von Logikausdrücken zu erläutern. Eine `if`-Anweisung stellt Bedingungen für die Ausführung von nachfolgenden Codeanweisungen.
+{: .notice--primary}
 
 ```csharp
 int alter = 20;
