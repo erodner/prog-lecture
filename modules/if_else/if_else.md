@@ -28,8 +28,7 @@ else
 
 Die Bedingung muss immer in runden Klammern stehen. Der `else`-Zweig ist optional — wenn man nur auf den positiven Fall reagieren will, kann man ihn weglassen.
 
-## Einfaches Beispiel
-
+Hier einmal ein einfaches Beispiel:
 ```csharp
 Console.Write("Temperatur in °C: ");
 double temp = double.Parse(Console.ReadLine());
@@ -45,7 +44,7 @@ Hier wird genau einer der beiden `WriteLine`-Aufrufe ausgeführt — nie beide u
 Bei einer einzelnen Anweisung pro Zweig können die geschweiften Klammern weggelassen werden. Empfohlen ist es trotzdem, sie immer zu setzen — das beugt Fehlern vor, wenn man später eine zweite Anweisung ergänzt und die Klammern vergisst.
 {: .notice--primary}
 
-## else if – Mehrfache Bedingungen
+## Mehrfache Bedingungen
 
 Oft reichen zwei Fälle nicht aus. Mit `else if` lassen sich beliebig viele Bedingungen aneinanderreihen. Die Bedingungen werden **von oben nach unten** geprüft, und der erste zutreffende Zweig wird ausgeführt — alle weiteren werden übersprungen:
 
