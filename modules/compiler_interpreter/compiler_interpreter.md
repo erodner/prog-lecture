@@ -13,12 +13,13 @@ Programmiersprachen unterscheiden sich grundlegend darin, wie Quellcode in ausf�
 
 ## Interpretersprachen
 
-Bei Interpretersprachen liest ein **Interpreter** den Quellcode zur Laufzeit und führt ihn direkt aus – Zeile für Zeile, ohne vorherige Übersetzung. Dies sei hier einmal anhand der Programmiersprache Python gezeigt:
-
+Bei Interpretersprachen liest ein **Interpreter** den Quellcode zur Laufzeit und führt ihn direkt aus – Zeile für Zeile, ohne vorherige Übersetzung. Dies sei hier einmal anhand der Programmiersprache Python gezeigt. Ein einfaches Python-Programm sieht zum Beispiel wie folgt aus:
 ```python
 # hello.py
 print("Hallo, Welt!")
 ```
+
+Dieses Programm können übergeben wir jetzt dem Interpreter, der Aufruf erfolgt in der Kommandozeile:
 
 ```bash
 $ python3 hello.py
@@ -28,6 +29,9 @@ Hallo, Welt!
 Der Python-Interpreter (`python3`) liest `hello.py` und führt es sofort aus. Es entsteht keine separate ausführbare Datei.
 
 Weitere Beispiele für Interpretersprachen sind: JavaScript, Ruby, PHP, Bash.
+
+Moment mal, Kommandozeile? Sind wir hier wieder in den 80er? Die Kommandozeile ist immer noch ein wichtiges Werkzeug in der Softwareentwicklung. Damit können Sie Befehle nicht nur auf Ihrem Rechner ausführen, sondern auch auf entfernten Maschinen und Cloud-Geräte, welche vielleicht gar keine graphische Nutzeroberfläche haben. 
+{: .notice--primary}
 
 ## Compilersprachen
 
