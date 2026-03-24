@@ -20,7 +20,7 @@ string eingabe = Console.ReadLine();
 int zahl = int.Parse(eingabe); // Laufzeitfehler, wenn Benutzer "abc" eingibt
 ```
 
-## Häufige Laufzeitfehler
+Im Folgenden gehen wir auf ein paar typische Laufzeitfehler ein:
 
 ### System.FormatException
 

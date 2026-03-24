@@ -20,7 +20,7 @@ Console.WriteLine("Hallo"   // Fehler: schließende Klammer und Semikolon fehlen
 int x = ;                   // Fehler: kein Wert zugewiesen
 ```
 
-Syntaxfehler sind **am einfachsten zu finden** — Visual Studio markiert sie sofort rot, noch bevor man auf "Start" drückt.
+Syntaxfehler sind **am einfachsten zu finden** — Visual Studio markiert sie sofort rot, noch bevor man auf "Start" drückt. Bei einem Syntaxfehler ist verständlicherweise keine Übersetzung des Quellcodes in die Intermediate Language möglich. Da das gesamte Programm erst übersetzt werden muss, kann bei einem einzigen Syntaxfehler (an beliebiger Stelle des Programms) das Programm nicht ausgeführt werden.
 
 ## Aufbau einer Compiler-Fehlermeldung
 
@@ -93,17 +93,6 @@ Console.WriteLine("a", "b", "c");   // error CS1501: keine passende Überladung
 ```
 
 Die Methode wurde mit der falschen Anzahl oder falschen Typen von Argumenten aufgerufen.
-
-## Fehlermeldungen effektiv nachschlagen
-
-Wenn eine Fehlermeldung unverständlich ist:
-
-1. **Fehlernummer kopieren** (z.B. `CS0029`) und in einer Suchmaschine eingeben
-2. **Die exakte Meldung** in Anführungszeichen suchen — oft findet man sofort einen StackOverflow-Thread mit genau demselben Problem
-3. **Microsoft Learn** hat zu jeder CS-Fehlernummer eine eigene Seite mit Erklärung und Lösungsbeispielen
-
-Übung: Erzeuge absichtlich einen `CS0029`-Fehler und einen `CS0103`-Fehler. Lies die Fehlermeldung und behebe das Problem.
-{: .notice--info}
 
 ## Weitere Quellen
 

@@ -62,6 +62,8 @@ int alter = int.Parse(Console.ReadLine());
 Console.WriteLine($"In 10 Jahren bist du {alter + 10} Jahre alt.");
 ```
 
+Dies ist ein erstes Beispiel für eine explizite Typkonvertierung. Wir werden später noch weitere Beispiele sehen.
+
 `int.Parse` schlägt mit einer Exception fehl, wenn die Eingabe keine gültige Zahl ist. Wie man das abfängt, kommt später bei der Ausnahmebehandlung.
 {: .notice--warning}
 

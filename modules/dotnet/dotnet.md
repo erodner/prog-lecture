@@ -11,27 +11,23 @@ classes: wide
 
 ## Was ist .NET?
 
-**.NET** ist eine freie, plattformübergreifende Laufzeit- und Entwicklungsplattform von Microsoft. Sie bildet die Grundlage für C#-Programme und stellt alles bereit, was zur Ausführung von Code benötigt wird.
-
-**CLR – Common Language Runtime**
-Die CLR ist die Laufzeitumgebung von .NET. Sie übernimmt:
-- **JIT-Kompilierung:** Übersetzung von CIL in nativen Maschinencode
-- **Speicherverwaltung:** Automatische Freigabe nicht mehr benötigter Objekte (Garbage Collection)
+**.NET** ist eine freie, plattformübergreifende Laufzeit- und Entwicklungsplattform von Microsoft. Sie bildet die Grundlage für C#-Programme und stellt alles bereit, was zur Ausführung von Code benötigt wird. Dazu zählt zum Beispiel die Laufzeitumgebung **CLR** (Common Language Runtime). Sie übernimmt:
+- **JIT-Kompilierung:** Übersetzung von CIL (Common Intermediate Language) in nativen Maschinencode
+- **Speicherverwaltung:** Automatische Freigabe von nicht mehr benötigtem Speicher (Garbage Collection)
 - **Typsicherheit:** Überprüfung von Typen zur Laufzeit
 - **Ausnahmebehandlung:** Einheitliches System für Laufzeitfehler
 
-**BCL – Base Class Library**
-Die BCL ist die Standardbibliothek von .NET. Sie enthält fertige Klassen für:
+Da wir auch nicht alles mehr von Grund auf neu programmieren wollen, stehen uns mit der **BCL** (Base Class Library) bereits zahlreiche Methoden zur Verfügung. Die BCL ist die sogenannte Standardbibliothek von .NET und sie enthält fertige Klassen (dazu mehr später) und Methoden für:
 - Ein- und Ausgabe (`System.Console`, `System.IO`)
 - Datenstrukturen (`System.Collections.Generic`)
 - Textverarbeitung (`System.String`, `System.Text`)
 - Netzwerk, Kryptographie, und vieles mehr
 
-**SDK – Software Development Kit**
-Das .NET SDK enthält Compiler, Build-Tools und die CLI (`dotnet`-Befehl) für die Entwicklung.
+Zusätzlich gibt es noch die SDK (Software Development Kit), welches den Compiler, Build-Tools und die CLI (Command Line Interface, d.h. der `dotnet`-Befehl) für die Entwicklung enthält. Zur reinen Ausführung von .NET Programmen wird daher das SDK nicht benötigt, jedoch aber die CLR zusammen mit der BCL.
 
 ## .NET auf der Kommandozeile
 
+Mittels der SDK, lassen sich leicht auf der Kommandozeile Projekte erstellen und kompilieren:
 ```bash
 # Neues Konsolenprojekt anlegen
 $ dotnet new console -n MeinProjekt
@@ -45,6 +41,8 @@ $ dotnet run
 # Nur kompilieren (ohne Ausführen)
 $ dotnet build
 ```
+
+Dies ist natürlich auch mit ein paar Klicks in Visual Studio möglich (und eher ihr Standardweg).
 
 ## Sprachen auf .NET
 
@@ -83,6 +81,7 @@ $ dotnet --version
 ```
 
 Es ist ohne Weiteres möglich, dass auf einem System mehrere .NET-Versionen installiert sind.
+
 ## Weitere Quellen
 
 - [.NET-Plattform – Microsoft Learn](https://learn.microsoft.com/de-de/dotnet/core/introduction)
