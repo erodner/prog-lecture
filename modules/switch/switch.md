@@ -9,11 +9,11 @@ toc: false
 classes: wide
 ---
 
-Wenn ein Wert viele verschiedene konkrete Ausprägungen haben kann – Wochentage, Menüoptionen, Befehle – wird eine lange Kette von `else if` schnell unübersichtlich. `switch` ist genau für solche Situationen gedacht und macht den Code deutlich lesbarer.
+Wenn ein Wert viele verschiedene konkrete Ausprägungen haben kann – Wochentage, Menüoptionen, Befehle – wird eine lange Kette von `else if` schnell unübersichtlich. `switch` ist genau für solche Situationen gedacht, aber hat auch seine Tücken. Disclaimer: Ich bin kein großer Fan davon.
 
 ## Wann `switch` statt `if-else`?
 
-Eine `else if`-Kette prüft beliebige Bedingungen — z.B. Bereiche (`punkte >= 90`) oder zusammengesetzte Ausdrücke. `switch` dagegen vergleicht **einen einzelnen Wert** mit einer Liste konkreter Möglichkeiten. Wenn man also wiederholt dieselbe Variable gegen feste Werte prüft, ist `switch` die bessere Wahl: Der Code wird kürzer, übersichtlicher, und man sieht auf einen Blick alle möglichen Fälle.
+Eine `else if`-Kette prüft beliebige Bedingungen — z.B. Bereiche (`punkte >= 90`) oder zusammengesetzte Ausdrücke. `switch` dagegen vergleicht **einen einzelnen Wert** mit einer Liste konkreter Möglichkeiten. Wenn man also wiederholt dieselbe Variable gegen feste Werte prüft, ist `switch` eine Alternative.
 
 ## Klassisches `switch`
 
@@ -36,10 +36,8 @@ switch (tag)
 Console.WriteLine(name); // Mittwoch
 ```
 
-Jeder `case`-Zweig muss mit `break` enden. In C# ist dies Pflicht — ohne `break` meldet der Compiler einen Fehler. Das unterscheidet C# von Sprachen wie C oder Java, wo das Vergessen von `break` dazu führt, dass die Ausführung stillschweigend in den nächsten Fall „durchfällt" (sogenanntes *fall-through*).
+Jeder `case`-Zweig muss mit `break` enden. In C# ist dies Pflicht — ohne `break` meldet der Compiler einen Fehler. Das unterscheidet C# von Sprachen wie C oder Java, wo das Vergessen von `break` dazu führt, dass die Ausführung stillschweigend in den nächsten Fall „durchfällt" (sogenanntes *fall-through*). Furchtbar!
 {: .notice--primary}
-
-## Mehrere Fälle zusammenfassen
 
 Wenn mehrere Werte zum selben Ergebnis führen sollen, kann man die `case`-Marken direkt untereinander schreiben. Nur der letzte Fall in der Gruppe enthält den eigentlichen Code und das `break`:
 
@@ -60,7 +58,7 @@ switch (tag)
 }
 ```
 
-Das ist das einzige erlaubte „Durchfallen" in C#: Ein `case` ohne eigenen Code darf zum nächsten weiterleiten. Sobald ein `case` Code enthält, muss er mit `break` abgeschlossen werden.
+Das ist das einzige erlaubte „Durchfallen" in C#: Ein `case` ohne eigenen Code darf zum nächsten weiterleiten. Sobald ein `case` Code enthält, muss er mit `break` abgeschlossen werden. Schön ist das trotzdem nicht, oder?
 
 ## Moderne switch-Expression (C# 8+)
 
@@ -77,7 +75,7 @@ string jahreszeit = monat switch
 };
 ```
 
-Die Unterschiede zur klassischen `switch`-Anweisung: Der geprüfte Wert steht **vor** dem Schlüsselwort `switch`, die Fälle verwenden `=>` statt `case`/`break`, und `_` ersetzt `default`. Das `or`-Schlüsselwort fasst mehrere Werte zusammen. Weil die switch-Expression einen Wert zurückgibt, muss sie alle Fälle abdecken — der `_`-Zweig stellt das sicher.
+Die Unterschiede zur klassischen `switch`-Anweisung: Der geprüfte Wert steht **vor** dem Schlüsselwort `switch`, die Fälle verwenden `=>` statt `case`/`break`, und `_` ersetzt `default`. Das `or`-Schlüsselwort fasst mehrere Werte zusammen. Weil die switch-Expression einen Wert zurückgibt, muss sie alle Fälle abdecken — der `_`-Zweig stellt das sicher. Ist das jetzt wirklich besser zu lesen?
 
 ## switch mit Strings
 
