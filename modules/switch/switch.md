@@ -13,9 +13,11 @@ Wenn ein Wert viele verschiedene konkrete Ausprägungen haben kann – Wochentag
 
 ## Wann `switch` statt `if-else`?
 
-Wenn ein Wert mit vielen konkreten Fällen verglichen wird, ist `switch` übersichtlicher als eine Kette von `else if`.
+Eine `else if`-Kette prüft beliebige Bedingungen — z.B. Bereiche (`punkte >= 90`) oder zusammengesetzte Ausdrücke. `switch` dagegen vergleicht **einen einzelnen Wert** mit einer Liste konkreter Möglichkeiten. Wenn man also wiederholt dieselbe Variable gegen feste Werte prüft, ist `switch` die bessere Wahl: Der Code wird kürzer, übersichtlicher, und man sieht auf einen Blick alle möglichen Fälle.
 
 ## Klassisches `switch`
+
+Die `switch`-Anweisung erhält in Klammern den zu prüfenden Ausdruck. Im Rumpf folgen `case`-Marken mit den möglichen Werten. Stimmt der Wert überein, wird der zugehörige Code ausgeführt. `default` fängt alle nicht explizit genannten Fälle ab — vergleichbar mit dem abschließenden `else`:
 
 ```csharp
 int tag = 3;
@@ -34,9 +36,12 @@ switch (tag)
 Console.WriteLine(name); // Mittwoch
 ```
 
-`break` ist zwingend – ohne es würde die Ausführung in den nächsten Fall „fallen".
+Jeder `case`-Zweig muss mit `break` enden. In C# ist dies Pflicht — ohne `break` meldet der Compiler einen Fehler. Das unterscheidet C# von Sprachen wie C oder Java, wo das Vergessen von `break` dazu führt, dass die Ausführung stillschweigend in den nächsten Fall „durchfällt" (sogenanntes *fall-through*).
+{: .notice--primary}
 
 ## Mehrere Fälle zusammenfassen
+
+Wenn mehrere Werte zum selben Ergebnis führen sollen, kann man die `case`-Marken direkt untereinander schreiben. Nur der letzte Fall in der Gruppe enthält den eigentlichen Code und das `break`:
 
 ```csharp
 switch (tag)
@@ -55,9 +60,11 @@ switch (tag)
 }
 ```
 
+Das ist das einzige erlaubte „Durchfallen" in C#: Ein `case` ohne eigenen Code darf zum nächsten weiterleiten. Sobald ein `case` Code enthält, muss er mit `break` abgeschlossen werden.
+
 ## Moderne switch-Expression (C# 8+)
 
-Kompaktere Schreibweise, die direkt einen Wert zurückgibt:
+Seit C# 8 gibt es die **switch-Expression** — eine kompaktere Schreibweise, die direkt einen Wert zurückgibt. Sie eignet sich besonders, wenn man einer Variable je nach Fall einen unterschiedlichen Wert zuweisen will:
 
 ```csharp
 string jahreszeit = monat switch
@@ -70,7 +77,11 @@ string jahreszeit = monat switch
 };
 ```
 
-## switch mit strings
+Die Unterschiede zur klassischen `switch`-Anweisung: Der geprüfte Wert steht **vor** dem Schlüsselwort `switch`, die Fälle verwenden `=>` statt `case`/`break`, und `_` ersetzt `default`. Das `or`-Schlüsselwort fasst mehrere Werte zusammen. Weil die switch-Expression einen Wert zurückgibt, muss sie alle Fälle abdecken — der `_`-Zweig stellt das sicher.
+
+## switch mit Strings
+
+`switch` funktioniert nicht nur mit Zahlen, sondern auch mit Strings. Das ist nützlich für Menüs oder Befehlseingaben. Wie bei allen String-Vergleichen wird zwischen Groß- und Kleinschreibung unterschieden — deshalb empfiehlt sich ein `ToLower()` vor dem Vergleich:
 
 ```csharp
 string befehl = Console.ReadLine();
@@ -89,3 +100,4 @@ switch (befehl.ToLower())
 ## Weitere Quellen
 
 - [switch-Anweisung und switch-Ausdruck – Microsoft Learn](https://learn.microsoft.com/de-de/dotnet/csharp/language-reference/statements/selection-statements#the-switch-statement)
+- [Musterabgleich mit switch – Microsoft Learn](https://learn.microsoft.com/de-de/dotnet/csharp/fundamentals/functional/pattern-matching)
