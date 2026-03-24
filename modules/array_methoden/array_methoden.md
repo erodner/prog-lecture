@@ -76,18 +76,6 @@ Array.Fill(werte, -1);
 // [-1, -1, -1, -1, -1]
 ```
 
-## Übersicht
-
-| Methode | Beschreibung |
-| :--- | :--- |
-| `Array.Sort(arr)` | Aufsteigend sortieren |
-| `Array.Reverse(arr)` | Reihenfolge umkehren |
-| `Array.IndexOf(arr, val)` | Index des ersten Vorkommens (oder `-1`) |
-| `Array.BinarySearch(arr, val)` | Suche in sortiertem Array |
-| `Array.Copy(src, dst, n)` | Erste n Elemente kopieren |
-| `Array.Fill(arr, val)` | Alle Elemente auf Wert setzen |
-| `arr.Length` | Anzahl der Elemente |
-
 Übung: Erstelle ein Array mit 10 Zufallszahlen, sortiere es und suche mit `BinarySearch` nach einem bestimmten Wert. Was passiert, wenn der Wert nicht im Array vorkommt?
 {: .notice--info}
 

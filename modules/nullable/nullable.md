@@ -79,32 +79,6 @@ int anzahl = zeilen?.Length ?? 0;  // 0 statt NullReferenceException
 
 Ohne `?.` müsste man hier erst prüfen, ob `zeilen` nicht `null` ist, bevor man auf `Length` zugreift. Der `?.`-Operator macht das in einer Zeile.
 
-## Nullable in der Praxis
-
-Nullable Types kommen in vielen Situationen vor:
-- **Datenbankwerte**, die leer sein können (z.B. ein optionales Geburtsdatum)
-- **Optionale Eingaben** oder Konfigurationswerte, die nicht gesetzt sein müssen
-- **Suchergebnisse**, bei denen kein Treffer möglich ist
-
-```csharp
-static int? SucheIndex(int[] arr, int wert)
-{
-    for (int i = 0; i < arr.Length; i++)
-        if (arr[i] == wert) return i;
-    return null; // nicht gefunden
-}
-
-int? idx = SucheIndex(new[] { 3, 7, 1, 9 }, 7);
-if (idx.HasValue)
-    Console.WriteLine($"Gefunden an Index {idx.Value}"); // 1
-else
-    Console.WriteLine("Nicht gefunden.");
-```
-
-Der Rückgabetyp `int?` macht klar, dass die Methode nicht immer ein Ergebnis liefern kann. Das ist ausdrucksstärker als Konventionen wie „-1 bedeutet nicht gefunden" (wie es `Array.IndexOf` macht).
-
-Übung: Schreibe eine Methode `LeseInt()`, die eine Konsoleneingabe liest und als `int?` zurückgibt — `null` wenn die Eingabe keine gültige Zahl ist. Nutze `TryParse`.
-{: .notice--info}
 
 ## Weitere Quellen
 
