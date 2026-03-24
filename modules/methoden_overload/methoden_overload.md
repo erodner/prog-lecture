@@ -13,49 +13,60 @@ classes: wide
 
 ## Das Problem ohne Überladung
 
-Angenommen, man möchte die Fläche verschiedener Formen berechnen. Ohne Überladung bräuchte man unterschiedliche Namen:
+Angenommen, man möchte prüfen, ob ein bestimmter Wert in einem Array vorkommt. Ohne Überladung bräuchte man für jeden Typ einen eigenen Methodennamen:
 
 ```csharp
-static double QuadratFläche(double seite)      => seite * seite;
-static double RechteckFläche(double b, double h) => b * h;
-static double KreisFläche(double radius)       => Math.PI * radius * radius;
+static bool EnthältInt(int[] arr, int wert) { ... }
+static bool EnthältString(string[] arr, string wert) { ... }
+static bool EnthältDouble(double[] arr, double wert) { ... }
 ```
 
-Das funktioniert, aber der Aufrufer muss sich drei verschiedene Namen merken – obwohl die Absicht immer dieselbe ist: eine Fläche berechnen.
+Das funktioniert, aber der Aufrufer muss sich drei verschiedene Namen merken — obwohl die Absicht immer dieselbe ist: prüfen, ob ein Wert enthalten ist.
 
 ## Überladung: ein Name, mehrere Signaturen
 
-Mit Überladung können alle drei Methoden `Fläche` heißen. Der Compiler entscheidet anhand der übergebenen Parameter, welche Version gemeint ist:
+Mit Überladung können alle Varianten `Enthält` heißen. Der Compiler entscheidet **zur Compilierzeit** anhand der Typen der übergebenen Argumente, welche Version gemeint ist:
 
 ```csharp
-static double Fläche(double seite)
+static bool Enthält(int[] arr, int wert)
 {
-    return seite * seite;
+    for (int i = 0; i < arr.Length; i++)
+        if (arr[i] == wert) return true;
+    return false;
 }
 
-static double Fläche(double breite, double höhe)
+static bool Enthält(string[] arr, string wert)
 {
-    return breite * höhe;
+    for (int i = 0; i < arr.Length; i++)
+        if (arr[i] == wert) return true;
+    return false;
 }
 
-static double Fläche(double radius, bool istKreis)
+static bool Enthält(double[] arr, double wert)
 {
-    return Math.PI * radius * radius;
+    for (int i = 0; i < arr.Length; i++)
+        if (arr[i] == wert) return true;
+    return false;
 }
 ```
 
 ```csharp
-Console.WriteLine(Fläche(4.0));         // 16   – Quadrat (ein Parameter)
-Console.WriteLine(Fläche(3.0, 5.0));    // 15   – Rechteck (zwei double)
-Console.WriteLine(Fläche(3.0, true));   // 28,27 – Kreis (double + bool)
+int[] noten = { 1, 2, 3, 4, 5 };
+string[] farben = { "rot", "grün", "blau" };
+
+Console.WriteLine(Enthält(noten, 3));        // True
+Console.WriteLine(Enthält(farben, "gelb"));  // False
 ```
 
-Zwei Methoden dürfen denselben Namen haben, wenn sie sich in **Anzahl oder Typ der Parameter** unterscheiden. Der Rückgabetyp allein reicht nicht – zwei Methoden mit identischen Parametern aber unterschiedlichem Rückgabetyp sind ein Compilerfehler.
+Der Aufrufer schreibt einfach `Enthält` — der Compiler wählt die richtige Variante anhand des Array-Typs. Die Regel: Zwei Methoden dürfen denselben Namen haben, wenn sie sich in **Anzahl oder Typ der Parameter** unterscheiden. Der Rückgabetyp allein reicht nicht — zwei Methoden mit identischen Parametern aber unterschiedlichem Rückgabetyp sind ein Compilerfehler.
 {: .notice--warning}
+
+Man sieht: Der Code der drei Varianten ist fast identisch. Das ist ein Hinweis darauf, dass es elegantere Lösungen gibt (Stichwort *Generics*) — aber dafür braucht man Konzepte, die erst später kommen. Überladung ist der einfachste Weg, dieses Problem jetzt zu lösen.
+{: .notice--primary}
 
 ## Überladung in der BCL
 
-Die Methode `Console.WriteLine` selbst ist ein Paradebeispiel – sie hat über ein Dutzend Überladungen in der BCL:
+Überladung ist kein exotisches Feature — man nutzt sie ständig, ohne es zu merken. `Console.WriteLine` selbst hat über ein Dutzend Überladungen in der .NET-Klassenbibliothek (BCL):
 
 ```csharp
 Console.WriteLine(42);       // void WriteLine(int value)
@@ -64,11 +75,11 @@ Console.WriteLine("Hallo");  // void WriteLine(string value)
 Console.WriteLine(true);     // void WriteLine(bool value)
 ```
 
-Dasselbe gilt für `Math.Max`, `Math.Min`, `string.IndexOf` und viele weitere.
+Dasselbe gilt für `Math.Max`, `Math.Min`, `Math.Abs` und viele weitere — jeweils in Varianten für `int`, `double`, `float` usw.
 
-## Optionale Parameter als Alternative
+## Optionale Parameter (Standardwerte)
 
-Statt mehrerer Überladungen kann man Parameter mit Standardwerten versehen. Der Aufrufer kann sie dann weglassen:
+Nicht immer braucht man eine eigene Überladung. Wenn dieselbe Logik mit oder ohne einen zusätzlichen Wert funktionieren soll, kann man stattdessen **optionale Parameter** mit Standardwerten verwenden. Der Aufrufer kann sie dann weglassen — in dem Fall greift der Standardwert:
 
 ```csharp
 static void Begrüße(string name, string anrede = "Hallo")
@@ -80,16 +91,32 @@ Begrüße("Anna");                       // Hallo, Anna!
 Begrüße("Prof. Müller", "Guten Tag"); // Guten Tag, Prof. Müller!
 ```
 
-Optionale Parameter stehen immer am Ende der Parameterliste – ein Parameter mit Standardwert darf nicht vor einem ohne stehen.
+Der Standardwert wird direkt in der Signatur mit `=` angegeben. Der Compiler setzt den Standardwert automatisch ein, wenn der Aufrufer das Argument weglässt. Das spart eine zweite Überladung, die ohnehin nur den Standardwert weiterreichen würde.
+
+Optionale Parameter müssen immer **am Ende** der Parameterliste stehen — ein Parameter mit Standardwert darf nicht vor einem ohne stehen. Außerdem müssen Standardwerte **Kompilierzeitkonstanten** sein (also Zahlenliterale, Strings oder `null` — keine Methodenaufrufe oder berechnete Werte).
 {: .notice--primary}
 
-**Überladung oder optionale Parameter?**
-- Überladung passt, wenn sich Methoden strukturell unterscheiden (andere Parametertypen, andere Berechnungslogik).
-- Optionale Parameter passen, wenn eine Methode häufig mit denselben Standardwerten aufgerufen wird und sich die Logik nicht ändert.
+Optionale Parameter eignen sich auch gut, um eine Methode schrittweise zu erweitern, ohne bestehende Aufrufe anpassen zu müssen:
 
-Übung: Schreibe eine überladene Methode `Beschreibe`, die entweder einen `int`, einen `double` oder einen `string` entgegennimmt und jeweils eine passende Beschreibung ausgibt (z.B. „Ganzzahl: 42", „Kommazahl: 3,14", „Text: Hallo").
+```csharp
+static void ZeigeTabelle(int[] werte, string titel = "Ergebnis", int spaltenBreite = 8)
+{
+    Console.WriteLine(titel);
+    foreach (int w in werte)
+        Console.Write($"{w,spaltenBreite}");
+    Console.WriteLine();
+}
+
+int[] noten = { 1, 2, 3, 2, 1 };
+ZeigeTabelle(noten);                              // Standardtitel und -breite
+ZeigeTabelle(noten, "Notenliste");                // eigener Titel, Standardbreite
+ZeigeTabelle(noten, "Notenliste", 12);            // alles angegeben
+```
+
+Übung: Schreibe eine Methode `Wiederhole(string text)`, die den Text 3-mal ausgibt, und eine Überladung `Wiederhole(string text, int anzahl)` mit wählbarer Anzahl. Überlege dann, ob sich das Problem eleganter mit einem optionalen Parameter lösen lässt.
 {: .notice--info}
 
 ## Weitere Quellen
 
 - [Methodenüberladung – Microsoft Learn](https://learn.microsoft.com/de-de/dotnet/standard/design-guidelines/member-overloading)
+- [Optionale und benannte Argumente – Microsoft Learn](https://learn.microsoft.com/de-de/dotnet/csharp/programming-guide/classes-and-structs/named-and-optional-arguments)

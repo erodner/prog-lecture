@@ -34,7 +34,9 @@ Das klingt zunächst wie eine Einschränkung, ist aber ein Schutzmechanismus: Ma
 
 ## Parameterübergabe: Call by Value
 
-Wenn man einen Wert an eine Methode übergibt, bekommt die Methode standardmäßig eine **Kopie** – nicht das Original. Änderungen innerhalb der Methode bleiben dort, ohne auf die aufrufende Stelle durchzuschlagen:
+Scope erklärt, welche Variablen sichtbar sind. Aber was passiert mit den Werten, die man einer Methode übergibt? Werden sie kopiert, oder arbeitet die Methode mit dem Original?
+
+Bei Werttypen (`int`, `double`, `bool` usw.) bekommt die Methode standardmäßig eine **Kopie** — nicht das Original. Dieses Verhalten kennen wir bereits vom Thema Werttypen und Referenztypen. Änderungen innerhalb der Methode bleiben dort, ohne auf die aufrufende Stelle durchzuschlagen:
 
 ```csharp
 static void Verdoppeln(int x)
@@ -52,7 +54,7 @@ Das ist das Standardverhalten für alle primitiven Typen (`int`, `double`, `bool
 
 ## Call by Reference mit `ref`
 
-Manchmal soll eine Methode den ursprünglichen Wert tatsächlich verändern. Dafür gibt es `ref` – die Methode bekommt dann eine Referenz auf die originale Variable, nicht auf eine Kopie:
+Was aber, wenn eine Methode den ursprünglichen Wert tatsächlich verändern soll? Dafür gibt es `ref` — die Methode bekommt dann eine Referenz auf die originale Variable, nicht auf eine Kopie:
 
 ```csharp
 static void Verdoppeln(ref int x)
@@ -72,7 +74,7 @@ Das `ref`-Schlüsselwort muss sowohl in der Methodensignatur als auch beim Aufru
 
 ## Ausgabe-Parameter mit `out`
 
-Eine Methode kann nur einen Wert per `return` zurückgeben. Wenn mehrere Ergebnisse benötigt werden, bietet `out` eine Möglichkeit: Die Methode schreibt ihre Ergebnisse direkt in die angegebenen Variablen. Anders als `ref` muss die Variable vorher nicht initialisiert sein – die Methode ist verpflichtet, ihr einen Wert zuzuweisen:
+Eine Methode kann nur einen Wert per `return` zurückgeben. Was tun, wenn man mehrere Ergebnisse braucht — z.B. Minimum und Maximum gleichzeitig? Eine Möglichkeit bietet `out`: Die Methode schreibt ihre Ergebnisse direkt in die angegebenen Variablen. Anders als `ref` muss die Variable vorher nicht initialisiert sein — die Methode ist verpflichtet, ihr einen Wert zuzuweisen:
 
 ```csharp
 static void MinMax(int[] arr, out int min, out int max)
@@ -133,5 +135,7 @@ Tupel eignen sich gut, wenn eine Methode zwei bis drei zusammengehörige Werte z
 
 ## Weitere Quellen
 
+- [Gültigkeitsbereich von Variablen – Microsoft Learn](https://learn.microsoft.com/de-de/dotnet/csharp/language-reference/keywords/scope)
 - [Parameterübergabe – Microsoft Learn](https://learn.microsoft.com/de-de/dotnet/csharp/programming-guide/classes-and-structs/passing-parameters)
+- [ref und out – Microsoft Learn](https://learn.microsoft.com/de-de/dotnet/csharp/language-reference/keywords/ref)
 - [Tupel in C# – Microsoft Learn](https://learn.microsoft.com/de-de/dotnet/csharp/language-reference/builtin-types/value-tuples)

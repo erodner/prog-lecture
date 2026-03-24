@@ -34,7 +34,7 @@ Das Schlüsselwort `static` bedeutet hier, dass die Methode zur Klasse gehört u
 
 ## Methoden mit Rückgabewert
 
-Eine Methode, die einen Wert berechnet und zurückgibt:
+Im einfachsten Fall bekommt eine Methode Eingaben (Parameter) und liefert ein Ergebnis zurück — genau wie eine mathematische Funktion:
 
 ```csharp
 static double Kreisfläche(double radius)
@@ -56,7 +56,7 @@ Console.WriteLine($"Fläche: {Kreisfläche(3.0):F2}"); // 28,27
 
 ## Methoden ohne Rückgabewert (`void`)
 
-Manche Methoden führen eine Aktion aus, ohne etwas zu berechnen – z.B. etwas ausgeben oder einen Zustand verändern. Der Rückgabetyp ist dann `void`:
+Nicht jede Methode berechnet ein Ergebnis. Manche führen eine Aktion aus — etwas ausgeben, eine Datei schreiben, einen Zustand verändern. Solche Methoden haben den Rückgabetyp `void` (englisch für „leer") und kein `return` mit Wert:
 
 ```csharp
 static void ZeigeNotenInfo(int punkte)
@@ -89,7 +89,10 @@ Console.WriteLine(Rechteckfläche(5.0, 3.0));  // 15
 Console.WriteLine(Rechteckfläche(4.0, 7.0));  // 28
 ```
 
-Die Namen der Parameter gelten nur innerhalb der Methode. Was außen `breite` heißt, könnte innen genauso gut `b` heißen – die Verbindung erfolgt über die Position beim Aufruf, nicht über den Namen.
+Die Namen der Parameter gelten nur innerhalb der Methode. Was außen `breite` heißt, könnte innen genauso gut `b` heißen — die Verbindung erfolgt über die **Position** beim Aufruf, nicht über den Namen. Im Aufruf `Rechteckfläche(5.0, 3.0)` wird `5.0` dem ersten Parameter `breite` zugeordnet und `3.0` dem zweiten Parameter `höhe`.
+
+Methodennamen werden in C# per Konvention in **PascalCase** geschrieben (z.B. `Kreisfläche`, `ZeigeNotenInfo`), Parameter in **camelCase** (z.B. `radius`, `breite`).
+{: .notice--primary}
 
 ## Kurzform mit `=>`
 
@@ -142,4 +145,5 @@ Console.WriteLine(Summe(werte));            // 30 – Array direkt übergeben
 ## Weitere Quellen
 
 - [Methoden – Microsoft Learn](https://learn.microsoft.com/de-de/dotnet/csharp/programming-guide/classes-and-structs/methods)
+- [Expression-bodied Members – Microsoft Learn](https://learn.microsoft.com/de-de/dotnet/csharp/programming-guide/statements-expressions-operators/expression-bodied-members)
 - [params-Schlüsselwort – Microsoft Learn](https://learn.microsoft.com/de-de/dotnet/csharp/language-reference/keywords/params)
