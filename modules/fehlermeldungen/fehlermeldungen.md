@@ -85,7 +85,7 @@ Die Methode wurde mit der falschen Anzahl oder falschen Typen von Argumenten auf
 
 ## Häufige Laufzeitfehler
 
-Laufzeitfehler treten erst beim Ausführen auf — der Compiler kann sie nicht vorhersehen.
+Laufzeitfehler treten erst beim Ausführen auf — der Compiler kann sie nicht vorhersehen. Dies passiert zum Beispiel wenn ein Nutzer Werte eingibt, welche nicht verarbeitet werden können. Wir werden noch viel später kennenlernen wie man solche Fehler auch innerhalb des Programmes abfangen kann. Aktuell wird die Ausführung des Programms immer abgebrochen, wenn ein Laufzeitfehler (engl. *exception*) auftritt. 
 
 ### System.FormatException
 
@@ -132,17 +132,6 @@ checked
 ```
 
 Ein Wert überschreitet den Bereich seines Typs. Ohne `checked` rollt der Wert still um — noch gefährlicher.
-
-## Fehlermeldungen effektiv nachschlagen
-
-Wenn eine Fehlermeldung unverständlich ist:
-
-1. **Fehlernummer kopieren** (z.B. `CS0029`) und in einer Suchmaschine eingeben
-2. **Die exakte Meldung** in Anführungszeichen suchen — oft findet man sofort einen StackOverflow-Thread mit genau demselben Problem
-3. **Microsoft Learn** hat zu jeder CS-Fehlernummer eine eigene Seite mit Erklärung und Lösungsbeispielen
-
-Übung: Erzeuge absichtlich einen `CS0029`-Fehler und einen `CS0103`-Fehler. Lies die Fehlermeldung und behebe das Problem.
-{: .notice--info}
 
 ## Weitere Quellen
 

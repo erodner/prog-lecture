@@ -13,7 +13,7 @@ Den Debugger in Visual Studio zu kennen ist gut — aber Debugging ist mehr als 
 
 ## Strategie 1: Console.WriteLine-Debugging
 
-Die einfachste und oft schnellste Methode: Zwischenwerte ausgeben, um zu sehen was das Programm tatsächlich tut.
+Die einfachste Methode ist es Zwischenwerte auszugeben, um zu sehen was das Programm tatsächlich tut. Dies kann ganz einfach mit ``WriteLine`` erfolgen:
 
 ```csharp
 double a = 10, b = 20, c = 30;
@@ -25,15 +25,14 @@ Console.WriteLine($"DEBUG: durchschnitt = {durchschnitt}");
 // Ausgabe zeigt: durchschnitt = 40 → c/3 wird zuerst berechnet!
 ```
 
-Diese Technik funktioniert überall — auch wenn kein Debugger verfügbar ist. Die `DEBUG:`-Zeilen nach dem Fixen einfach wieder entfernen.
+Diese Technik funktioniert überall — auch wenn kein Debugger verfügbar ist. Die `DEBUG:`-Zeilen werden nach dem Debbuggen einfach wieder entfernt.
 
 ## Strategie 2: Problem eingrenzen
 
-Wenn unklar ist, **wo** der Fehler liegt:
+Um einen Fehler einzugrenzen, hilft es häufig den Code Schritt für Schritt zu reduzieren (meist durch auskommentieren von Zeilen). 
+Man reduziert den Code auf das Nötigste, bis der Fehler verschwindet. Die letzte Änderung, die ihn wieder auslöst, ist der Schuldige. 
 
-1. **Halbieren**: Die Hälfte des Codes auskommentieren. Tritt der Fehler noch auf? Wenn ja, liegt er in der verbleibenden Hälfte. Wenn nein, in der auskommentierten. Dann die betroffene Hälfte wieder halbieren — so findet man den Fehler in wenigen Schritten.
-
-2. **Minimales Beispiel bauen**: Den Code auf das Nötigste reduzieren, bis der Fehler verschwindet. Die letzte Änderung, die ihn wieder auslöst, ist der Schuldige.
+Solche eine Reduzierung kann auch automatisch mit einem Versionsverwaltungssystem durchgeführt werden, aber das lernen wir viel später.
 
 ## Strategie 3: Rubber Duck Debugging
 
@@ -74,16 +73,12 @@ Beispiel — ein Programm soll prüfen, ob eine Zahl positiv ist:
 | `0` | nicht positiv | Grenzfall — ist 0 positiv? |
 | `2147483647` | positiv | Größter `int`-Wert |
 
-### Grenzwerte und Sonderfälle
-
 Die meisten Fehler treten nicht bei "normalen" Eingaben auf, sondern an den Rändern:
 
 - **Null und leere Werte**: Was passiert bei `0`, bei `""`, bei `null`?
 - **Grenzen von Zahlenbereichen**: Was passiert bei `int.MaxValue` oder `int.MinValue`?
 - **Ungültige Eingaben**: Was passiert, wenn der Benutzer einen Buchstaben statt einer Zahl eingibt?
 - **Einelementige und leere Fälle**: Funktioniert der Durchschnitt bei nur einer Zahl? Bei keiner?
-
-### Erwartetes vs. tatsächliches Ergebnis
 
 Beim Testen immer **vorher** aufschreiben, was herauskommen soll — erst dann ausführen und vergleichen:
 
