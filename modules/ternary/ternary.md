@@ -11,8 +11,6 @@ classes: wide
 
 Manchmal ist eine Entscheidung so simpel, dass ein vollständiger `if-else`-Block übertrieben wirkt – zum Beispiel wenn man nur zwischen zwei Texten oder zwei Zahlen wählen muss. Der ternäre Operator fasst genau das in eine einzige, kompakte Zeile.
 
-## Syntax
-
 Der ternäre Operator (auch Bedingungsoperator genannt) hat drei Teile — daher der Name. Er wird „ternär" genannt, weil er der einzige Operator in C# mit drei Operanden ist (im Gegensatz zu binären Operatoren wie `+` mit zwei Operanden):
 
 ```csharp
