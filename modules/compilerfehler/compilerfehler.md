@@ -1,5 +1,5 @@
 ---
-title: "Fehlermeldungen verstehen"
+title: "Compilerfehler"
 layout: single
 author_profile: true
 author: Erik Rodner
@@ -9,7 +9,18 @@ toc: false
 classes: wide
 ---
 
-Fehlermeldungen sind keine Schikane — sie sind die präziseste Hilfe, die man beim Programmieren bekommen kann. Der Compiler sagt einem genau, was falsch ist und wo. Wer lernt, diese Meldungen zu lesen, spart sich stundenlanges Raten.
+Compilerfehler sind die gute Nachricht: Der Compiler hat ein Problem gefunden, **bevor** das Programm überhaupt laufen konnte. Das Programm wird gar nicht erst in die Intermediate Language übersetzt — man muss den Fehler zuerst beheben. Die Fehlermeldungen sind dabei die präziseste Hilfe, die man beim Programmieren bekommen kann.
+
+## Syntaxfehler
+
+Der häufigste Grund für Compilerfehler: Der Code verstößt gegen die Grammatikregeln der Sprache.
+
+```csharp
+Console.WriteLine("Hallo"   // Fehler: schließende Klammer und Semikolon fehlen
+int x = ;                   // Fehler: kein Wert zugewiesen
+```
+
+Syntaxfehler sind **am einfachsten zu finden** — Visual Studio markiert sie sofort rot, noch bevor man auf "Start" drückt.
 
 ## Aufbau einer Compiler-Fehlermeldung
 
@@ -83,58 +94,18 @@ Console.WriteLine("a", "b", "c");   // error CS1501: keine passende Überladung
 
 Die Methode wurde mit der falschen Anzahl oder falschen Typen von Argumenten aufgerufen.
 
-## Häufige Laufzeitfehler
+## Fehlermeldungen effektiv nachschlagen
 
-Laufzeitfehler treten erst beim Ausführen auf — der Compiler kann sie nicht vorhersehen. Dies passiert zum Beispiel wenn ein Nutzer Werte eingibt, welche nicht verarbeitet werden können. Wir werden noch viel später kennenlernen wie man solche Fehler auch innerhalb des Programmes abfangen kann. Aktuell wird die Ausführung des Programms immer abgebrochen, wenn ein Laufzeitfehler (engl. *exception*) auftritt. 
+Wenn eine Fehlermeldung unverständlich ist:
 
-### System.FormatException
+1. **Fehlernummer kopieren** (z.B. `CS0029`) und in einer Suchmaschine eingeben
+2. **Die exakte Meldung** in Anführungszeichen suchen — oft findet man sofort einen StackOverflow-Thread mit genau demselben Problem
+3. **Microsoft Learn** hat zu jeder CS-Fehlernummer eine eigene Seite mit Erklärung und Lösungsbeispielen
 
-```csharp
-int zahl = int.Parse("abc");   // FormatException: "abc" ist keine Zahl
-```
-
-Ein String soll in eine Zahl konvertiert werden, hat aber kein gültiges Format. Lösung: `TryParse` verwenden.
-
-### System.DivideByZeroException
-
-```csharp
-int a = 10, b = 0;
-Console.WriteLine(a / b);   // DivideByZeroException
-```
-
-Division durch null bei ganzen Zahlen. Bei `double` liefert `10.0 / 0` dagegen `Infinity` — kein Fehler, aber auch selten gewollt.
-
-### System.IndexOutOfRangeException
-
-```csharp
-int[] zahlen = new int[3];
-Console.WriteLine(zahlen[5]);   // IndexOutOfRangeException
-```
-
-Zugriff auf einen Index, der nicht existiert. Arrays zählen ab 0 — ein Array der Länge 3 hat die Indizes 0, 1 und 2.
-
-### System.NullReferenceException
-
-```csharp
-string text = null;
-Console.WriteLine(text.Length);   // NullReferenceException
-```
-
-Ein Methodenaufruf oder Eigenschaftszugriff auf `null` — es gibt kein Objekt, auf dem man operieren könnte. Dieser Fehler ist einer der häufigsten überhaupt.
-
-### System.OverflowException
-
-```csharp
-checked
-{
-    int x = int.MaxValue + 1;   // OverflowException
-}
-```
-
-Ein Wert überschreitet den Bereich seines Typs. Ohne `checked` rollt der Wert still um — noch gefährlicher.
+Übung: Erzeuge absichtlich einen `CS0029`-Fehler und einen `CS0103`-Fehler. Lies die Fehlermeldung und behebe das Problem.
+{: .notice--info}
 
 ## Weitere Quellen
 
 - [Compiler-Fehlermeldungen (CS-Nummern) – Microsoft Learn](https://learn.microsoft.com/de-de/dotnet/csharp/language-reference/compiler-messages/)
-- [Häufige Laufzeit-Exceptions – Microsoft Learn](https://learn.microsoft.com/de-de/dotnet/standard/exceptions/)
 - [C# Fehlercodes durchsuchen – Microsoft Learn](https://learn.microsoft.com/de-de/dotnet/csharp/misc/)
