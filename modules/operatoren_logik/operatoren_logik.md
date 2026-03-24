@@ -9,11 +9,11 @@ toc: false
 classes: wide
 ---
 
-Ist der Benutzer alt genug? Hat er ein gültiges Ticket? Liegt die Temperatur in einem bestimmten Bereich? Solche Fragen beantwortet man im Code mit Vergleichs- und Logikoperatoren – sie sind das Fundament jeder Entscheidungslogik.
+Ist der Benutzer alt genug? Hat er ein gültiges Ticket? Liegt die Temperatur in einem bestimmten Bereich? Solche Fragen beantwortet man im Code mit Vergleichs- und Logikoperatoren – sie sind das Fundament jeder Entscheidungslogik. Während arithmetische Operatoren Zahlen produzieren, produzieren diese Operatoren immer einen Wahrheitswert: `true` oder `false`.
 
 ## Vergleichsoperatoren
 
-Vergleiche geben immer einen `bool`-Wert (`true` oder `false`) zurück.
+Ein Vergleich nimmt zwei Werte und prüft, ob eine bestimmte Beziehung zwischen ihnen gilt. Das Ergebnis ist immer ein `bool` — entweder `true` oder `false`. C# kennt sechs Vergleichsoperatoren:
 
 ```csharp
 int a = 10, b = 20;
@@ -26,7 +26,16 @@ Console.WriteLine(a <= b);  // true  – kleiner oder gleich
 Console.WriteLine(a >= b);  // false – größer oder gleich
 ```
 
+Besonders wichtig: `==` (Vergleich) ist etwas völlig anderes als `=` (Zuweisung). `a == b` fragt „sind diese Werte gleich?", während `a = b` den Wert von `b` in `a` kopiert. Diese Verwechslung ist ein klassischer Anfängerfehler.
+{: .notice--warning}
+
 ## Logikoperatoren
+
+Vergleiche allein reichen oft nicht aus — man möchte mehrere Bedingungen kombinieren. Dafür gibt es die drei logischen Operatoren `&&` (UND), `||` (ODER) und `!` (NICHT):
+
+- **`&&` (UND)**: Das Ergebnis ist `true`, wenn **beide** Seiten `true` sind. Sobald eine Seite `false` ist, ist das Gesamtergebnis `false`.
+- **`||` (ODER)**: Das Ergebnis ist `true`, wenn **mindestens eine** Seite `true` ist. Nur wenn beide `false` sind, ist das Ergebnis `false`.
+- **`!` (NICHT)**: Kehrt einen einzelnen `bool`-Wert um — aus `true` wird `false` und umgekehrt.
 
 ```csharp
 bool sonnig = true;
@@ -37,31 +46,54 @@ Console.WriteLine(sonnig || warm);   // true  – ODER: mindestens einer muss tr
 Console.WriteLine(!sonnig);          // false – NICHT: kehrt den Wert um
 ```
 
-## Kombinierte Bedingungen
+In der Praxis werden Vergleiche und Logikoperatoren fast immer zusammen verwendet. Ein Vergleich liefert einen `bool`-Wert, und Logikoperatoren verknüpfen diese `bool`-Werte zu komplexeren Bedingungen:
 
 ```csharp
 int alter = 20;
 bool hatAusweis = true;
 
+// Beide Bedingungen müssen gelten:
 if (alter >= 18 && hatAusweis)
     Console.WriteLine("Zutritt erlaubt.");
 
 int note = 2;
+// Mindestens eine der Bedingungen muss gelten:
 if (note == 1 || note == 2)
     Console.WriteLine("Bestanden mit Auszeichnung.");
 ```
 
-## Kurzschlussauswertung
-
-C# wertet `&&` und `||` von links nach rechts aus und bricht frühzeitig ab:
+Man kann beliebig viele Bedingungen verketten. Dabei gilt: `&&` bindet stärker als `||` (genau wie `*` stärker bindet als `+`). Im Zweifel Klammern setzen, um die Absicht deutlich zu machen:
 
 ```csharp
-// Wenn alter < 18 → false, der zweite Teil wird gar nicht ausgewertet
+// Ohne Klammern schwer zu lesen:
+if (alter >= 18 && hatAusweis || istVIP)  // Was wird zuerst ausgewertet?
+
+// Mit Klammern eindeutig:
+if ((alter >= 18 && hatAusweis) || istVIP)
+```
+
+Wir werden diese Reihenfolge von Operatoren später noch besprechen.
+
+## Kurzschlussauswertung
+
+C# wertet `&&` und `||` von links nach rechts aus und bricht ab, sobald das Ergebnis feststeht. Bei `&&`: Wenn der linke Teil `false` ist, kann das Gesamtergebnis nur `false` sein — der rechte Teil wird gar nicht mehr ausgewertet. Bei `||`: Wenn der linke Teil `true` ist, steht das Ergebnis bereits fest.
+
+```csharp
+// Wenn alter < 18 → false, wird DatenbankPrüfung() gar nicht aufgerufen
 if (alter >= 18 && DatenbankPrüfung())
 { ... }
 ```
 
-Dies ist wichtig, wenn der zweite Ausdruck aufwändig oder fehleranfällig ist.
+Das ist nicht nur eine Performance-Optimierung, sondern auch ein Sicherheitsmechanismus. Man kann damit Fehler vermeiden, indem man eine Schutzbedingung voranstellt:
+
+```csharp
+// Erst prüfen ob text nicht null ist, dann erst auf Length zugreifen:
+if (text != null && text.Length > 0)
+    Console.WriteLine(text);
+```
+
+Wäre `text` hier `null` und C# würde trotzdem `text.Length` auswerten, gäbe es einen `NullReferenceException`-Laufzeitfehler. Durch die Kurzschlussauswertung passiert das nicht.
+Was genau der Wert `null` bedeutet, werden wir später noch besprechen, man kann sich dies wie einen nicht gesetzten Wert vorstellen.
 
 ## De Morgansche Gesetze
 
@@ -72,7 +104,7 @@ Beim Vereinfachen oder Umformulieren von Bedingungen sind die De Morganschen Ges
 !(A || B)  ==  !A && !B
 ```
 
-Auf Deutsch: „Nicht (A und B)" ist dasselbe wie „Nicht-A oder Nicht-B". Und „Nicht (A oder B)" ist dasselbe wie „Nicht-A und Nicht-B".
+Auf Deutsch: „Nicht (A und B)" ist dasselbe wie „Nicht-A oder Nicht-B". Und „Nicht (A oder B)" ist dasselbe wie „Nicht-A und Nicht-B". Die Negation wirkt sich also auf den Operator aus!
 
 Ein praktisches Beispiel: Man möchte prüfen, ob eine Eingabe **nicht** gültig ist. Eine Eingabe gilt als gültig, wenn sie nicht leer und nicht null ist:
 
