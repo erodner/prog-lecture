@@ -15,7 +15,7 @@ Willkommen zur Veranstaltung **Programmierung 1** für den Studiengang Ingenieur
 
 ## ➤ Worum geht es?
 
-Programmieren zu lernen bedeutet, eine neue Art des Denkens zu erlernen: präzise, strukturiert und lösungsorientiert. Wir nutzen **C#** als Einstiegssprache – eine moderne, weit verbreitete Sprache, die sowohl im industriellen Umfeld als auch in der Spieleentwicklung eingesetzt wird.
+Programmieren zu lernen bedeutet, eine neue Art des Denkens zu erlernen: präzise, strukturiert und lösungsorientiert. Wir nutzen **C#** als Einstiegssprache – eine moderne, weit verbreitete Sprache, die sowohl im industriellen Umfeld als auch in der Spieleentwicklung eingesetzt wird. Ziel ist es aber, die Struktur von Software und Algorithmen zu erlernen und weniger alle Details einer Sprache. Die folgende Seite soll als Inspiration dienen, die Welt der Softwareentwicklung zu entdecken und in dieser möglichst viele eigene Erfahrungen zu sammeln. Dabei gilt immer *probieren geht über studieren* - schreiben Sie Ihre ersten Programme und schalten Sie dabei zunächst alle Copilot und IDE-Unterstützungen aus. Eine Unterstützung bei der Softwareentwicklung holen wir uns später wenn wie die "Grundrechenarten" des Programmierens begriffen haben (wie bei der Verwendung des Taschenrechners in der Schule).
 
 ## ➤ Struktur der Veranstaltung
 
@@ -78,6 +78,5 @@ Alle relevanten Informationen zur Prüfungsleistung findest du auf **Moodle**.
 
 ## Literaturempfehlungen
 
-1. Andreas Kühnel, *Visual C# – Grundlagen, Profiwissen und Rezepte* (Rheinwerk Verlag)
-2. [Microsoft C# Dokumentation](https://learn.microsoft.com/de-de/dotnet/csharp/) – offizielle Referenz, auf Deutsch verfügbar
-3. [dotnet.microsoft.com – C# Tutorials](https://dotnet.microsoft.com/en-us/learn/csharp)
+1. [Microsoft C# Dokumentation](https://learn.microsoft.com/de-de/dotnet/csharp/) – offizielle Referenz, auf Deutsch verfügbar
+2. [dotnet.microsoft.com – C# Tutorials](https://dotnet.microsoft.com/en-us/learn/csharp)
