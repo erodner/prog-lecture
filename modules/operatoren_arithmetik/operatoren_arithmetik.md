@@ -13,6 +13,8 @@ Addieren, subtrahieren, den Rest einer Division bestimmen – arithmetische Oper
 
 ## Grundrechenarten
 
+Die fünf arithmetischen Grundoperatoren in C# sind `+`, `-`, `*`, `/` und `%`. Die ersten drei verhalten sich genau wie in der Mathematik — bei Division und Modulo lohnt sich ein genauerer Blick:
+
 ```csharp
 int a = 17, b = 5;
 
@@ -23,7 +25,11 @@ Console.WriteLine(a / b);  // 3   – Ganzzahldivision (Nachkommastellen abgesch
 Console.WriteLine(a % b);  // 2   – Modulo (Rest der Division)
 ```
 
+Das Ergebnis von `17 / 5` ist `3` und nicht `3.4` — weil beide Operanden `int` sind, liefert C# auch ein `int`-Ergebnis. Die Nachkommastellen werden dabei nicht gerundet, sondern einfach abgeschnitten. Das ist eine der häufigsten Fehlerquellen für Anfänger.
+
 ## Ganzzahldivision vs. Gleitkommadivision
+
+Ob C# eine Ganzzahl- oder Gleitkommadivision durchführt, hängt allein vom Typ der Operanden ab — nicht davon, in welcher Variable das Ergebnis landet:
 
 ```csharp
 int x = 7, y = 2;
@@ -32,37 +38,48 @@ Console.WriteLine((double)x / y);   // 3.5 (cast auf double zuerst)
 Console.WriteLine(7.0 / 2);         // 3.5 (ein Operand ist double)
 ```
 
+Es reicht, **einen** der beiden Operanden zum `double` zu machen — der andere wird dann automatisch mitkonvertiert. Das kann durch einen expliziten Cast `(double)x` geschehen oder indem man ein Literal mit Dezimalpunkt schreibt (`7.0` statt `7`).
+
+Wenn das Ergebnis einer Division eine Kommazahl sein soll, muss mindestens ein Operand ein Gleitkommatyp sein. `int / int` liefert **immer** ein `int`.
+{: .notice--warning}
+
 ## Modulo – praktische Anwendungen
 
-Der Modulo-Operator `%` liefert den Rest einer Division. Der einfachste Anwendungsfall: die letzte Ziffer einer Zahl extrahieren, oder prüfen ob eine Zahl gerade ist:
+Der Modulo-Operator `%` liefert den **Rest** einer ganzzahligen Division. Mathematisch: wenn `a / b = q` Rest `r`, dann ist `a % b = r`. Man liest `a % b` als „a modulo b".
+
+Der einfachste Anwendungsfall: die letzte Ziffer einer Zahl extrahieren:
 
 ```csharp
 int n = 1234;
 Console.WriteLine(n % 10);  // 4 – letzte Ziffer
-
-Console.WriteLine(13 % 2 == 0 ? "gerade" : "ungerade"); // ungerade
 ```
 
-Ein etwas umfangreicheres Beispiel — Sekunden in Stunden, Minuten und Restsekunden umrechnen:
+Ein etwas umfangreicheres Beispiel — Sekunden in Stunden, Minuten und Restsekunden umrechnen. Hier arbeiten Ganzzahldivision und Modulo Hand in Hand:
 
 ```csharp
 int sekunden = 3725;
-int stunden  = sekunden / 3600;
-int minuten  = (sekunden % 3600) / 60;
-int rest     = sekunden % 60;
+int stunden  = sekunden / 3600;         // 1 (ganze Stunden)
+int minuten  = (sekunden % 3600) / 60;  // 2 (verbleibende ganze Minuten)
+int rest     = sekunden % 60;           // 5 (verbleibende Sekunden)
 Console.WriteLine($"{stunden}h {minuten}min {rest}s"); // 1h 2min 5s
 ```
 
+Das Zusammenspiel ist: `/` liefert den ganzzahligen Anteil, `%` den Rest. Gemeinsam zerlegen sie einen Wert in größere und kleinere Einheiten.
+
 ## Inkrement und Dekrement
+
+Eine Variable um genau 1 zu erhöhen oder zu verringern ist so häufig, dass C# eigene Operatoren dafür hat: `++` (Inkrement) und `--` (Dekrement).
 
 ```csharp
 int i = 5;
-i++;  // i = 6  (Postfix-Inkrement)
+i++;  // i = 6  (Postfix-Inkrement: erst den Wert nutzen, dann erhöhen)
 i--;  // i = 5  (Postfix-Dekrement)
-++i;  // i = 6  (Präfix-Inkrement)
+++i;  // i = 6  (Präfix-Inkrement: erst erhöhen, dann den Wert nutzen)
 ```
 
-Übung: Schreibe ein Programm, das die Anzahl der Sekunden in einem Tag einliest und in Stunden, Minuten und Sekunden umrechnet.
+In den meisten Fällen — vor allem in Schleifen — ist der Unterschied zwischen `i++` und `++i` irrelevant. Er wird erst wichtig, wenn der Ausdruck gleichzeitig in einer Zuweisung steht, etwa `int b = a++;`. Diese Art der Kombination aus Zuweisung und Inkrements ist aber generell aus Gründen der Übersichtlichkeit nicht zu empfehlen! Für den Anfang reicht es, immer `i++` zu verwenden.
+
+Übung: Schreibe ein Programm, das eine Anzahl von Sekunden von der Konsole einliest und in Stunden, Minuten und Sekunden umrechnet. Teste es mit den Werten 0, 59, 3600 und 86400 (ein ganzer Tag).
 {: .notice--info}
 
 ## Weitere Quellen
