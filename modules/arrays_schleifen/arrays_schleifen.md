@@ -15,7 +15,7 @@ Beim Durchlaufen eines Arrays zeigt sich **Mustererkennung** (*Pattern Recogniti
 
 ## Arrays und `for`
 
-Wenn der Index benötigt wird, ist `for` die richtige Wahl:
+Die `for`-Schleife ist die klassische Wahl, wenn man den **Index** beim Durchlaufen braucht — etwa um die Position im Array anzuzeigen, Elemente zu verändern oder das Array rückwärts zu durchlaufen:
 
 ```csharp
 int[] temperaturen = { 18, 22, 17, 25, 21, 19, 24 };
@@ -29,9 +29,11 @@ for (int i = temperaturen.Length - 1; i >= 0; i--)
     Console.Write(temperaturen[i] + " ");
 ```
 
-## foreach – über alle Elemente
+Das Muster `for (int i = 0; i < arr.Length; i++)` wird man in C#-Programmen hundertfach sehen — es durchläuft jedes Element von vorne nach hinten. Bei rückwärts-Durchlauf startet man bei `Length - 1` und zählt herunter bis `0`.
 
-Wenn alle Elemente der Reihe nach verarbeitet werden sollen und kein Index benötigt wird, bietet `foreach` eine kompaktere und lesbarere Alternative zu `for`:
+## `foreach` — über alle Elemente
+
+Wenn alle Elemente der Reihe nach verarbeitet werden sollen und der Index nicht benötigt wird, bietet `foreach` eine kompaktere und lesbarere Alternative. Die Schleife übernimmt die Indexverwaltung automatisch und liefert bei jedem Durchlauf das nächste Element:
 
 ```csharp
 foreach (Typ element in Array)
@@ -40,10 +42,10 @@ foreach (Typ element in Array)
 }
 ```
 
-Mit `foreach` kann man Elemente nur **lesen**, nicht verändern – für Schreibzugriff muss `for` mit Index genutzt werden.
+Mit `foreach` kann man Elemente nur **lesen**, nicht verändern — für Schreibzugriff muss `for` mit Index genutzt werden.
 {: .notice--warning}
 
-Wenn nur die Werte gebraucht werden (kein Index):
+Ein typischer Anwendungsfall ist das Aufsummieren aller Werte. Hier braucht man keinen Index, sondern nur die Werte selbst:
 
 ```csharp
 double summe = 0;
@@ -53,10 +55,14 @@ foreach (int t in temperaturen)
 Console.WriteLine($"Durchschnitt: {summe / temperaturen.Length:F1}°C");
 ```
 
+**Faustregel:** `foreach` verwenden, wenn man nur lesen will und keinen Index braucht. `for` verwenden, wenn man den Index braucht, Elemente verändern will oder nicht alle Elemente durchlaufen soll.
+{: .notice--primary}
+
 ## Array befüllen mit Schleife
 
+Arrays müssen nicht von Hand befüllt werden — oft berechnet man die Werte aus dem Index. Im folgenden Beispiel werden die ersten zehn Quadratzahlen erzeugt. Da das Array verändert wird, ist hier `for` mit Index nötig:
+
 ```csharp
-// Quadratzahlen generieren
 int[] quadrate = new int[10];
 for (int i = 0; i < quadrate.Length; i++)
     quadrate[i] = (i + 1) * (i + 1);
@@ -66,9 +72,11 @@ foreach (int q in quadrate)
     Console.Write(q + " ");
 ```
 
-## Häufigster Wert
+Man sieht hier auch ein häufiges Zusammenspiel: `for` zum Befüllen (Schreibzugriff), `foreach` zum Ausgeben (nur Lesen).
 
-Bevor man Code schreibt, lohnt es sich, den Algorithmus als Pseudocode zu formulieren:
+## Häufigster Wert — ein Array als Zähler
+
+Eine elegante Technik ist die Verwendung eines Arrays als **Zähler**: Der Index repräsentiert den Wert, und der Inhalt zählt, wie oft dieser Wert vorkommt. Bevor man Code schreibt, lohnt es sich, den Algorithmus als Pseudocode zu formulieren:
 
 ```
 häufigsterWert(würfe):
@@ -78,7 +86,7 @@ häufigsterWert(würfe):
     gib den Index des Maximums zurück
 ```
 
-In C#:
+In C# sieht das so aus. Das Zählarray `häufigkeit` hat so viele Einträge wie es mögliche Werte gibt. Mit `häufigkeit[w]++` wird der Zähler an der Stelle `w` um 1 erhöht — das ist die zentrale Idee:
 
 ```csharp
 int[] würfe = { 3, 1, 4, 1, 5, 9, 2, 6, 5, 3, 5 };
@@ -98,10 +106,12 @@ for (int i = 1; i < häufigkeit.Length; i++)
 Console.WriteLine($"Häufigster Wert: {häufigstes} (kam {max}× vor)");
 ```
 
+Dieses Muster (oft *Frequency Counting* oder *Histogramm* genannt) begegnet einem in der Praxis ständig — von der Textanalyse bis zur Statistik.
+
 Übung: Generiere ein Array mit 20 Zufallszahlen zwischen 1 und 6 (`Random.Shared.Next(1, 7)`) und zähle, wie oft jede Zahl vorkommt.
 {: .notice--info}
 
 ## Weitere Quellen
 
 - [Arrays und foreach – Microsoft Learn](https://learn.microsoft.com/de-de/dotnet/csharp/programming-guide/arrays/using-foreach-with-arrays)
-- [Array-Suchalgorithmen visualisiert – VisuAlgo](https://visualgo.net/en/bst)
+- [Array-Algorithmen visualisiert – VisuAlgo](https://visualgo.net/en/sorting)

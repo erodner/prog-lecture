@@ -9,7 +9,7 @@ toc: false
 classes: wide
 ---
 
-Stell dir vor, du müsstest 1000 Zahlen manuell addieren oder jede Zeile einer Tabelle einzeln verarbeiten — genau dafür gibt es Schleifen. Sie machen Wiederholung beherrschbar und sind eines der wichtigsten Konzepte in der Programmierung. C# kennt vier Schleifenarten, die sich im Wesentlichen darin unterscheiden, wann und wie oft die Bedingung geprüft wird. Eine fünfte Variante — `foreach` — lernen wir später bei Arrays kennen.
+Stell dir vor, du müsstest 1000 Zahlen manuell addieren oder jede Zeile einer Tabelle einzeln verarbeiten — genau dafür gibt es Schleifen. Sie machen Wiederholung beherrschbar und sind eines der wichtigsten Konzepte in der Programmierung. C# kennt mehrere Schleifenarten, die sich im Wesentlichen darin unterscheiden, wann und wie oft die Bedingung geprüft wird.
 
 ## while – bedingungsgesteuert
 

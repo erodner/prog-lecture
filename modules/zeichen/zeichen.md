@@ -39,6 +39,29 @@ Console.WriteLine(zurueck);       // B
 
 Das Alphabet ist im ASCII/Unicode-Standard in aufeinanderfolgenden Zahlen codiert: `'A'` = 65, `'Z'` = 90, `'a'` = 97, `'0'` = 48. Dass die Zeichen fortlaufend nummeriert sind, kann man sich zunutze machen — zum Beispiel lässt sich die Position eines Großbuchstabens im Alphabet mit `c - 'A'` berechnen, was für `'C'` den Wert `2` ergibt (da `67 - 65 = 2`).
 
+## Unicode — mehr als ASCII
+
+ASCII wurde in den 1960er Jahren entwickelt und deckt mit 128 Zeichen nur das englische Alphabet, Ziffern und einige Sonderzeichen ab. Für Umlaute (ä, ö, ü), Zeichen anderer Schriftsysteme (中, あ, العربية) oder Emojis reicht das nicht aus. Unicode löst dieses Problem: Der Standard definiert über 150.000 Zeichen aus praktisch allen Schriftsystemen der Welt.
+
+In C# ist `char` ein 16-Bit-Wert und speichert ein Zeichen in der Kodierung **UTF-16**. Damit lassen sich die meisten Zeichen direkt darstellen — auch deutsche Umlaute oder Zeichen mit Akzenten:
+
+```csharp
+char umlaut = 'ü';              // UTF-16: 0x00FC
+char euro = '€';                 // UTF-16: 0x20AC
+Console.WriteLine((int)umlaut);  // 252
+Console.WriteLine((int)euro);    // 8364
+```
+
+Manche Unicode-Zeichen (z.B. Emojis wie 😀) benötigen mehr als 16 Bit und werden in UTF-16 als **Surrogat-Paar** aus zwei `char`-Werten dargestellt. Deshalb kann `"😀".Length` den Wert `2` liefern, obwohl es visuell nur ein Zeichen ist. Für die meisten Alltagsanwendungen mit lateinischen Schriften spielt das keine Rolle, aber es ist gut zu wissen, dass `char` nicht immer einem sichtbaren Zeichen entspricht.
+{: .notice--primary}
+
+Man kann Unicode-Zeichen auch direkt über ihren Codepunkt angeben — mit der `\u`-Schreibweise:
+
+```csharp
+char omega = '\u03A9';           // Ω (griechischer Großbuchstabe Omega)
+Console.WriteLine(omega);        // Ω
+```
+
 ## Nützliche `char`-Methoden
 
 Die `char`-Klasse bietet statische Methoden, um Zeichen zu klassifizieren und umzuwandeln. „Statisch" bedeutet hier, dass man die Methoden auf der Klasse `char` aufruft und das zu prüfende Zeichen als Argument übergibt — nicht auf dem Zeichen selbst:
@@ -83,3 +106,6 @@ Der Index `[0]` liefert das erste Zeichen, `[wort.Length - 1]` das letzte. Greif
 
 - [char-Typ – Microsoft Learn](https://learn.microsoft.com/de-de/dotnet/csharp/language-reference/builtin-types/char)
 - [Char-Klasse (Methoden) – Microsoft Learn](https://learn.microsoft.com/de-de/dotnet/api/system.char)
+- [ASCII-Tabelle – asciitable.com](https://www.asciitable.com/) – Übersicht aller 128 ASCII-Zeichen mit Dezimal-, Hex- und Oktalwerten
+- [Unicode-Zeichensuche – unicode.org](https://www.unicode.org/charts/) – offizielle Zeichentabellen nach Schriftsystem
+- [UTF-16 in .NET – Microsoft Learn](https://learn.microsoft.com/de-de/dotnet/standard/base-types/character-encoding-introduction)

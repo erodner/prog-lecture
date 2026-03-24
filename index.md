@@ -40,7 +40,7 @@ Die Vorlesung besteht aus:
 ### Teil 2: Kontrollstrukturen
 
 5. [Entscheidungen im Code – Bedingte Anweisungen](/lectures/05/05.md) – `if`, `else`, `switch`
-6. [Wiederholung strukturieren – Schleifen](/lectures/06/06.md) – `while`, `for`, `do-while`, `foreach`
+6. [Wiederholung strukturieren – Schleifen](/lectures/06/06.md) – `while`, `for`, `do-while`
 
 ### Teil 3: Daten und Methoden
 
