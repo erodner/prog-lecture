@@ -25,6 +25,8 @@ int.Parse("abc")  ←── FormatException wird geworfen!
 Programm bricht ab (wenn nicht abgefangen)
 ```
 
+Einige dieser Exceptions kennen wir bereits aus dem Modul zu Laufzeitfehlern — `FormatException`, `DivideByZeroException`, `IndexOutOfRangeException`. Jetzt lernen wir, wie man systematisch mit ihnen umgeht.
+
 ## Häufige Exceptions in C#
 
 ```csharp
@@ -37,6 +39,10 @@ s.Length;                   // NullReferenceException
 ```
 
 ## Die Exception-Hierarchie
+
+Diese Beispiele zeigen verschiedene Exception-Typen — aber wie hängen sie zusammen? In C# sind Exceptions nicht einfach lose Namen, sondern in einer Vererbungshierarchie organisiert. Das Verständnis dieser Hierarchie ist entscheidend, weil es bestimmt, welche Exceptions ein `catch`-Block auffängt.
+
+Exceptions sind in einer Vererbungshierarchie organisiert — alle erben von der Basisklasse `Exception`. Das ist wichtig für `catch`-Blöcke: Fängt man `Exception`, fängt man *alles*. Fängt man `ArgumentException`, fängt man auch `ArgumentNullException` und `ArgumentOutOfRangeException` (weil diese davon erben):
 
 ```
 Exception
@@ -61,7 +67,7 @@ Alle Exceptions erben von `Exception` und enthalten:
 
 ## Vordefinierte Exception-Typen
 
-Die BCL enthält viele spezialisierte Exception-Typen. Die wichtigsten und ihre typischen Ursachen:
+Aus dem Diagramm wird deutlich: Die .NET-Klassenbibliothek (BCL) bringt bereits eine Vielzahl fertiger Exception-Typen mit, die man in eigenen Programmen direkt verwenden kann. Die BCL enthält viele spezialisierte Exception-Typen. Die wichtigsten und ihre typischen Ursachen:
 
 | Exception | Auslöser | Beispiel |
 | :--- | :--- | :--- |
@@ -83,7 +89,7 @@ In catch-Blöcken immer die **spezifischste** passende Exception fangen – nich
 
 ## Exception-Informationen lesen
 
-Jede Exception bietet zwei besonders nützliche Properties:
+Die Tabelle zeigt, welche Exceptions es gibt und wann sie auftreten — aber wenn ein Fehler tatsächlich passiert, will man auch verstehen, *was genau* schiefgelaufen ist. Dafür bietet jede Exception zwei besonders nützliche Properties:
 
 ```csharp
 try

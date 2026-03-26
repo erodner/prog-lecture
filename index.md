@@ -51,7 +51,7 @@ Die Vorlesung besteht aus:
 ### Teil 4: Einführung in die Objektorientierung
 
 10. [Baupläne für Objekte – Klassen](/lectures/10/10.md) – Klassen, Objekte, Felder, Konstruktoren
-11. [Namen und Strukturen – Enumerationen und Structs](/lectures/11/11.md) – Enumerationen, Structs, Namespaces, Sichtbarkeit
+11. [Strukturen und Organisation – Structs, Namespaces, Sichtbarkeit](/lectures/11/11.md) – Structs, Namespaces, Sichtbarkeit
 12. [Datensammlungen – Collections](/lectures/12/12.md) – Listen, Dictionaries und weitere Collections
 
 ### Teil 5: Robustheit

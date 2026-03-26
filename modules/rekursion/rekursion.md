@@ -81,6 +81,8 @@ Diese Implementierung hat allerdings ein Problem: Sie ist extrem langsam für gr
 
 ## Rekursion vs. Schleife
 
+Das Fibonacci-Beispiel zeigt: Eine rekursive Lösung kann mathematisch elegant sein und trotzdem in der Praxis untauglich, weil sie dieselben Teilprobleme immer wieder neu berechnet. Das wirft eine grundsätzliche Frage auf – muss es überhaupt Rekursion sein?
+
 Jede rekursive Lösung lässt sich auch iterativ (mit Schleifen) lösen — und umgekehrt. Die iterative Variante ist oft schneller und speicherschonender, weil sie keinen wachsenden Call Stack aufbaut:
 
 ```csharp
@@ -94,7 +96,7 @@ static long FakultätIterativ(int n)
 }
 ```
 
-Wann lohnt sich Rekursion trotzdem? Wenn das Problem eine natürlich rekursive Struktur hat — z.B. Baumstrukturen, Dateisysteme oder das Durchsuchen verschachtelter Daten. In solchen Fällen ist die rekursive Lösung oft deutlich kürzer und verständlicher als eine iterative mit explizitem Stack.
+Wann lohnt sich Rekursion trotzdem? Wenn das Problem eine natürlich rekursive Struktur hat — z.B. Baumstrukturen, Dateisysteme oder das Durchsuchen verschachtelter Daten. In solchen Fällen ist die rekursive Lösung oft deutlich kürzer und verständlicher als eine iterative mit explizitem Stack. Ein Verzeichnisbaum auf der Festplatte etwa enthält Unterverzeichnisse, die wiederum Unterverzeichnisse enthalten — eine rekursive Methode `DurchsucheVerzeichnis` ruft sich für jedes Unterverzeichnis selbst auf und bildet damit die Struktur der Daten direkt im Code ab.
 
 ## Vorsicht: Endlose Rekursion
 

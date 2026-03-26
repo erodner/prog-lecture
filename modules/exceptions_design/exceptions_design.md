@@ -28,7 +28,11 @@ if (wörterbuch.TryGetValue("schlüssel", out int wert))
     Console.WriteLine(wert);
 ```
 
+Das `TryGetValue`/`TryParse`-Muster kennen wir bereits — es ist die saubere Alternative zu einer Exception bei erwartbaren Situationen.
+
 ## Exceptions nicht schlucken
+
+Genauso wichtig wie die Frage, *wann* man Exceptions wirft, ist die Frage, wie man mit gefangenen Exceptions umgeht. Ein leerer `catch`-Block ist einer der gefährlichsten Fehler, die man machen kann — er versteckt Probleme, statt sie zu lösen. Das Programm läuft scheinbar weiter, aber intern ist etwas schiefgegangen:
 
 ```csharp
 // Sehr schlechte Praxis – Fehler werden versteckt:
@@ -65,6 +69,8 @@ static void Verarbeite(string eingabe)
 }
 ```
 
+Die beiden vorherigen Abschnitte zeigen: Sowohl die Wahl des Exception-Typs als auch die Validierung von Methodenparametern tragen dazu bei, dass Fehler schnell lokalisiert werden können. Die folgende Tabelle fasst die wichtigsten Empfehlungen zusammen.
+
 ## Richtlinien auf einen Blick
 
 | Situation | Empfehlung |
@@ -77,7 +83,7 @@ static void Verarbeite(string eingabe)
 
 ## `using`-Statement statt `try-finally`
 
-Für Objekte, die nach Verwendung geschlossen werden müssen (`IDisposable`):
+Zum Abschluss noch ein Muster, das in der Praxis sehr häufig vorkommt und eng mit der Ausnahmebehandlung zusammenhängt: das automatische Aufräumen von Ressourcen. Im Modul zu `try/catch/finally` haben wir gesehen, wie `finally` zum Aufräumen genutzt wird. Das `using`-Statement ist eine elegantere Alternative für Objekte, die nach Verwendung geschlossen werden müssen (z.B. Dateien, Datenbankverbindungen). Es ruft automatisch `Dispose()` auf — auch bei Exceptions:
 
 ```csharp
 // Statt try-finally:

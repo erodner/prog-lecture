@@ -22,7 +22,9 @@ Nicht alles in einer Klasse soll von außen zugänglich sein – interne Hilfsme
 
 ## Kapselung mit `private`
 
-Das Prinzip der **Kapselung** (Encapsulation) schützt interne Daten vor unkontrolliertem Zugriff:
+Die Tabelle zeigt die vier Stufen — in der Praxis ist `private` die mit Abstand wichtigste, denn sie setzt das zentrale OOP-Prinzip der Kapselung um.
+
+Das Prinzip der **Kapselung** (*Encapsulation*) ist eines der Grundpfeiler der Objektorientierung: Interne Daten werden verborgen, der Zugriff läuft ausschließlich über kontrollierte Schnittstellen (Properties, Methoden). So kann die interne Darstellung geändert werden, ohne dass Code außerhalb der Klasse betroffen ist:
 
 ```csharp
 class Temperatur
@@ -49,9 +51,18 @@ Console.WriteLine(t.Celsius);     // 100
 // t.kelvin = -500; // Compilerfehler – private!
 ```
 
+Im Beispiel speichert die Klasse die Temperatur intern in Kelvin, bietet aber nach außen `Celsius` und `Fahrenheit` an. Der Aufrufer merkt nichts von der internen Darstellung — und man könnte sie ändern (z.B. auf Celsius intern), ohne dass sich die Schnittstelle ändert.
+
+Der Modifizierer `protected` spielt vor allem bei Vererbung eine Rolle: Eine `protected`-Methode oder ein `protected`-Feld ist für Code außerhalb der Klasse unsichtbar, kann aber von Unterklassen (abgeleiteten Klassen) genutzt werden. Das wird relevant, sobald wir Vererbung im Detail behandeln.
+{: .notice--info}
+
+Kapselung schützt also die internen Details einer Klasse. Daraus ergibt sich eine einfache Grundregel für den Alltag:
+
 ## Faustregel
 
-- **Felder immer `private`** – Zugriff über Properties kontrollieren
+Im Zweifel `private` — nur das sichtbar machen, was wirklich von außen gebraucht wird:
+
+- **Felder immer `private`** — Zugriff über Properties kontrollieren
 - **Methoden `public`**, wenn sie von außen genutzt werden sollen
 - **Hilfsmethoden `private`**, wenn sie nur intern gebraucht werden
 
@@ -72,3 +83,4 @@ class Passwortmanager
 
 - [Zugriffsmodifizierer – Microsoft Learn](https://learn.microsoft.com/de-de/dotnet/csharp/programming-guide/classes-and-structs/access-modifiers)
 - [Zugriffsebenen – Microsoft Learn](https://learn.microsoft.com/de-de/dotnet/csharp/language-reference/keywords/accessibility-levels)
+- [Encapsulation (OOP) – Wikipedia](https://de.wikipedia.org/wiki/Datenkapselung_(Programmierung))

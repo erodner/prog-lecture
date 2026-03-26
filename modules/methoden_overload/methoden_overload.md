@@ -11,58 +11,47 @@ classes: wide
 
 `Console.WriteLine` kann eine ganze Zahl, eine Kommazahl, einen Text oder einen booleschen Wert ausgeben – immer mit demselben Methodennamen. Wäre das nicht möglich, müsste man `WriteLineInt`, `WriteLineDouble`, `WriteLineString` und so weiter aufrufen. Das wäre umständlich und schwer zu merken. Dieses Prinzip heißt **Überladung**: mehrere Methoden teilen sich einen Namen, unterscheiden sich aber in ihren Parametern.
 
-## Das Problem ohne Überladung
+## Ein Beispiel: Umsatzsteuer berechnen
 
-Angenommen, man möchte prüfen, ob ein bestimmter Wert in einem Array vorkommt. Ohne Überladung bräuchte man für jeden Typ einen eigenen Methodennamen:
+Stellen wir uns vor, wir wollen die Umsatzsteuer berechnen. Je nach Situation hat man unterschiedliche Ausgangsdaten: mal nur einen einzelnen Betrag, mal eine Liste von Einzelpositionen. Ohne Überladung bräuchte man für jede Variante einen eigenen Methodennamen:
 
 ```csharp
-static bool EnthältInt(int[] arr, int wert) { ... }
-static bool EnthältString(string[] arr, string wert) { ... }
-static bool EnthältDouble(double[] arr, double wert) { ... }
+static double UmsatzsteuerVonBetrag(double netto) { ... }
+static double UmsatzsteuerVonPositionen(double[] positionen) { ... }
 ```
 
-Das funktioniert, aber der Aufrufer muss sich drei verschiedene Namen merken — obwohl die Absicht immer dieselbe ist: prüfen, ob ein Wert enthalten ist.
+Das funktioniert, aber der Aufrufer muss sich mehrere Namen merken — obwohl die Absicht immer dieselbe ist: Umsatzsteuer berechnen.
 
 ## Überladung: ein Name, mehrere Signaturen
 
-Mit Überladung können alle Varianten `Enthält` heißen. Der Compiler entscheidet **zur Compilierzeit** anhand der Typen der übergebenen Argumente, welche Version gemeint ist:
+Mit Überladung können beide Varianten `Umsatzsteuer` heißen. Der Compiler entscheidet **zur Compilierzeit** anhand der übergebenen Argumente, welche Version gemeint ist:
 
 ```csharp
-static bool Enthält(int[] arr, int wert)
+// Variante 1: Umsatzsteuer aus einem einzelnen Nettobetrag
+static double Umsatzsteuer(double netto)
 {
-    for (int i = 0; i < arr.Length; i++)
-        if (arr[i] == wert) return true;
-    return false;
+    return netto * 0.19;
 }
 
-static bool Enthält(string[] arr, string wert)
+// Variante 2: Umsatzsteuer aus mehreren Einzelpositionen
+static double Umsatzsteuer(double[] positionen)
 {
-    for (int i = 0; i < arr.Length; i++)
-        if (arr[i] == wert) return true;
-    return false;
-}
-
-static bool Enthält(double[] arr, double wert)
-{
-    for (int i = 0; i < arr.Length; i++)
-        if (arr[i] == wert) return true;
-    return false;
+    double summe = 0;
+    foreach (double pos in positionen)
+        summe += pos;
+    return summe * 0.19;
 }
 ```
 
 ```csharp
-int[] noten = { 1, 2, 3, 4, 5 };
-string[] farben = { "rot", "grün", "blau" };
-
-Console.WriteLine(Enthält(noten, 3));        // True
-Console.WriteLine(Enthält(farben, "gelb"));  // False
+Console.WriteLine(Umsatzsteuer(100.0));                    // 19
+Console.WriteLine(Umsatzsteuer(new double[] { 50, 30, 20 })); // 19
 ```
 
-Der Aufrufer schreibt einfach `Enthält` — der Compiler wählt die richtige Variante anhand des Array-Typs. Die Regel: Zwei Methoden dürfen denselben Namen haben, wenn sie sich in **Anzahl oder Typ der Parameter** unterscheiden. Der Rückgabetyp allein reicht nicht — zwei Methoden mit identischen Parametern aber unterschiedlichem Rückgabetyp sind ein Compilerfehler.
+Der Aufrufer schreibt einfach `Umsatzsteuer` — der Compiler wählt anhand des Argumenttyps (`double` vs. `double[]`) die passende Variante. Beide Aufrufe liefern hier dasselbe Ergebnis, aber über unterschiedliche Wege.
+
+Die Regel: Zwei Methoden dürfen denselben Namen haben, wenn sie sich in **Anzahl oder Typ der Parameter** unterscheiden. Der Rückgabetyp allein reicht nicht — zwei Methoden mit identischen Parametern aber unterschiedlichem Rückgabetyp sind ein Compilerfehler.
 {: .notice--warning}
-
-Man sieht: Der Code der drei Varianten ist fast identisch. Das ist ein Hinweis darauf, dass es elegantere Lösungen gibt (Stichwort *Generics*) — aber dafür braucht man Konzepte, die erst später kommen. Überladung ist der einfachste Weg, dieses Problem jetzt zu lösen.
-{: .notice--primary}
 
 ## Überladung in der BCL
 
@@ -79,41 +68,55 @@ Dasselbe gilt für `Math.Max`, `Math.Min`, `Math.Abs` und viele weitere — jewe
 
 ## Optionale Parameter (Standardwerte)
 
-Nicht immer braucht man eine eigene Überladung. Wenn dieselbe Logik mit oder ohne einen zusätzlichen Wert funktionieren soll, kann man stattdessen **optionale Parameter** mit Standardwerten verwenden. Der Aufrufer kann sie dann weglassen — in dem Fall greift der Standardwert:
+Nicht immer braucht man eine eigene Überladung. Unsere `Umsatzsteuer`-Methode verwendet fest 19 % — aber was, wenn man auch den ermäßigten Satz von 7 % unterstützen will? Man könnte eine dritte Überladung schreiben, aber eleganter ist ein **optionaler Parameter** mit Standardwert:
 
 ```csharp
-static void Begrüße(string name, string anrede = "Hallo")
+static double Umsatzsteuer(double netto, double satz = 0.19)
 {
-    Console.WriteLine($"{anrede}, {name}!");
+    return netto * satz;
 }
 
-Begrüße("Anna");                       // Hallo, Anna!
-Begrüße("Prof. Müller", "Guten Tag"); // Guten Tag, Prof. Müller!
+Console.WriteLine(Umsatzsteuer(100.0));        // 19   (Standardsatz 19 %)
+Console.WriteLine(Umsatzsteuer(100.0, 0.07));  // 7    (ermäßigter Satz 7 %)
 ```
 
-Der Standardwert wird direkt in der Signatur mit `=` angegeben. Der Compiler setzt den Standardwert automatisch ein, wenn der Aufrufer das Argument weglässt. Das spart eine zweite Überladung, die ohnehin nur den Standardwert weiterreichen würde.
+Der Standardwert wird direkt in der Signatur mit `=` angegeben. Der Compiler setzt den Standardwert automatisch ein, wenn der Aufrufer das Argument weglässt. So muss man nicht für jeden Sonderwert eine eigene Überladung schreiben.
 
 Optionale Parameter müssen immer **am Ende** der Parameterliste stehen — ein Parameter mit Standardwert darf nicht vor einem ohne stehen. Außerdem müssen Standardwerte **Kompilierzeitkonstanten** sein (also Zahlenliterale, Strings oder `null` — keine Methodenaufrufe oder berechnete Werte).
 {: .notice--primary}
 
-Optionale Parameter eignen sich auch gut, um eine Methode schrittweise zu erweitern, ohne bestehende Aufrufe anpassen zu müssen:
+Natürlich lassen sich Überladung und optionale Parameter auch kombinieren. So entsteht eine flexible Schnittstelle, die den häufigsten Fall einfach hält und Sonderfälle trotzdem unterstützt:
 
 ```csharp
-static void ZeigeTabelle(int[] werte, string titel = "Ergebnis", int spaltenBreite = 8)
+// Einzelbetrag mit optionalem Steuersatz
+static double Umsatzsteuer(double netto, double satz = 0.19)
 {
-    Console.WriteLine(titel);
-    foreach (int w in werte)
-        Console.Write($"{w,spaltenBreite}");
-    Console.WriteLine();
+    return netto * satz;
 }
 
-int[] noten = { 1, 2, 3, 2, 1 };
-ZeigeTabelle(noten);                              // Standardtitel und -breite
-ZeigeTabelle(noten, "Notenliste");                // eigener Titel, Standardbreite
-ZeigeTabelle(noten, "Notenliste", 12);            // alles angegeben
+// Mehrere Positionen mit optionalem Steuersatz
+static double Umsatzsteuer(double[] positionen, double satz = 0.19)
+{
+    double summe = 0;
+    foreach (double pos in positionen)
+        summe += pos;
+    return summe * satz;
+}
 ```
 
-Übung: Schreibe eine Methode `Wiederhole(string text)`, die den Text 3-mal ausgibt, und eine Überladung `Wiederhole(string text, int anzahl)` mit wählbarer Anzahl. Überlege dann, ob sich das Problem eleganter mit einem optionalen Parameter lösen lässt.
+```csharp
+// Standardsatz:
+Console.WriteLine(Umsatzsteuer(200.0));                          // 38
+Console.WriteLine(Umsatzsteuer(new double[] { 100, 50, 50 }));   // 38
+
+// Ermäßigter Satz:
+Console.WriteLine(Umsatzsteuer(200.0, 0.07));                        // 14
+Console.WriteLine(Umsatzsteuer(new double[] { 100, 50, 50 }, 0.07)); // 14
+```
+
+Der Aufrufer hat vier Möglichkeiten — alle heißen `Umsatzsteuer`, und der Compiler findet die richtige Variante anhand der Argumente.
+
+Übung: Schreibe eine Methode `Rabatt(double preis)`, die 10 % Rabatt berechnet, und eine Überladung `Rabatt(double preis, double prozent)` mit wählbarem Rabattsatz. Überlege dann, ob sich das Problem eleganter mit einem einzigen optionalen Parameter lösen lässt.
 {: .notice--info}
 
 ## Weitere Quellen

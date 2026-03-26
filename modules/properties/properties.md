@@ -26,9 +26,11 @@ class Auto
 Öffentliche Felder direkt zu exponieren gilt als schlechter Stil, weil keine Kontrolle über ungültige Werte möglich ist.
 {: .notice--warning}
 
+Wie lässt sich der Zugriff auf Daten kontrollieren, ohne die bequeme Syntax aufzugeben? Genau hier kommen Properties ins Spiel.
+
 ## Properties (Eigenschaften)
 
-Properties bieten kontrollierten Zugriff auf interne Daten über `get` und `set`:
+Properties sehen von außen aus wie Felder (`konto.Kontostand`), ermöglichen aber intern Logik beim Lesen und Schreiben. Sie bestehen aus einem `get`-Accessor (zum Lesen) und einem optionalen `set`-Accessor (zum Schreiben):
 
 ```csharp
 class Konto
@@ -49,9 +51,11 @@ class Konto
 }
 ```
 
+Das Schlüsselwort `value` im `set`-Accessor enthält automatisch den Wert, der zugewiesen wird — man muss ihn nicht als Parameter deklarieren. Mit `private set` kann der Wert nur innerhalb der Klasse gesetzt werden, von außen ist er nur lesbar.
+
 ## Auto-Properties (Kurzschreibweise)
 
-Wenn keine besondere Logik nötig ist:
+In vielen Fällen braucht man keine Validierungslogik — man will nur ein Feld mit kontrolliertem Zugriff. Für diese Situationen gibt es **Auto-Properties**: Der Compiler erzeugt automatisch ein verstecktes Hintergrundfeld (engl. *backing field*):
 
 ```csharp
 class Person
@@ -65,7 +69,13 @@ var p = new Person { Name = "Anna", Alter = 21 };
 Console.WriteLine(p.Name); // Anna
 ```
 
+Die Syntax `{ get; set; }` ist die Kurzform — kein Hintergrundfeld und kein `return` nötig. `{ get; private set; }` erlaubt das Lesen von überall, das Schreiben aber nur innerhalb der Klasse. Die Initialisierung mit `new Person { Name = "Anna", Alter = 21 }` heißt **Objekt-Initialisierer** und setzt die Properties direkt nach der Erstellung.
+
+Auto-Properties sind praktisch, solange man keine besonderen Regeln beim Setzen braucht. Sobald aber bestimmte Werte ungültig sind — z.B. ein negatives Semester oder ein leerer Name — reicht die Kurzschreibweise nicht mehr aus. In diesem Fall schreibt man `get` und `set` explizit aus und fügt die Prüfung direkt hinzu.
+
 ## Property mit Validierung
+
+Wenn man Werte prüfen möchte, bevor sie gespeichert werden, schreibt man `get` und `set` explizit aus. Das Hintergrundfeld wird dann von Hand deklariert:
 
 ```csharp
 class Student
@@ -85,7 +95,11 @@ class Student
 }
 ```
 
+Übung: Erstelle eine Klasse `Produkt` mit Properties `Name` (string, nur lesbar nach Erstellung) und `Preis` (double, muss positiv sein). Verwende ein Auto-Property für `Name` und ein Property mit Validierung für `Preis`.
+{: .notice--info}
+
 ## Weitere Quellen
 
 - [Properties – Microsoft Learn](https://learn.microsoft.com/de-de/dotnet/csharp/programming-guide/classes-and-structs/properties)
 - [Auto-implementierte Properties – Microsoft Learn](https://learn.microsoft.com/de-de/dotnet/csharp/programming-guide/classes-and-structs/auto-implemented-properties)
+- [Kapselung (OOP-Konzept) – Microsoft Learn](https://learn.microsoft.com/de-de/dotnet/csharp/fundamentals/object-oriented/)

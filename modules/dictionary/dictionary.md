@@ -24,6 +24,8 @@ Schlüssel (Key)  →  Wert (Value)
 
 ## Grundoperationen
 
+Der Zugriff über eckige Klammern mit dem Schlüssel sieht ähnlich aus wie bei Arrays — nur dass der „Index" kein `int` sein muss, sondern z.B. ein `string`. Wichtig: Greift man auf einen Schlüssel zu, der nicht existiert, wirft das Dictionary eine `KeyNotFoundException`:
+
 ```csharp
 Dictionary<string, int> einwohner = new Dictionary<string, int>();
 
@@ -49,7 +51,11 @@ einwohner.Remove("München");
 Console.WriteLine(einwohner.Count); // 2
 ```
 
+`TryGetValue` ist die sicherere Alternative zu `ContainsKey` + Zugriff: Es prüft und liefert den Wert in einem Schritt — das Muster kennen wir bereits von `int.TryParse`.
+
 ## Iteration
+
+Neben dem gezielten Zugriff über einzelne Schlüssel möchte man häufig alle Einträge eines Dictionary durchlaufen — etwa um eine Übersicht auszugeben. Beim Durchlaufen eines Dictionary erhält man `KeyValuePair`-Objekte mit `.Key` und `.Value`. Die Kurzform mit Dekonstruktion (`var (stadt, anzahl)`) ist lesbarer:
 
 ```csharp
 foreach (KeyValuePair<string, int> paar in einwohner)
@@ -61,6 +67,8 @@ foreach (var (stadt, anzahl) in einwohner)
 ```
 
 ## Praxisbeispiel: Worthäufigkeit
+
+Nachdem wir die Grundoperationen und die Iteration kennengelernt haben, wenden wir beides in einem klassischen Anwendungsfall an. Das Zählen von Häufigkeiten ist eine der klassischen Anwendungen für Dictionaries — das kennen wir als Muster bereits von Arrays (Frequency Counting), nur dass der Schlüssel jetzt ein beliebiger Typ sein kann statt nur ein Index:
 
 ```csharp
 string text = "der die das der ein eine der";
@@ -82,6 +90,9 @@ foreach (var (wort, anzahl) in häufigkeit)
 
 Übung: Lies einen Satz ein und zähle, wie oft jeder Buchstabe (Groß-/Kleinschreibung ignorieren) vorkommt.
 {: .notice--info}
+
+**Warum ist Dictionary so schnell?** Intern verwendet ein Dictionary eine Hash-Tabelle. Das bedeutet: Der Zugriff auf einen Wert über seinen Schlüssel hat im Durchschnitt eine Zeitkomplexität von **O(1)** — also konstant, unabhängig von der Größe des Dictionary. Zum Vergleich: In einer `List<T>` müsste man im schlimmsten Fall alle Elemente durchsuchen (**O(n)**). Deshalb ist ein Dictionary die richtige Wahl, wenn häufig nach Schlüsseln gesucht wird.
+{: .notice--primary}
 
 ## Weitere Quellen
 

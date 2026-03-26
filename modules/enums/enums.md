@@ -26,6 +26,8 @@ Richtung richtung = Richtung.Süd;
 
 ## Deklaration
 
+Eine `enum`-Deklaration listet die möglichen Werte auf. Intern wird jeder Wert als Ganzzahl gespeichert — standardmäßig beginnt der erste bei `0` und erhöht sich um `1`. Man kann die Werte aber auch explizit angeben:
+
 ```csharp
 enum Wochentag { Montag, Dienstag, Mittwoch, Donnerstag, Freitag, Samstag, Sonntag }
 
@@ -37,9 +39,9 @@ enum Ampelfarbe
 }
 ```
 
-Standardmäßig beginnt der erste Wert bei 0 und erhöht sich um 1.
-
 ## Verwendung
+
+Enumerationen lassen sich in `if`-Abfragen und besonders gut in `switch`-Ausdrücken verwenden — der Compiler warnt sogar, wenn man einen möglichen Wert vergisst:
 
 ```csharp
 Wochentag heute = Wochentag.Mittwoch;
@@ -60,6 +62,8 @@ string aktivität = heute switch
 ```
 
 ## Konvertierung
+
+Da Enumerationen intern Ganzzahlen sind, kann man zwischen `enum` und `int` hin- und herkonvertieren. `ToString()` auf einem Enum-Wert liefert den Namen als String — nützlich für die Ausgabe:
 
 ```csharp
 Ampelfarbe farbe = Ampelfarbe.Grün;

@@ -113,7 +113,7 @@ Beide Varianten sind identisch – die Kurzform ist bei einfachen Berechnungen l
 
 ## Variable Parameteranzahl mit `params`
 
-Manchmal weiß man beim Schreiben einer Methode nicht, wie viele Argumente übergeben werden – man will eine Methode aufrufen wie `Summe(1, 2, 3)` oder `Summe(1, 2, 3, 4, 5)`, ohne für jede Anzahl eine eigene Überladung zu schreiben. Dafür gibt es das Schlüsselwort `params`:
+Die Kurzform macht einzelne Methoden kompakter – aber was ist mit der Anzahl der Parameter selbst? Manchmal weiß man beim Schreiben einer Methode nicht, wie viele Argumente übergeben werden – man will eine Methode aufrufen wie `Summe(1, 2, 3)` oder `Summe(1, 2, 3, 4, 5)`, ohne für jede Anzahl eine eigene Überladung zu schreiben. Dafür gibt es das Schlüsselwort `params`:
 
 ```csharp
 static int Summe(params int[] zahlen)
@@ -136,7 +136,7 @@ int[] werte = { 5, 10, 15 };
 Console.WriteLine(Summe(werte));            // 30 – Array direkt übergeben
 ```
 
-`params` muss der letzte Parameter in der Signatur sein und darf nur einmal vorkommen. Ein bekanntes Beispiel aus der BCL: `Console.WriteLine("{0} und {1}", a, b)` nutzt intern `params object[]`.
+`params` muss der letzte Parameter in der Signatur sein und darf nur einmal vorkommen. `params` begegnet uns in der Praxis häufiger, als man denkt: `Console.WriteLine("{0} und {1}", a, b)` nutzt intern `params object?[]`, ebenso `string.Format`. Wer eigene Methoden mit `params` schreibt, folgt also demselben Muster wie die Standardbibliothek.
 {: .notice--primary}
 
 Übung: Schreibe Methoden `Maximum(int a, int b)`, `Minimum(int a, int b)` und `Durchschnitt(params double[] werte)`. Nutze wo sinnvoll die Kurzform mit `=>`.

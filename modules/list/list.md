@@ -13,7 +13,9 @@ Im Alltag weiß man selten im Voraus, wie viele Einträge eine Liste haben wird 
 
 ## Wozu `List<T>`?
 
-Arrays haben eine feste Größe – einmal angelegt, kann die Länge nicht mehr geändert werden. `List<T>` wächst und schrumpft dynamisch.
+Arrays haben eine feste Größe — einmal angelegt, kann die Länge nicht mehr geändert werden. Wenn man nicht weiß, wie viele Elemente es werden, müsste man ein Array überdimensionieren oder umständlich ein neues, größeres Array anlegen und die Werte kopieren. `List<T>` übernimmt das automatisch: Sie wächst und schrumpft dynamisch.
+
+Das `<T>` steht für den Elementtyp — man spricht von einem **generischen Typ**. `List<string>` ist eine Liste von Strings, `List<int>` eine von ganzen Zahlen. Der Compiler prüft, dass nur passende Werte eingefügt werden.
 
 ```csharp
 using System.Collections.Generic;
@@ -26,6 +28,8 @@ Console.WriteLine(namen.Count); // 3
 ```
 
 ## Wichtige Methoden
+
+`List<T>` bietet eine Vielzahl an Methoden zum Hinzufügen, Entfernen, Suchen und Sortieren. Alle Methoden verändern die Liste direkt (in-place):
 
 ```csharp
 List<int> zahlen = new List<int> { 5, 2, 8, 1, 9 };
@@ -42,7 +46,12 @@ int idx = zahlen.IndexOf(9);     // Index von 9
 zahlen.Clear();                  // alle entfernen
 ```
 
+Beachte: Bei `List<T>` heißt die Eigenschaft für die Anzahl `Count`, nicht `Length` wie bei Arrays. Der Indexzugriff funktioniert identisch: `städte[0]` liefert das erste Element.
+{: .notice--primary}
+
 ## Iteration
+
+Nachdem wir nun Elemente hinzufügen, entfernen und suchen können, schauen wir uns an, wie man eine Liste systematisch durchläuft — das geht genauso wie bei Arrays mit `foreach` oder `for`:
 
 ```csharp
 List<string> städte = new List<string> { "Berlin", "Hamburg", "München" };
@@ -56,6 +65,8 @@ for (int i = 0; i < städte.Count; i++)
 ```
 
 ## Praxisbeispiel: Einkaufsliste
+
+Im folgenden Beispiel setzen wir die bisherigen Bausteine zusammen: Der Benutzer gibt beliebig viele Artikel ein, die dynamisch in einer Liste gesammelt und am Ende ausgegeben werden — genau die Art von Aufgabe, für die `List<T>` gemacht ist.
 
 ```csharp
 List<string> einkauf = new List<string>();
@@ -74,6 +85,8 @@ foreach (string artikel in einkauf)
 ```
 
 ## `List<T>` vs. Array
+
+Wann sollte man also eine `List<T>` verwenden und wann ein Array? Die folgende Tabelle fasst die wesentlichen Unterschiede zusammen:
 
 | | Array | `List<T>` |
 | :--- | :--- | :--- |

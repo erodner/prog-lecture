@@ -43,7 +43,11 @@ catch (FormatException)
 }
 ```
 
+Ohne `try-catch` würde das Programm bei ungültiger Eingabe mit einer `FormatException` abstürzen. Der `catch`-Block fängt genau diesen Fehlertyp ab und zeigt stattdessen eine freundliche Meldung. Das Programm läuft danach normal weiter.
+
 ## Mehrere catch-Blöcke
+
+Im einfachen Beispiel haben wir nur eine Art von Fehler behandelt. In der Praxis können aber innerhalb eines `try`-Blocks verschiedene Exceptions auftreten, die jeweils eine andere Reaktion erfordern. Wenn verschiedene Fehler auftreten können, die unterschiedlich behandelt werden sollen, kann man mehrere `catch`-Blöcke hintereinander schreiben. Der erste passende Block wird ausgeführt:
 
 ```csharp
 try
@@ -70,9 +74,9 @@ catch (Exception ex)  // Auffangbecken für alle anderen Exceptions
 Spezifischere Exceptions immer vor allgemeinen platzieren.
 {: .notice--primary}
 
-## `finally` – immer ausführen
+## `finally` — immer ausführen
 
-`finally` wird ausgeführt, egal ob eine Exception auftrat oder nicht. Typisch für Aufräumarbeiten:
+`finally` wird ausgeführt, **egal ob eine Exception auftrat oder nicht**. Das ist besonders wichtig für Aufräumarbeiten — z.B. geöffnete Dateien schließen, Netzwerkverbindungen beenden oder temporäre Ressourcen freigeben:
 
 ```csharp
 StreamReader reader = null;
@@ -94,6 +98,8 @@ finally
 
 ## Exception selbst werfen
 
+Mit `try`, `catch` und `finally` können wir auf Fehler reagieren — aber manchmal muss unser eigener Code den Fehler *auslösen*. Exceptions werden nicht nur von der Laufzeitumgebung geworfen — man kann sie auch bewusst mit `throw` selbst auslösen. Das ist sinnvoll, wenn eine Methode ungültige Eingaben erkennt und den Aufrufer darauf aufmerksam machen will:
+
 ```csharp
 static double Teilen(double a, double b)
 {
@@ -105,6 +111,9 @@ static double Teilen(double a, double b)
 
 Übung: Schreibe eine Methode, die sicher einen `int` aus einer Konsoleneingabe liest und bei ungültiger Eingabe immer wieder fragt (Schleife + try-catch).
 {: .notice--info}
+
+Wichtig: Wenn man eine gefangene Exception weiterwerfen will, sollte man `throw;` statt `throw ex;` verwenden. `throw;` behält den ursprünglichen Stack-Trace bei, während `throw ex;` ihn zurücksetzt — das erschwert die Fehlersuche erheblich.
+{: .notice--warning}
 
 ## Weitere Quellen
 

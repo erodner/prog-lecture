@@ -13,7 +13,7 @@ Neben `List` und `Dictionary` gibt es in C# noch weitere spezialisierte Sammlung
 
 ## Queue\<T\> – Warteschlange (FIFO)
 
-**First In, First Out** – wer zuerst ankommt, verlässt die Schlange zuerst.
+Eine Queue funktioniert wie eine Warteschlange im Supermarkt: **First In, First Out** — wer zuerst ankommt, wird zuerst bedient. Elemente werden hinten angefügt (`Enqueue`) und vorne entnommen (`Dequeue`):
 
 ```csharp
 Queue<string> warteschlange = new Queue<string>();
@@ -31,7 +31,7 @@ Console.WriteLine(warteschlange.Count);     // 2
 
 ## Stack\<T\> – Stapel (LIFO)
 
-**Last In, First Out** – das zuletzt Abgelegte wird zuerst entnommen.
+Während eine Queue Elemente in der Reihenfolge ihres Eintreffens verarbeitet, funktioniert ein Stack genau umgekehrt. Ein Stack funktioniert wie ein Stapel Teller: **Last In, First Out** — der zuletzt abgelegte Teller wird zuerst wieder genommen. Das kennen wir bereits vom Call Stack bei der Rekursion — dort werden Methodenaufrufe auf genau diese Weise gestapelt:
 
 ```csharp
 Stack<int> stapel = new Stack<int>();
@@ -48,6 +48,8 @@ Console.WriteLine(stapel.Count);   // 2
 **Anwendung:** Rückgängig-Funktion (Undo), Navigations-Historie, Call Stack.
 
 ## HashSet\<T\> – Menge ohne Duplikate
+
+Queue und Stack steuern die Reihenfolge des Zugriffs — aber manchmal geht es gar nicht um Reihenfolge, sondern nur darum, *ob* ein Element vorhanden ist. Genau dafür gibt es `HashSet`. Ein `HashSet` speichert jedes Element höchstens einmal — Duplikate werden automatisch ignoriert. Das ist nützlich, wenn man nur wissen will, *welche* Werte vorkommen, nicht *wie oft*. Außerdem unterstützt es mathematische Mengenoperationen wie Schnitt- und Vereinigungsmenge:
 
 ```csharp
 HashSet<string> besucher = new HashSet<string>();
@@ -69,6 +71,8 @@ a.ExceptWith(b);     // Differenz
 
 ## Übersicht
 
+Die folgende Tabelle gibt einen kompakten Überblick über die wichtigsten Collection-Typen und hilft bei der Entscheidung, welche Datenstruktur für eine Aufgabe am besten geeignet ist:
+
 | Collection | Reihenfolge | Duplikate | Zugriff |
 | :--- | :--- | :--- | :--- |
 | `List<T>` | Ja (eingefügt) | Ja | Index |
@@ -76,6 +80,9 @@ a.ExceptWith(b);     // Differenz
 | `Stack<T>` | LIFO | Ja | Nur oben |
 | `HashSet<T>` | Nein | Nein | Enthält-Prüfung |
 | `Dictionary<K,V>` | Nein | Nein (Keys) | Schlüssel |
+
+**Welche Collection wählen?** Als Faustregel: Verwende `List<T>`, wenn du eine geordnete, veränderbare Sammlung brauchst. Nutze `Dictionary<K,V>`, wenn du Werte über einen Schlüssel nachschlagen willst. `HashSet<T>` eignet sich, wenn nur die Existenz zählt und keine Duplikate erlaubt sind. `Queue<T>` und `Stack<T>` sind die richtige Wahl, wenn die Verarbeitungsreihenfolge (FIFO bzw. LIFO) eine Rolle spielt.
+{: .notice--primary}
 
 ## Weitere Quellen
 

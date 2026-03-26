@@ -28,7 +28,11 @@ foreach (int z in ergebnis)
 // 5 5 5 6 9
 ```
 
+Die Syntax `x => x > 4` ist ein **Lambda-Ausdruck** — eine kompakte Schreibweise für eine anonyme Funktion. `x` ist der Parameter (jedes Element der Sammlung), `x > 4` ist die Bedingung. Man liest es als: „für jedes x prüfe, ob x größer als 4 ist". Lambda-Ausdrücke sind das zentrale Werkzeug von LINQ.
+
 ## Grundlegende LINQ-Methoden
+
+Die wichtigsten LINQ-Methoden lassen sich in vier Kategorien einteilen: **Filtern** (welche Elemente?), **Transformieren** (in welche Form?), **Sortieren** (in welcher Reihenfolge?) und **Aggregieren** (zu einem einzelnen Wert zusammenfassen):
 
 ```csharp
 List<string> namen = new List<string> { "Anna", "Ben", "Clara", "David", "Eva" };
@@ -57,6 +61,8 @@ bool einKurz  = namen.Any(n => n.Length <= 3);    // true (Ben, Eva)
 
 ## Praxisbeispiel: Notenliste auswerten
 
+Nachdem wir die einzelnen LINQ-Methoden kennengelernt haben, kombinieren wir sie in einem realistischeren Beispiel. Dabei sieht man gut, wie sich mehrere Methoden zu einer lesbaren Abfragekette verketten lassen:
+
 ```csharp
 var noten = new List<(string Name, double Note)>
 {
@@ -79,6 +85,17 @@ Console.WriteLine($"Durchschnitt: {durchschnitt:F2}");
 
 LINQ-Methoden lassen sich beliebig verketten – jede Methode gibt wieder eine Sammlung zurück, auf der weitere Methoden aufgerufen werden können.
 {: .notice--primary}
+
+**Lazy Evaluation:** LINQ-Methoden wie `Where` oder `Select` führen die Abfrage nicht sofort aus — sie erzeugen nur eine Beschreibung der Abfrage. Erst wenn man die Ergebnisse tatsächlich durchläuft (z.B. mit `foreach`) oder materialisiert, wird die Berechnung ausgeführt. Um das Ergebnis sofort in eine konkrete Sammlung umzuwandeln, verwendet man `ToList()` oder `ToArray()`:
+{: .notice--warning}
+
+```csharp
+// Lazy – wird erst bei Iteration ausgewertet:
+var abfrage = namen.Where(n => n.Length > 3);
+
+// Sofort materialisiert – Ergebnis steht fest:
+List<string> ergebnis = namen.Where(n => n.Length > 3).ToList();
+```
 
 ## Weitere Quellen
 

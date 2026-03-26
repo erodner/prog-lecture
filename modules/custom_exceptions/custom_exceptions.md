@@ -25,7 +25,7 @@ throw new UngültigesPasswortException("Passwort zu kurz: mindestens 8 Zeichen."
 
 ## Eigene Exception erstellen
 
-Eine eigene Exception erbt von `Exception` (oder einer spezifischeren Basisklasse):
+Eine eigene Exception erbt von `Exception` (oder einer spezifischeren Basisklasse). Der Konstruktor ruft mit `: base(message)` den Konstruktor der Basisklasse auf und übergibt die Fehlermeldung. Eigene Properties (wie `Fehlbetrag`) können zusätzliche Informationen transportieren:
 
 ```csharp
 class KontoException : Exception
@@ -45,7 +45,11 @@ class UngedeckterBetragException : KontoException
 }
 ```
 
+Man sieht hier auch eine eigene **Exception-Hierarchie**: `UngedeckterBetragException` erbt von `KontoException`, die wiederum von `Exception` erbt. So kann der Aufrufer entweder spezifisch `UngedeckterBetragException` fangen oder allgemeiner `KontoException` für alle kontobezogenen Fehler.
+
 ## Verwenden der eigenen Exception
+
+Nachdem wir die Exception-Klassen definiert haben, wollen wir sie nun in einer realistischen Anwendung einsetzen. Die eigene Exception wird genau wie eine eingebaute mit `throw` geworfen und mit `catch` gefangen. Der Vorteil: Im `catch`-Block hat man Zugriff auf die spezifischen Properties — hier `Fehlbetrag`:
 
 ```csharp
 class Konto
@@ -82,6 +86,8 @@ catch (UngedeckterBetragException ex)
 ```
 
 ## Konventionen
+
+Damit eigene Exceptions sich nahtlos in das .NET-Ökosystem einfügen und von anderen Entwicklern sofort verstanden werden, haben sich einige Konventionen etabliert:
 
 - Name endet immer auf `Exception`
 - Erbt von `Exception` oder einer passenden Basisklasse

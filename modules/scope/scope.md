@@ -54,7 +54,7 @@ Das ist das Standardverhalten für alle primitiven Typen (`int`, `double`, `bool
 
 ## Call by Reference mit `ref`
 
-Was aber, wenn eine Methode den ursprünglichen Wert tatsächlich verändern soll? Dafür gibt es `ref` — die Methode bekommt dann eine Referenz auf die originale Variable, nicht auf eine Kopie:
+Call by Value ist sicher und vorhersagbar – aber manchmal reicht es nicht aus. Was, wenn eine Methode nicht nur ein Ergebnis berechnen, sondern eine bestehende Variable direkt verändern soll? Zum Beispiel eine Tausch-Operation, die zwei Variablen vertauscht – mit Kopien wäre das unmöglich. Was aber, wenn eine Methode den ursprünglichen Wert tatsächlich verändern soll? Dafür gibt es `ref` — die Methode bekommt dann eine Referenz auf die originale Variable, nicht auf eine Kopie:
 
 ```csharp
 static void Verdoppeln(ref int x)
@@ -97,7 +97,7 @@ Ein bekanntes Beispiel aus der BCL ist `int.TryParse`: Es gibt per `return` eine
 
 ## Mehrere Rückgabewerte mit Tupeln
 
-Eine modernere und oft lesbarere Alternative zu `out` ist die Rückgabe eines **Tupels**. Ein Tupel fasst mehrere Werte zu einem einzigen Rückgabetyp zusammen, ohne dass man dafür eine eigene Klasse definieren muss:
+Mit `out` lassen sich zwar mehrere Werte zurückgeben, aber die Syntax ist etwas umständlich und der Aufrufer muss die `out`-Variablen explizit deklarieren. Seit C# 7 gibt es eine elegantere Alternative: Eine modernere und oft lesbarere Alternative zu `out` ist die Rückgabe eines **Tupels**. Ein Tupel fasst mehrere Werte zu einem einzigen Rückgabetyp zusammen, ohne dass man dafür eine eigene Klasse definieren muss:
 
 ```csharp
 static (int min, int max) MinMax(int[] arr)
