@@ -22,13 +22,13 @@ class Student
 {
     public string Name { get; set; }
     public int Matrikelnummer { get; set; }
-    public double Gpa { get; set; }
+    public double Note { get; set; }
 
     public Student(string name, int matrikelnummer)
     {
         Name = name;
         Matrikelnummer = matrikelnummer;
-        Gpa = 0.0;
+        Note = 0.0;
     }
 
     public void Vorstellen()
@@ -49,7 +49,7 @@ Student s1 = new Student("Anna", 12345);
 Student s2 = new Student("Ben", 67890);
 
 s1.Vorstellen(); // "Ich bin Anna, Matrikel-Nr. 12345."
-s2.Gpa = 1.7;
+s2.Note = 1.7;
 ```
 
 `s1` und `s2` sind zwei verschiedene Objekte mit unterschiedlichen Daten (Name, Matrikelnummer), aber beide haben dieselben Methoden und Properties, weil sie aus derselben Klasse stammen. Das kennen wir von Referenztypen: `s1` und `s2` sind Referenzen, die jeweils auf ein eigenes Objekt im Speicher zeigen.
