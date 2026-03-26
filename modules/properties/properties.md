@@ -75,7 +75,7 @@ Auto-Properties sind praktisch, solange man keine besonderen Regeln beim Setzen 
 
 ## Property mit Validierung
 
-Wenn man Werte prüfen möchte, bevor sie gespeichert werden, schreibt man `get` und `set` explizit aus. Das Hintergrundfeld wird dann von Hand deklariert:
+Wenn man Werte prüfen möchte, bevor sie gespeichert werden, schreibt man `get` und `set` explizit aus. Dabei muss man ein **eigenes privates Feld** deklarieren, in dem der Wert tatsächlich gespeichert wird — bei Auto-Properties erledigt der Compiler das unsichtbar im Hintergrund, aber sobald man eigene Logik in `get` oder `set` braucht, muss man dieses Feld selbst anlegen:
 
 ```csharp
 class Student

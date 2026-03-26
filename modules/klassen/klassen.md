@@ -54,7 +54,7 @@ s2.Note = 1.7;
 
 `s1` und `s2` sind zwei verschiedene Objekte mit unterschiedlichen Daten (Name, Matrikelnummer), aber beide haben dieselben Methoden und Properties, weil sie aus derselben Klasse stammen. Das kennen wir von Referenztypen: `s1` und `s2` sind Referenzen, die jeweils auf ein eigenes Objekt im Speicher zeigen.
 
-Wichtig ist der Unterschied zwischen **Identität** und **Gleichheit**: Auch wenn zwei Studenten zufällig denselben Namen hätten, wären `s1` und `s2` trotzdem zwei unterschiedliche Objekte — sie liegen an verschiedenen Stellen im Speicher. Identität (`s1 == s2`) prüft bei Klassen standardmäßig, ob beide Referenzen auf **dasselbe** Objekt zeigen, nicht ob die Daten übereinstimmen.
+Wichtig ist der Unterschied zwischen **Identität** und **Gleichheit**: Auch wenn zwei Studenten zufällig denselben Namen hätten, wären `s1` und `s2` trotzdem zwei unterschiedliche Objekte — sie liegen an verschiedenen Stellen im Speicher. Identität (`s1 == s2`) prüft bei Klassen standardmäßig, ob beide Referenzen auf **dasselbe** Objekt zeigen, nicht ob die Daten übereinstimmen. Diesen Unterschied haben wir schon bei der Einführung von Wert- und Referenztypen kennengelernt.
 
 Eine Klasse existiert nur einmal im Code. Objekte können zur Laufzeit beliebig viele erzeugt werden. Bisher haben wir mit eingebauten Typen wie `int`, `string` und `int[]` gearbeitet — Klassen erlauben es uns, **eigene Typen** zu definieren, die genau zu unserem Problem passen.
 
