@@ -89,10 +89,10 @@ Ein Operator wird mit Typen verwendet, für die er nicht definiert ist.
 ### CS1501: No overload for method '...' takes N arguments
 
 ```csharp
-Console.WriteLine("a", "b", "c");   // error CS1501: keine passende Überladung
+Math.Max(1, 2, 3);   // error CS1501: keine passende Überladung für 3 Argumente
 ```
 
-Die Methode wurde mit der falschen Anzahl oder falschen Typen von Argumenten aufgerufen.
+Die Methode wurde mit der falschen Anzahl oder falschen Typen von Argumenten aufgerufen. `Math.Max` erwartet genau zwei Argumente — eine Variante mit drei gibt es nicht.
 
 ## Weitere Quellen
 
