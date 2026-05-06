@@ -70,6 +70,15 @@ Eine präzise, schrittweise Handlungsanweisung entwickeln, die das Problem löst
 Diese Fähigkeiten lassen sich nicht vollständig delegieren – weder an ein LLM noch an eine andere Person. Sie sind der Kern dessen, was einen Softwareentwickler oder eine Softwareentwicklerin ausmacht.
 {: .notice--primary}
 
+## Was sagt die Forschung?
+
+Eine aktuelle Studie (Thorgeirsson et al., 2026) hat untersucht, welche Fähigkeiten den Erfolg beim sogenannten *Vibe Coding* vorhersagen — also beim Programmieren rein über natürliche Sprache, ohne den Code selbst zu editieren. Das Ergebnis: Sowohl **Schreibkompetenz** als auch **Informatik-Grundwissen** sind signifikante Prädiktoren für die Leistung. Informatik-Kenntnisse bleiben auch dann relevant, wenn man allgemeine kognitive Fähigkeiten herausrechnet.
+
+Die Botschaft ist klar: Selbst in einer Welt, in der man Code per Sprache erzeugt, braucht man die Grundlagen — sowohl um die richtigen Anweisungen zu formulieren als auch um die Ergebnisse bewerten zu können.
+
+Thorgeirsson, S., Weidmann, T. B. & Su, Z. (2026). *Computer Science Achievement and Writing Skills Predict Vibe Coding Proficiency.* CHI Conference on Human Factors in Computing Systems. [https://dl.acm.org/doi/10.1145/3772318.3791666](https://dl.acm.org/doi/10.1145/3772318.3791666)
+{: .notice--primary}
+
 ## Die richtige Einstellung
 
 LLMs werden ein wichtiger Teil eurer Arbeitswelt in der Softwareentwicklung sein – das ist keine Frage. Aber der Wert, den ihr als Entwicklerinnen und Entwickler einbringt, liegt darin, dass ihr:
