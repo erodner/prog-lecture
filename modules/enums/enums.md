@@ -41,25 +41,18 @@ enum Ampelfarbe
 
 ## Verwendung
 
-Enumerationen lassen sich in `if`-Abfragen und besonders gut in `switch`-Ausdrücken verwenden — der Compiler warnt sogar, wenn man einen möglichen Wert vergisst:
+Eine Enum-Variable verhält sich wie jede andere Variable — mit dem Unterschied, dass sie nur die in der Deklaration aufgezählten Werte annehmen kann. Tippfehler oder unsinnige Werte fallen so schon dem Compiler auf:
 
 ```csharp
 Wochentag heute = Wochentag.Mittwoch;
+Console.WriteLine(heute);      // Mittwoch
 
-if (heute == Wochentag.Samstag || heute == Wochentag.Sonntag)
-    Console.WriteLine("Wochenende!");
-else
-    Console.WriteLine("Werktag.");
-
-// switch mit enum:
-string aktivität = heute switch
-{
-    Wochentag.Montag => "Wochenstart",
-    Wochentag.Freitag => "Fast Wochenende!",
-    Wochentag.Samstag or Wochentag.Sonntag => "Freizeit",
-    _ => "Normaler Tag"
-};
+heute = Wochentag.Freitag;     // neuer Wert – nur Wochentage erlaubt
+// heute = "Freitag";          // Compilerfehler: string ist kein Wochentag
+// heute = Wochentag.Feiertag; // Compilerfehler: Wert existiert nicht
 ```
+
+Ihre eigentliche Stärke spielen Enumerationen bei Entscheidungen aus: „Wenn heute Samstag oder Sonntag ist, dann …". Wie das mit `if` und vor allem mit `switch` funktioniert, sehen wir in Vorlesung 5 im Abschnitt [switch mit Enums](/modules/switch/switch.md).
 
 ## Konvertierung
 

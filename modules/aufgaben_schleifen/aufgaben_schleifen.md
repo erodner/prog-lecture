@@ -179,3 +179,45 @@ Console.WriteLine($"{n} ist {(istPrimzahl ? "eine Primzahl" : "keine Primzahl")}
 **Sonderfälle nicht vergessen:** 0 und 1 sind **keine** Primzahlen. Die 2 ist die kleinste Primzahl und die einzige gerade.
 
 </details>
+
+## Aufgabe 3 — Quersumme beliebig langer Zahlen
+
+In den [Operator-Aufgaben](/modules/aufgaben_operatoren/aufgaben_operatoren.md) haben wir die Quersumme einer vierstelligen Zahl berechnet, indem wir viermal dieselbe Zeile `summe += zahl % 10; zahl /= 10;` geschrieben haben. Schreibe jetzt ein Programm, das die Quersumme einer **beliebig langen** positiven Ganzzahl berechnet.
+
+**Beispiele:** Quersumme von 427 = 13, Quersumme von 9999 = 36, Quersumme von 1000000 = 1.
+
+Welche Schleifenart passt hier — und warum nicht `for`?
+
+<details markdown="1">
+<summary>Lösung anzeigen</summary>
+
+**Idee:** Die wiederholte Zeile aus der Operator-Aufgabe wandert in den Schleifenrumpf. Die Abbruchbedingung liefert die Zahl selbst: Sobald `zahl` den Wert 0 erreicht, sind alle Ziffern verarbeitet.
+
+```csharp
+int zahl = 427;
+int summe = 0;
+
+while (zahl > 0)
+{
+    int letzteZiffer = zahl % 10;
+    summe += letzteZiffer;
+    zahl = zahl / 10;
+}
+
+Console.WriteLine($"Quersumme: {summe}");
+```
+
+**Schritt-für-Schritt-Trace für 427:**
+
+| Durchlauf | `zahl` | `zahl % 10` | `summe` | `zahl / 10` |
+|-----------|--------|-------------|---------|-------------|
+| 1 | 427 | 7 | 7 | 42 |
+| 2 | 42 | 2 | 9 | 4 |
+| 3 | 4 | 4 | 13 | 0 |
+| Ende | 0 | — | **13** | — |
+
+**Warum `while` statt `for`?** Die Anzahl der Durchläufe hängt von der Stellenzahl ab, die wir vorher nicht kennen. `for` eignet sich, wenn man die Anzahl der Wiederholungen im Voraus weiß; `while`, wenn eine Bedingung über das Ende entscheidet. Die Schleife hat keine fest codierte Anzahl an Durchläufen — egal ob die Zahl 3 oder 10 Stellen hat, der Algorithmus funktioniert identisch.
+
+**Sonderfall:** Für `zahl = 0` wird die Schleife gar nicht betreten und `summe` bleibt 0 — das ist auch die korrekte Quersumme.
+
+</details>

@@ -124,15 +124,22 @@ Manchmal reicht die Schleifenbedingung allein nicht aus, um den Ablauf zu steuer
 **`break`** beendet die gesamte Schleife sofort — die Ausführung springt zur ersten Zeile nach der Schleife. Das ist nützlich, wenn ein Ergebnis gefunden wurde und weitere Durchläufe überflüssig sind:
 
 ```csharp
-for (int i = 0; i < zahlen.Length; i++)
+int n = 91;
+int kleinsterTeiler = n;  // falls kein kleinerer gefunden wird: n ist eine Primzahl
+
+for (int teiler = 2; teiler < n; teiler++)
 {
-    if (zahlen[i] == gesucht)
+    if (n % teiler == 0)
     {
-        gefunden = true;
-        break;  // gefunden — kein weiteres Suchen nötig
+        kleinsterTeiler = teiler;
+        break;  // gefunden — größere Teiler interessieren nicht mehr
     }
 }
+
+Console.WriteLine($"Kleinster Teiler von {n}: {kleinsterTeiler}");  // 7
 ```
+
+Ohne `break` würde die Schleife weiterlaufen und am Ende den *größten* Teiler (hier 13) in `kleinsterTeiler` speichern — der frühe Ausstieg ist also nicht nur schneller, sondern für die Korrektheit entscheidend.
 
 **`continue`** überspringt den Rest des aktuellen Durchlaufs und springt direkt zur Bedingungsprüfung des nächsten Durchlaufs. Das ist nützlich, wenn bestimmte Werte ausgelassen werden sollen:
 
@@ -146,7 +153,7 @@ for (int i = 1; i <= 10; i++)
 // 1 3 5 7 9
 ```
 
-Beide Schlüsselwörter sollte man sparsam einsetzen. Oft lässt sich derselbe Effekt durch eine geschicktere Schleifenbedingung erreichen — und das ist in der Regel lesbarer. `break` ist bei der Suche in einer Sammlung aber ein etabliertes Muster und völlig in Ordnung.
+Beide Schlüsselwörter sollte man sparsam einsetzen. Oft lässt sich derselbe Effekt durch eine geschicktere Schleifenbedingung erreichen — und das ist in der Regel lesbarer. `break` ist bei Suchproblemen — „finde das erste Element, das …" — aber ein etabliertes Muster und völlig in Ordnung.
 {: .notice--primary}
 
 Übung: Schreibe ein Ratespiel — das Programm denkt sich eine Zufallszahl zwischen 1 und 100, der Spieler rät mit Hinweisen „zu groß" / „zu klein", bis er richtig liegt. Welche Schleifenart passt hier am besten?

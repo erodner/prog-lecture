@@ -26,11 +26,12 @@ class Konto
 
     // Instanzmethode – arbeitet auf diesem Objekt
     public void Einzahlen(double betrag) => Stand += betrag;
-    public void Abheben(double betrag)
+    public bool Abheben(double betrag)
     {
         if (betrag > Stand)
-            throw new InvalidOperationException("Nicht genug Guthaben.");
+            return false;   // nicht genug Guthaben – nichts abheben
         Stand -= betrag;
+        return true;
     }
 
     // Statische Methode – kein Zugriff auf Stand nötig
@@ -41,6 +42,9 @@ var k = new Konto();
 k.Einzahlen(500);
 k.Abheben(200);
 Console.WriteLine(k.Stand); // 300
+
+if (!k.Abheben(1000))
+    Console.WriteLine("Abhebung abgelehnt.");
 
 Console.WriteLine(Konto.EuroInDollar(100)); // 108
 ```
@@ -88,11 +92,17 @@ Innerhalb einer Klasse können Methoden sich gegenseitig aufrufen. Das erlaubt e
 ```csharp
 class Bestellung
 {
-    List<double> positionen = new List<double>();
+    private double summePositionen;
+    private int anzahlPositionen;
 
-    public void HinzufügenPosition(double preis) => positionen.Add(preis);
+    public void HinzufügenPosition(double preis)
+    {
+        summePositionen += preis;
+        anzahlPositionen++;
+    }
 
-    private double Nettobetrag() => positionen.Sum();
+    // ab 10 Positionen gibt es 5 % Mengenrabatt
+    private double Nettobetrag() => anzahlPositionen >= 10 ? summePositionen * 0.95 : summePositionen;
     private double Mehrwertsteuer() => Nettobetrag() * 0.19;
 
     public double Gesamtbetrag() => Nettobetrag() + Mehrwertsteuer();
@@ -106,7 +116,7 @@ class Bestellung
 }
 ```
 
-Die privaten Methoden `Nettobetrag()` und `Mehrwertsteuer()` sind Implementierungsdetails — von außen sieht man nur `Gesamtbetrag()` und `Ausgeben()`. Das ist Kapselung in der Praxis: Die interne Aufteilung kann sich ändern, ohne dass der Aufrufer etwas davon merkt.
+Die privaten Felder und die privaten Methoden `Nettobetrag()` und `Mehrwertsteuer()` sind Implementierungsdetails — von außen sieht man nur `HinzufügenPosition()`, `Gesamtbetrag()` und `Ausgeben()`. Wer heute die Rabattregel ändert, muss nur `Nettobetrag()` anpassen; `Mehrwertsteuer()` und `Gesamtbetrag()` rechnen automatisch mit dem neuen Wert. Das ist Kapselung in der Praxis: Die interne Aufteilung kann sich ändern, ohne dass der Aufrufer etwas davon merkt.
 
 Übung: Erweitere die Klasse `Konto` aus dem vorherigen Modul um eine Methode `Überweisen(Konto ziel, double betrag)`, die vom eigenen Konto abhebt und auf das Zielkonto einzahlt. Füge eine statische Methode `Konto.Wechselkurs(string währung)` hinzu, die für verschiedene Währungen einen festen Kurs zurückgibt.
 {: .notice--info}

@@ -36,6 +36,8 @@ Rechteck r = new Rechteck(5.0, 3.0);
 Console.WriteLine(r.Fläche()); // 15
 ```
 
+Die Parameter `breite` und `höhe` heißen genauso wie die Felder der Klasse. Innerhalb des Konstruktors würde `breite` deshalb den Parameter meinen — mit `this.breite` greift man ausdrücklich auf das Feld des gerade erzeugten Objekts zu. Was `this` genau ist, schauen wir uns im Modul zum [`this`-Schlüsselwort](/modules/this/this.md) noch genauer an.
+
 ## Standardkonstruktor
 
 Wenn kein Konstruktor definiert wird, generiert C# automatisch einen parameterlosen **Standardkonstruktor**. Dieser setzt alle Felder auf ihre Standardwerte (`0`, `null`, `false`). Sobald man einen eigenen Konstruktor definiert, entfällt der automatisch generierte — wenn man dann trotzdem einen parameterlosen Konstruktor braucht, muss man ihn explizit schreiben.
@@ -63,7 +65,7 @@ var k2 = new Kreis(5.0);    // radius = 5
 
 ## Konstruktor mit Validierung
 
-Wir haben bei Properties gesehen, dass man dort ungültige Werte abfangen kann. Doch was, wenn ein Objekt schon bei der Erstellung falsche Daten bekommt? Der Konstruktor ist der früheste Zeitpunkt, an dem man prüfen kann — und wenn ungültige Werte hier abgewiesen werden, kann das Objekt nie in einen ungültigen Zustand geraten:
+Wir haben bei Properties gesehen, dass man dort ungültige Werte abweisen kann. Doch was, wenn ein Objekt schon bei der Erstellung falsche Daten bekommt? Der Konstruktor ist der früheste Zeitpunkt, an dem man prüfen kann. Allerdings hat ein Konstruktor keinen Rückgabetyp — er kann also nicht wie eine Methode mit `false` antworten. Mit unseren bisherigen Mitteln bleibt nur, ungültige Werte durch Ersatzwerte zu ersetzen und eine Meldung auszugeben:
 
 ```csharp
 class Student
@@ -74,15 +76,24 @@ class Student
     public Student(string name, int matrikelnummer)
     {
         if (string.IsNullOrWhiteSpace(name))
-            throw new ArgumentException("Name darf nicht leer sein.");
+        {
+            Console.WriteLine("Name darf nicht leer sein – verwende \"Unbekannt\".");
+            name = "Unbekannt";
+        }
         if (matrikelnummer <= 0)
-            throw new ArgumentException("Ungültige Matrikelnummer.");
+        {
+            Console.WriteLine($"Ungültige Matrikelnummer {matrikelnummer} – verwende 0 als Platzhalter.");
+            matrikelnummer = 0;
+        }
 
         Name = name;
         Matrikelnummer = matrikelnummer;
     }
 }
 ```
+
+So entsteht zwar kein Objekt mit leerem Namen — aber eines mit Platzhalterwerten, und der aufrufende Code merkt davon nichts, sofern niemand die Konsolenausgabe liest. Eigentlich wollen wir, dass `new Student("", -5)` gar kein Objekt erzeugt. Genau das ermöglichen [Exceptions](/modules/exceptions/exceptions.md), die wir in Vorlesung 13 kennenlernen: Mit ihnen kann ein Konstruktor die Erzeugung des Objekts abbrechen.
+{: .notice--warning}
 
 Übung: Erweitere die Klasse `Rechteck` um einen Konstruktor, der nur eine Seitenlänge nimmt (für ein Quadrat).
 {: .notice--info}

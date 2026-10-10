@@ -46,36 +46,35 @@ Console.WriteLine(sonnig || warm);   // true  – ODER: mindestens einer muss tr
 Console.WriteLine(!sonnig);          // false – NICHT: kehrt den Wert um
 ```
 
-In der Praxis werden Vergleiche und Logikoperatoren fast immer zusammen verwendet. Ein Vergleich liefert einen `bool`-Wert, und Logikoperatoren verknüpfen diese `bool`-Werte zu komplexeren Bedingungen. 
-
-Im Folgenden greifen wir ein wenig vor und nutzen sogenannte `if`-Anweisungen um die Funktionsweise von Logikausdrücken zu erläutern. Eine `if`-Anweisung stellt Bedingungen für die Ausführung von nachfolgenden Codeanweisungen.
-{: .notice--primary}
+In der Praxis werden Vergleiche und Logikoperatoren fast immer zusammen verwendet. Ein Vergleich liefert einen `bool`-Wert, und Logikoperatoren verknüpfen diese `bool`-Werte zu komplexeren Bedingungen. Das Ergebnis kann man — wie jeden anderen Wert — in einer Variablen speichern und ihr dabei einen sprechenden Namen geben:
 
 ```csharp
 int alter = 20;
 bool hatAusweis = true;
 
 // Beide Bedingungen müssen gelten:
-if (alter >= 18 && hatAusweis)
-    Console.WriteLine("Zutritt erlaubt.");
+bool zutrittErlaubt = alter >= 18 && hatAusweis;
+Console.WriteLine(zutrittErlaubt);   // true
 
 int note = 2;
 // Mindestens eine der Bedingungen muss gelten:
-if (note == 1 || note == 2)
-    Console.WriteLine("Bestanden mit Auszeichnung.");
+bool mitAuszeichnung = note == 1 || note == 2;
+Console.WriteLine(mitAuszeichnung);  // true
 ```
+
+Solche `bool`-Variablen werden in Vorlesung 5 zur Grundlage von Verzweigungen: Mit `if (zutrittErlaubt)` lässt sich dann steuern, welcher Code ausgeführt wird.
 
 Man kann beliebig viele Bedingungen verketten. Dabei gilt: `&&` bindet stärker als `||` (genau wie `*` stärker bindet als `+`). Im Zweifel Klammern setzen, um die Absicht deutlich zu machen:
 
 ```csharp
 // Ohne Klammern schwer zu lesen:
-if (alter >= 18 && hatAusweis || istVIP)  // Was wird zuerst ausgewertet?
+bool einlass = alter >= 18 && hatAusweis || istVIP;    // Was wird zuerst ausgewertet?
 
 // Mit Klammern eindeutig:
-if ((alter >= 18 && hatAusweis) || istVIP)
+bool einlass2 = (alter >= 18 && hatAusweis) || istVIP;
 ```
 
-Wir werden diese Reihenfolge von Operatoren später noch besprechen.
+Die vollständige Reihenfolge aller Operatoren behandeln wir im Modul zur [Operatorrangfolge](/modules/operatorrangfolge/operatorrangfolge.md).
 
 ## Kurzschlussauswertung
 
@@ -83,16 +82,14 @@ C# wertet `&&` und `||` von links nach rechts aus und bricht ab, sobald das Erge
 
 ```csharp
 // Wenn alter < 18 → false, wird DatenbankPrüfung() gar nicht aufgerufen
-if (alter >= 18 && DatenbankPrüfung())
-{ ... }
+bool freigegeben = alter >= 18 && DatenbankPrüfung();
 ```
 
 Das ist nicht nur eine Performance-Optimierung, sondern auch ein Sicherheitsmechanismus. Man kann damit Fehler vermeiden, indem man eine Schutzbedingung voranstellt:
 
 ```csharp
 // Erst prüfen ob text nicht null ist, dann erst auf Length zugreifen:
-if (text != null && text.Length > 0)
-    Console.WriteLine(text);
+bool hatInhalt = text != null && text.Length > 0;
 ```
 
 Wäre `text` hier `null` und C# würde trotzdem `text.Length` auswerten, gäbe es einen `NullReferenceException`-Laufzeitfehler. Durch die Kurzschlussauswertung passiert das nicht.
@@ -113,24 +110,20 @@ Ein praktisches Beispiel: Man möchte prüfen, ob eine Eingabe **nicht** gültig
 
 ```csharp
 // Ursprüngliche Bedingung (gültig):
-if (eingabe != null && eingabe.Length > 0)
-    Verarbeite(eingabe);
+bool gültig = eingabe != null && eingabe.Length > 0;
 
-// Negiert mit De Morgan (ungültig):
-if (eingabe == null || eingabe.Length == 0)
-    Console.WriteLine("Ungültige Eingabe.");
+// Negiert mit De Morgan (ungültig) – dasselbe wie !gültig:
+bool ungültig = eingabe == null || eingabe.Length == 0;
 ```
 
 Die De Morganschen Gesetze helfen auch dabei, verschachtelte Negationen zu entfernen, die Code schwer lesbar machen:
 
 ```csharp
 // Schwer lesbar:
-if (!(alter < 18 || !hatTicket))
-    { ... }
+bool darfRein = !(alter < 18 || !hatTicket);
 
 // Nach De Morgan: !(A || B) == !A && !B, und !!hatTicket == hatTicket
-if (alter >= 18 && hatTicket)
-    { ... }
+bool darfRein2 = alter >= 18 && hatTicket;
 ```
 
 Die Regel lässt sich merken als: **Negation reinziehen → Operatoren umkehren** (`&&` wird `||` und umgekehrt).

@@ -48,7 +48,7 @@ Ohne `using` muss der komplette Pfad angegeben werden:
 
 ```csharp
 System.Console.WriteLine("Hallo");
-System.Collections.Generic.List<int> zahlen = new();
+System.Text.StringBuilder sb = new System.Text.StringBuilder();
 ```
 
 ## Alias bei Namenskonflikten

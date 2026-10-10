@@ -77,9 +77,29 @@ string jahreszeit = monat switch
 
 Die Unterschiede zur klassischen `switch`-Anweisung: Der geprüfte Wert steht **vor** dem Schlüsselwort `switch`, die Fälle verwenden `=>` statt `case`/`break`, und `_` ersetzt `default`. Das `or`-Schlüsselwort fasst mehrere Werte zusammen. Weil die switch-Expression einen Wert zurückgibt, muss sie alle Fälle abdecken — der `_`-Zweig stellt das sicher. Ist das jetzt wirklich besser zu lesen?
 
+## switch mit Enums
+
+Besonders gut passt `switch` zu den [Enumerationen](/modules/enums/enums.md) aus Vorlesung 2. Eine Enum-Variable kann nur endlich viele, benannte Werte annehmen — genau die Situation, für die `switch` gemacht ist. Statt magischer Zahlen stehen in den Fällen sprechende Namen:
+
+```csharp
+enum Wochentag { Montag, Dienstag, Mittwoch, Donnerstag, Freitag, Samstag, Sonntag }
+
+Wochentag heute = Wochentag.Mittwoch;
+
+string aktivität = heute switch
+{
+    Wochentag.Montag => "Wochenstart",
+    Wochentag.Freitag => "Fast Wochenende!",
+    Wochentag.Samstag or Wochentag.Sonntag => "Freizeit",
+    _ => "Normaler Tag"
+};
+```
+
+Natürlich funktioniert auch ein einfaches `if` mit Enum-Vergleichen, etwa `if (heute == Wochentag.Samstag || heute == Wochentag.Sonntag)`. Sobald man aber mehr als zwei, drei Fälle unterscheidet, ist die switch-Expression deutlich übersichtlicher. Fehlt der `_`-Zweig, warnt der Compiler übrigens, dass nicht alle möglichen Werte abgedeckt sind.
+
 ## switch mit Strings
 
-`switch` funktioniert nicht nur mit Zahlen, sondern auch mit Strings. Das ist nützlich für Menüs oder Befehlseingaben. Wie bei allen String-Vergleichen wird zwischen Groß- und Kleinschreibung unterschieden — deshalb empfiehlt sich ein `ToLower()` vor dem Vergleich:
+`switch` funktioniert nicht nur mit Zahlen, sondern auch mit Strings. Das ist nützlich für Menüs oder Befehlseingaben. Wie bei allen String-Vergleichen wird zwischen Groß- und Kleinschreibung unterschieden — deshalb empfiehlt sich ein `ToLower()` vor dem Vergleich. `ToLower()` liefert den Text in Kleinbuchstaben; weitere solcher String-Methoden lernen wir in Vorlesung 7 kennen:
 
 ```csharp
 string befehl = Console.ReadLine();

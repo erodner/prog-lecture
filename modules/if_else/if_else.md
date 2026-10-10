@@ -104,6 +104,27 @@ Tiefe Verschachtelung vermeiden — meist gibt es eine flachere Lösung mit `&&`
 Übung: Schreibe ein Programm, das eine Zahl einliest und ausgibt, ob sie positiv, negativ oder null ist.
 {: .notice--info}
 
+## Eingaben validieren
+
+Eine der häufigsten Anwendungen von `if/else` ist die Prüfung von Benutzereingaben. Im Modul zur [Typkonvertierung](/modules/typkonvertierung/typkonvertierung.md) haben wir `TryParse` kennengelernt, das per `bool` meldet, ob die Umwandlung geklappt hat. Bisher konnten wir dieses Ergebnis nur ausgeben — jetzt können wir darauf reagieren:
+
+```csharp
+Console.Write("Anzahl Tickets: ");
+string eingabe = Console.ReadLine();
+
+if (int.TryParse(eingabe, out int anzahl))
+    Console.WriteLine($"Gesamtpreis: {anzahl * 12.50} €");
+else
+    Console.WriteLine("Das war keine gültige Zahl.");
+```
+
+Weil `TryParse` selbst einen `bool` zurückgibt, kann der Aufruf direkt als Bedingung dienen. Die Variable `anzahl` wird dabei im selben Ausdruck deklariert und ist im `if`-Zweig sofort verwendbar. Gegenüber `int.Parse` hat das einen entscheidenden Vorteil: Bei einer Eingabe wie `abc` stürzt das Programm nicht ab, sondern gibt eine verständliche Meldung aus.
+
+Eine gültige Zahl ist allerdings noch nicht automatisch ein *sinnvoller* Wert — `-3` Tickets lassen sich problemlos parsen. Oft braucht man daher eine zweite Prüfung, die man mit `&&` anhängen kann: `if (int.TryParse(eingabe, out int anzahl) && anzahl > 0)`. Dank der Kurzschlussauswertung aus dem Modul zu [Logikoperatoren](/modules/operatoren_logik/operatoren_logik.md) wird `anzahl > 0` nur geprüft, wenn das Parsen erfolgreich war.
+
+Übung: Schreibe ein Programm, das zwei Zahlen von der Konsole einliest und ihren Quotienten als `double` ausgibt. Behandle ungültige Eingaben mit `TryParse` und gib bei einer Division durch null eine eigene Meldung aus, statt `∞` anzuzeigen. Unterscheide in der Fehlermeldung, *welche* der beiden Eingaben ungültig war.
+{: .notice--info}
+
 ## Weitere Quellen
 
 - [if-Anweisung – Microsoft Learn](https://learn.microsoft.com/de-de/dotnet/csharp/language-reference/statements/selection-statements#the-if-statement)

@@ -124,7 +124,7 @@ class Automat
 
 - **Validierung gehört in die Methoden:** `Waehlen` prüft drei Fehlerfälle (nicht gefunden, ausverkauft, zu wenig Guthaben), bevor die eigentliche Aktion stattfindet. Das schützt den inneren Zustand des Objekts.
 - **`Guthaben` hat `private set`:** Nur der Automat selbst darf das Guthaben ändern — von außen kann man nur über `Einwerfen` und `Rueckgeld` darauf zugreifen. Das ist *Kapselung*.
-- **`Waehlen` gibt `bool` zurück:** So kann der Aufrufer erkennen, ob die Ausgabe geklappt hat, ohne eine Exception behandeln zu müssen.
+- **`Waehlen` gibt `bool` zurück:** So kann der Aufrufer erkennen, ob die Ausgabe geklappt hat. (In Vorlesung 13 lernen wir mit Exceptions eine Alternative kennen — für einen *erwartbaren* Fall wie „ausverkauft" bleibt `bool` aber die passende Wahl.)
 
 </details>
 
@@ -149,7 +149,7 @@ Eine Überweisung besteht aus:
 
 **Schritt 2 — Bestehende Methoden wiederverwenden:**
 
-Wir haben bereits `Abheben` und `Einzahlen`. `Abheben` prüft intern, ob genug Geld auf dem Konto ist (z.B. durch eine Exception oder einen `bool`-Rückgabewert). Diese Logik müssen wir **nicht** duplizieren — wir rufen einfach `Abheben` auf.
+Wir haben bereits `Abheben` und `Einzahlen`. `Abheben` prüft intern, ob genug Geld auf dem Konto ist, und meldet über seinen `bool`-Rückgabewert, ob es geklappt hat. Diese Logik müssen wir **nicht** duplizieren — wir rufen einfach `Abheben` auf.
 
 **Schritt 3 — Reihenfolge ist entscheidend:**
 
@@ -159,7 +159,7 @@ Wir haben bereits `Abheben` und `Einzahlen`. `Abheben` prüft intern, ob genug G
    2. this.Abheben(betrag)     // Schlägt fehl → Geld wurde erschaffen!
 
 ✅ Richtige Reihenfolge:
-   1. this.Abheben(betrag)     // Geld wird abgezogen (oder Fehler)
+   1. this.Abheben(betrag)     // Geld wird abgezogen (oder false)
    2. ziel.Einzahlen(betrag)   // Erst jetzt kommt es beim Ziel an
 ```
 
@@ -172,33 +172,34 @@ class Bankkonto
 {
     public double Kontostand { get; private set; }
 
-    public void Einzahlen(double betrag)
+    public bool Einzahlen(double betrag)
     {
         if (betrag <= 0)
-            throw new ArgumentException("Betrag muss positiv sein.");
+            return false;
         Kontostand += betrag;
+        return true;
     }
 
-    public void Abheben(double betrag)
+    public bool Abheben(double betrag)
     {
-        if (betrag <= 0)
-            throw new ArgumentException("Betrag muss positiv sein.");
-        if (betrag > Kontostand)
-            throw new InvalidOperationException("Deckung reicht nicht.");
+        if (betrag <= 0 || betrag > Kontostand)
+            return false;   // ungültiger Betrag oder Deckung reicht nicht
         Kontostand -= betrag;
+        return true;
     }
 
-    public void Ueberweisen(Bankkonto ziel, double betrag)
+    public bool Ueberweisen(Bankkonto ziel, double betrag)
     {
-        // Schritt 1: Prüfung (implizit durch Abheben)
-        // Schritt 2: Erst abheben — schlägt fehl, wenn Deckung fehlt
-        this.Abheben(betrag);
+        // Schritt 1+2: Erst abheben — prüft Betrag und Deckung
+        if (!this.Abheben(betrag))
+            return false;
         // Schritt 3: Dann einzahlen — nur wenn Abheben geklappt hat
         ziel.Einzahlen(betrag);
+        return true;
     }
 }
 ```
 
-Das Prinzip: `Ueberweisen` enthält fast keine eigene Logik — sie **orchestriert** nur die bestehenden Methoden in der richtigen Reihenfolge. Die Validierung steckt in `Abheben` und `Einzahlen` und muss nicht wiederholt werden.
+Das Prinzip: `Ueberweisen` enthält fast keine eigene Logik — sie **orchestriert** nur die bestehenden Methoden in der richtigen Reihenfolge. Die Validierung steckt in `Abheben` und `Einzahlen` und muss nicht wiederholt werden. Wichtig ist, den Rückgabewert von `Abheben` tatsächlich auszuwerten: Würde `Ueberweisen` ihn ignorieren, entstünde genau der Fehler aus Schritt 3 — Geld aus dem Nichts. Dass der Compiler uns nicht zwingt, einen `bool`-Rückgabewert zu prüfen, ist eine Schwäche dieses Ansatzes; in Vorlesung 13 sehen wir, wie Exceptions das lösen.
 
 </details>

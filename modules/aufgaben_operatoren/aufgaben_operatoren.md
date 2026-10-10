@@ -13,45 +13,49 @@ Operatoren sind die Werkzeuge, mit denen wir Daten im Code verarbeiten. Aber ech
 
 ## Aufgabe 1 — Quersumme berechnen
 
-Schreibe ein Programm, das die **Quersumme** einer beliebig langen positiven Ganzzahl berechnet — also die Summe aller Ziffern. Nutze nur die Operatoren `/` und `%` in einer Schleife.
+Schreibe ein Programm, das die **Quersumme** einer **vierstelligen** positiven Ganzzahl berechnet — also die Summe aller Ziffern. Verwende dabei nur die Operatoren `/` und `%`, keine Umwandlung in einen String.
 
-**Beispiele:** Quersumme von 427 = 13, Quersumme von 9999 = 36, Quersumme von 1000000 = 1.
+**Beispiele:** Quersumme von 4271 = 14, Quersumme von 9999 = 36, Quersumme von 1000 = 1.
 
-**Tipp:** Wie extrahierst du die letzte Ziffer? Wie entfernst du sie? Wann ist die Zahl „aufgebraucht"?
+**Tipp:** Was liefert `4271 % 10`? Was liefert `4271 / 10`? Und was `4271 / 100 % 10`?
+
+Findest du zwei verschiedene Lösungswege? Woran scheitern sie, wenn die Zahl plötzlich fünf- oder zehnstellig sein darf?
 
 <details markdown="1">
 <summary>Lösung anzeigen</summary>
 
-**Idee:** Solange die Zahl größer als 0 ist, extrahieren wir die letzte Ziffer mit `% 10`, addieren sie zur Summe und entfernen sie mit `/ 10`.
-
-**C#-Code:**
+**Weg 1 — jede Stelle gezielt herausrechnen:** Durch ganzzahlige Division schiebt man die gewünschte Ziffer an die letzte Stelle, mit `% 10` schneidet man alles davor ab:
 
 ```csharp
-int zahl = 427;
+int zahl = 4271;
+
+int tausender = zahl / 1000;        // 4
+int hunderter = zahl / 100 % 10;    // 42 % 10 = 2
+int zehner    = zahl / 10 % 10;     // 427 % 10 = 7
+int einer     = zahl % 10;          // 1
+
+Console.WriteLine($"Quersumme: {tausender + hunderter + zehner + einer}");  // 14
+```
+
+`/` und `%` haben dieselbe Rangfolge und werden von links nach rechts ausgewertet — `zahl / 100 % 10` bedeutet also `(zahl / 100) % 10`.
+
+**Weg 2 — immer die letzte Ziffer abknabbern:** Statt jede Stelle einzeln zu adressieren, nimmt man stets die letzte Ziffer (`% 10`) und entfernt sie danach (`/ 10`):
+
+```csharp
+int zahl = 4271;
 int summe = 0;
 
-while (zahl > 0)
-{
-    int letzteZiffer = zahl % 10;
-    summe += letzteZiffer;
-    zahl = zahl / 10;
-}
+summe += zahl % 10;  zahl /= 10;   // summe = 1,  zahl = 427
+summe += zahl % 10;  zahl /= 10;   // summe = 8,  zahl = 42
+summe += zahl % 10;  zahl /= 10;   // summe = 10, zahl = 4
+summe += zahl % 10;  zahl /= 10;   // summe = 14, zahl = 0
 
 Console.WriteLine($"Quersumme: {summe}");
 ```
 
-**Schritt-für-Schritt-Trace für 427:**
+**Woran scheitern beide Wege bei längeren Zahlen?** Beide sind fest auf vier Stellen zugeschnitten. Bei Weg 1 bräuchte man für jede weitere Stelle eine neue Zeile mit einem neuen Divisor — und man müsste die Stellenzahl vorher kennen. Weg 2 ist interessanter: Er besteht aus **viermal exakt derselben Zeile**. Und am Ende ist `zahl` genau 0 — ein natürliches Signal, dass alle Ziffern verarbeitet sind. Wenn man „wiederhole diese Zeile, solange `zahl` größer als 0 ist" ausdrücken könnte, würde der Algorithmus für beliebig lange Zahlen funktionieren. Genau das ermöglichen Schleifen, die wir in Vorlesung 6 kennenlernen — dort greifen wir die Quersumme in den [Schleifen-Aufgaben](/modules/aufgaben_schleifen/aufgaben_schleifen.md) wieder auf.
 
-| Durchlauf | `zahl` | `zahl % 10` | `summe` | `zahl / 10` |
-|-----------|--------|-------------|---------|-------------|
-| 1 | 427 | 7 | 7 | 42 |
-| 2 | 42 | 2 | 9 | 4 |
-| 3 | 4 | 4 | 13 | 0 |
-| Ende | 0 | — | **13** | — |
-
-Die Schleife bricht ab, sobald `zahl` den Wert 0 erreicht. Die Quersumme steht in `summe`.
-
-**Warum funktioniert das für beliebig lange Zahlen?** Die Schleife hat keine fest codierte Anzahl an Durchläufen — sie läuft so lange, wie Ziffern vorhanden sind. Egal ob die Zahl 3 Stellen oder 10 Stellen hat, der Algorithmus funktioniert identisch. Das ist ein gutes Beispiel dafür, wie man mit `/` und `%` systematisch alle Ziffern einer Zahl durchlaufen kann — ein Muster, das bei vielen Algorithmen (z.B. Zahlensysteme, Palindrom-Prüfung, Stellenwertanalyse) immer wieder auftaucht.
+Das Muster aus `% 10` und `/ 10` taucht bei vielen Algorithmen (Zahlensysteme, Palindrom-Prüfung, Stellenwertanalyse) immer wieder auf.
 
 </details>
 

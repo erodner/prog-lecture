@@ -75,11 +75,12 @@ bool b   = bool.Parse("true");
 ```csharp
 string eingabe = Console.ReadLine();
 
-if (int.TryParse(eingabe, out int zahl))
-    Console.WriteLine($"Doppelt: {zahl * 2}");
-else
-    Console.WriteLine("Keine gültige Zahl.");
+bool erfolgreich = int.TryParse(eingabe, out int zahl);
+Console.WriteLine(erfolgreich);  // true bei "42",  false bei "abc"
+Console.WriteLine(zahl);         // 42 bei "42",   0 bei "abc"
 ```
+
+`TryParse` liefert also zwei Ergebnisse: ob die Umwandlung geklappt hat (als Rückgabewert) und die Zahl selbst (über `out`). Je nach Erfolg unterschiedlich zu reagieren — etwa eine Fehlermeldung auszugeben — lernen wir in Vorlesung 5 mit [`if`/`else`](/modules/if_else/if_else.md).
 
 Für Benutzereingaben immer `TryParse` bevorzugen – `Parse` ist nur sicher, wenn der Eingabewert garantiert gültig ist.
 {: .notice--primary}
@@ -101,7 +102,7 @@ int perCast    = (int)x;              // 3
 int perConvert = Convert.ToInt32(x);  // 4
 ```
 
-Übung: Schreibe ein Programm, das zwei Zahlen von der Konsole einliest und ihren Quotienten als `double` ausgibt. Behandle ungültige Eingaben mit `TryParse` und Division durch null.
+Übung: Lies eine Kommazahl mit `double.TryParse` von der Konsole ein und gib sie einmal per Cast `(int)` und einmal per `Convert.ToInt32` als `int` aus. Teste mit den Eingaben `2,5`, `3,5`, `-2,7`, `2.5` und `abc`. Welche Ergebnisse überraschen dich? (Tipp: Schau nach, wie `Convert.ToInt32` bei genau `,5` rundet — und welches Dezimaltrennzeichen dein System erwartet.)
 {: .notice--info}
 
 ## Weitere Quellen

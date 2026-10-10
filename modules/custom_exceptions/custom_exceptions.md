@@ -23,6 +23,24 @@ throw new Exception("Ungültiges Passwort");
 throw new UngültigesPasswortException("Passwort zu kurz: mindestens 8 Zeichen.");
 ```
 
+## Exkurs: Vererbung in aller Kürze
+
+Um eine eigene Exception zu schreiben, brauchen wir ein Konzept, das wir bisher nur am Rande gesehen haben: **Vererbung**. Schreibt man hinter den Klassennamen einen Doppelpunkt und eine andere Klasse, dann *erbt* die neue Klasse alles von dieser **Basisklasse** — ihre Properties und Methoden — und kann eigene hinzufügen:
+
+```csharp
+class KontoException : Exception   // KontoException „ist eine" Exception
+{
+    // ...
+}
+```
+
+Weil `KontoException` von `Exception` erbt, hat sie automatisch `Message` und `StackTrace`, kann mit `throw` geworfen und mit `catch (Exception ex)` gefangen werden — genau das haben wir bei der [Exception-Hierarchie](/modules/exceptions/exceptions.md) schon ausgenutzt.
+
+Konstruktoren werden allerdings **nicht** vererbt. Die neue Klasse braucht einen eigenen Konstruktor, der mit `: base(...)` den Konstruktor der Basisklasse aufruft — ganz ähnlich wie `: this(...)` bei der [Konstruktor-Verkettung](/modules/this/this.md), nur dass hier ein Konstruktor der *Basisklasse* aufgerufen wird. So landet die Fehlermeldung dort, wo `Exception` sie speichert.
+
+Vererbung ist ein mächtiges Werkzeug mit vielen weiteren Facetten; für eigene Exceptions genügt aber genau dieses Muster.
+{: .notice--info}
+
 ## Eigene Exception erstellen
 
 Eine eigene Exception erbt von `Exception` (oder einer spezifischeren Basisklasse). Der Konstruktor ruft mit `: base(message)` den Konstruktor der Basisklasse auf und übergibt die Fehlermeldung. Eigene Properties (wie `Fehlbetrag`) können zusätzliche Informationen transportieren:

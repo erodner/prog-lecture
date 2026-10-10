@@ -109,6 +109,23 @@ static double Teilen(double a, double b)
 }
 ```
 
+Damit können wir endlich die Lücke schließen, die uns in Vorlesung 10 begegnet ist. Dort haben wir ungültige Werte mit `bool`-Rückgabewerten oder Konsolenmeldungen abgewiesen — beim [Semester-Property](/modules/properties/properties.md) und im [Student-Konstruktor](/modules/konstruktoren/konstruktoren.md) blieb uns sogar nur, einen Ersatzwert zu verwenden, weil Setter und Konstruktoren nichts zurückgeben können. Mit `throw` kann der Konstruktor die Erzeugung des Objekts jetzt tatsächlich abbrechen:
+
+```csharp
+public Student(string name, int matrikelnummer)
+{
+    if (string.IsNullOrWhiteSpace(name))
+        throw new ArgumentException("Name darf nicht leer sein.");
+    if (matrikelnummer <= 0)
+        throw new ArgumentException("Ungültige Matrikelnummer.");
+
+    Name = name;
+    Matrikelnummer = matrikelnummer;
+}
+```
+
+`new Student("", -5)` liefert nun kein Objekt mit Platzhalterwerten mehr — es entsteht überhaupt kein Objekt, und der Aufrufer *muss* reagieren, sonst bricht das Programm ab. Anders als ein `bool`-Rückgabewert lässt sich eine Exception nicht versehentlich ignorieren. Wann `bool` trotzdem die bessere Wahl ist, besprechen wir im Modul zum [Exception-Design](/modules/exceptions_design/exceptions_design.md).
+
 Übung: Schreibe eine Methode, die sicher einen `int` aus einer Konsoleneingabe liest und bei ungültiger Eingabe immer wieder fragt (Schleife + try-catch).
 {: .notice--info}
 

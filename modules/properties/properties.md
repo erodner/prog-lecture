@@ -9,7 +9,7 @@ toc: false
 classes: wide
 ---
 
-Daten einfach als öffentliche Variablen in einer Klasse zu speichern klingt bequem – aber dann kann jeder von außen beliebige Werte setzen, auch ungültige. Properties lösen dieses Problem: sie bieten kontrollierten Zugriff auf interne Daten und erlauben Validierungslogik direkt beim Lesen oder Schreiben.
+Im [Sichtbarkeits-Modul](/modules/sichtbarkeit/sichtbarkeit.md) haben wir Felder `private` gemacht und den Zugriff über Methoden wie `SetzeCelsius` und `GibCelsius` kontrolliert — sicher, aber umständlich. Die Alternative, Daten einfach als öffentliche Variablen in einer Klasse zu speichern, klingt bequem – aber dann kann jeder von außen beliebige Werte setzen, auch ungültige. Properties lösen dieses Problem: sie bieten kontrollierten Zugriff auf interne Daten und erlauben Validierungslogik direkt beim Lesen oder Schreiben.
 
 ## Felder (fields)
 
@@ -43,10 +43,12 @@ class Konto
         private set { kontostand = value; } // nur intern setzbar
     }
 
-    public void Einzahlen(double betrag)
+    public bool Einzahlen(double betrag)
     {
-        if (betrag <= 0) throw new ArgumentException("Betrag muss positiv sein.");
+        if (betrag <= 0)
+            return false;   // ungültiger Betrag – nichts verändern
         kontostand += betrag;
+        return true;
     }
 }
 ```
@@ -88,12 +90,18 @@ class Student
         set
         {
             if (value < 1 || value > 20)
-                throw new ArgumentOutOfRangeException("Ungültiges Semester.");
+            {
+                Console.WriteLine($"Ungültiges Semester {value} – Wert wird ignoriert.");
+                return;
+            }
             semester = value;
         }
     }
 }
 ```
+
+Anders als `Einzahlen` kann ein `set`-Accessor keinen `bool` zurückgeben — er hat keinen Rückgabewert. Uns bleibt hier nur, den ungültigen Wert zu ignorieren und eine Meldung auszugeben. Das ist unbefriedigend: Der aufrufende Code bemerkt nicht, dass `student.Semester = 42` gescheitert ist, und arbeitet mit dem alten Wert weiter. Eine saubere Lösung für genau dieses Problem lernen wir in Vorlesung 13 mit [Exceptions](/modules/exceptions/exceptions.md) kennen.
+{: .notice--warning}
 
 Übung: Erstelle eine Klasse `Produkt` mit Properties `Name` (string, nur lesbar nach Erstellung) und `Preis` (double, muss positiv sein). Verwende ein Auto-Property für `Name` und ein Property mit Validierung für `Preis`.
 {: .notice--info}
