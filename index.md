@@ -29,6 +29,7 @@ Die Vorlesung besteht aus:
 ### Teil 0: Einstieg
 
 0. [Einstieg](/lectures/00/00.md) – Compiler- vs. Interpretersprachen, .NET-Plattform, Werkzeuge
+{: start="0"}
 
 ### Teil 1: Grundlagen
 
@@ -36,28 +37,33 @@ Die Vorlesung besteht aus:
 2. [Typen, Variablen und Werte](/lectures/02/02.md) – Datentypen, Variablen, Literale
 3. [Fehler finden und beheben](/lectures/03/03.md) – Fehlerarten, Debugger, systematisches Vorgehen
 4. [Rechnen und Vergleichen – Operatoren](/lectures/04/04.md) – Arithmetik, Vergleich, Logik
+{: start="1"}
 
 ### Teil 2: Kontrollstrukturen und Methoden
 
 5. [Entscheidungen im Code – Bedingte Anweisungen](/lectures/05/05.md) – `if`, `else`, `switch`
 6. [Code strukturieren – Methoden](/lectures/06/06.md) – Methoden, Parameter, Rückgabewerte, Gültigkeitsbereiche, Tupel
 7. [Wiederholung strukturieren – Schleifen](/lectures/07/07.md) – `while`, `for`, `do-while`
+{: start="5"}
 
 ### Teil 3: Daten
 
 8. [Text und Eingabe – Strings und Konsole](/lectures/08/08.md) – Strings, Konsolenein- und -ausgabe, Formatierung
 9. [Daten in Reihe – Arrays](/lectures/09/09.md) – Arrays: eindimensional, mehrdimensional
 10. [Methoden vertiefen – Parameter, Überladung und Rekursion](/lectures/10/10.md) – `ref`, `out`, Überladung, optionale Parameter, `params`, Rekursion
+{: start="8"}
 
 ### Teil 4: Einführung in die Objektorientierung
 
 11. [Baupläne für Objekte – Klassen](/lectures/11/11.md) – Klassen, Objekte, Felder, Konstruktoren
 12. [Strukturen und Organisation – Structs, Namespaces, Sichtbarkeit](/lectures/12/12.md) – Structs, Namespaces, Sichtbarkeit
 13. [Datensammlungen – Collections](/lectures/13/13.md) – Listen, Dictionaries und weitere Collections
+{: start="11"}
 
 ### Teil 5: Robustheit
 
 14. [Robuster Code – Ausnahmebehandlung](/lectures/14/14.md) – `try`, `catch`, `finally`
+{: start="14"}
 
 ---
 
