@@ -28,7 +28,7 @@ Bevor ein Programm irgendetwas sinnvoll tun kann, muss es Daten speichern – un
 
 Im Alltag reicht fast immer `int` für ganze Zahlen und `double` für Kommazahlen. Die kleineren Typen (`byte`, `short`) begegnen einem eher beim Lesen von Dateiformaten oder Netzwerkprotokollen.
 
-## Deklaration und Initialisierung
+Deklariert und initialisiert werden Variablen dieser Typen genau so, wie wir es schon bei den [ersten Variablen](/modules/variablen_intro/variablen_intro.md) gesehen haben – der Typ steht vorne, der Wert hinter dem `=`:
 
 ```csharp
 int alter = 21;
@@ -38,23 +38,32 @@ char ersterBuchstabe = 'H';
 string name = "HTW Berlin";
 ```
 
-## `var` und Konstanten
+## Warum feste Typen?
 
-Mit `var` erkennt der Compiler den Typ automatisch aus dem zugewiesenen Wert – der Typ ist aber trotzdem fest und ändert sich nicht zur Laufzeit:
+Nicht jede Sprache verlangt, dass man Typen festlegt. In Python oder JavaScript kann dieselbe Variable erst eine Zahl und später einen Text enthalten, und ob `alter + 1` sinnvoll ist, stellt sich erst beim Ausführen heraus. Manchmal passiert das erst Wochen später, wenn genau dieser Programmteil zum ersten Mal läuft. In C# ist der Typ dagegen von Anfang an Teil des Programms, und das bringt einige Vorteile:
+
+- **Fehler fallen früh auf.** Der Compiler prüft schon beim Übersetzen, ob Werte und Operationen zusammenpassen. Wer einen Text in eine `int`-Variable schreiben will, bekommt einen Fehler, bevor das Programm überhaupt startet, und nicht erst beim Kunden.
+- **Der Code dokumentiert sich selbst.** `double preis` sagt sofort, dass hier eine Kommazahl erwartet wird, ohne dass man nachlesen muss, was irgendwo zugewiesen wird.
+- **Die Entwicklungsumgebung hilft mit.** Weil der Typ bekannt ist, kann die IDE passende Methoden vorschlagen und beim Umbenennen oder Umbauen zuverlässig alle betroffenen Stellen finden.
+- **Effizienz.** Der Compiler weiß genau, wie viel Speicher ein Wert braucht und welche Maschinenbefehle nötig sind. Das sehen wir gleich beim Blick in den Speicher.
+
+Der Preis dafür ist etwas mehr Schreibarbeit und gelegentlich eine Fehlermeldung, die man im ersten Moment als lästig empfindet. Bei größeren Programmen überwiegen die Vorteile aber deutlich: Jeder Fehler, den der Compiler findet, ist einer, den man nicht mühsam im laufenden Programm suchen muss.
+
+## `var`
+
+In fremdem Code begegnet einem häufig das Schlüsselwort `var`. Damit leitet der Compiler den Typ aus dem zugewiesenen Wert ab:
 
 ```csharp
 var zahl = 42;       // int
 var text = "Hallo";  // string
-var preis = 9.99;    // double
 ```
 
-`var` ist praktisch, wenn der Typ aus der rechten Seite offensichtlich ist. Wenn nicht, lieber den Typ hinschreiben — das macht den Code lesbarer:
+Das ist *kein* Schritt zurück zu Python oder JavaScript: Der Typ steht trotzdem fest und wird genauso geprüft, er ist nur nicht hingeschrieben. `zahl = "Hallo";` wäre weiterhin ein Compilerfehler.
 
-```csharp
-var name = "Anna";              // klar: string
-var ergebnis = Berechne(x, y);  // unklar: welcher Typ kommt zurück?
-double ergebnis = Berechne(x, y);  // besser: Typ ist sofort sichtbar
-```
+In Programmierung 1 schreiben wir den Typ selbst hin. Nur wer den Typ hinschreiben muss, denkt bewusst darüber nach, welcher Typ passt, und genau das wollen wir üben. In späteren Beispielen verwenden wir `var` nur dort, wo der Typ lang und unübersichtlich wäre, etwa bei Tupeln. In Programmierung 2 wird `var` dann relevanter.
+{: .notice--primary}
+
+## Konstanten
 
 Für Werte, die sich nie ändern sollen, gibt es `const`:
 

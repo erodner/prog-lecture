@@ -87,7 +87,7 @@ Zum Abschluss noch ein Muster, das in der Praxis sehr häufig vorkommt und eng m
 
 ```csharp
 // Statt try-finally:
-using (var reader = new StreamReader("datei.txt"))
+using (StreamReader reader = new StreamReader("datei.txt"))
 {
     string inhalt = reader.ReadToEnd();
 } // reader.Dispose() wird automatisch aufgerufen – auch bei Exception

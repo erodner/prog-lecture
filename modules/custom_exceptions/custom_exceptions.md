@@ -89,7 +89,7 @@ class Konto
     }
 }
 
-var konto = new Konto();
+Konto konto = new Konto();
 konto.Einzahlen(100);
 
 try

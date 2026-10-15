@@ -37,26 +37,27 @@ Die Vorlesung besteht aus:
 3. [Fehler finden und beheben](/lectures/03/03.md) – Fehlerarten, Debugger, systematisches Vorgehen
 4. [Rechnen und Vergleichen – Operatoren](/lectures/04/04.md) – Arithmetik, Vergleich, Logik
 
-### Teil 2: Kontrollstrukturen
+### Teil 2: Kontrollstrukturen und Methoden
 
 5. [Entscheidungen im Code – Bedingte Anweisungen](/lectures/05/05.md) – `if`, `else`, `switch`
-6. [Wiederholung strukturieren – Schleifen](/lectures/06/06.md) – `while`, `for`, `do-while`
+6. [Code strukturieren – Methoden](/lectures/06/06.md) – Methoden, Parameter, Rückgabewerte, Gültigkeitsbereiche
+7. [Wiederholung strukturieren – Schleifen](/lectures/07/07.md) – `while`, `for`, `do-while`
 
-### Teil 3: Daten und Methoden
+### Teil 3: Daten
 
-7. [Text und Eingabe – Strings und Konsole](/lectures/07/07.md) – Strings, Konsolenein- und -ausgabe, Formatierung
-8. [Daten in Reihe – Arrays](/lectures/08/08.md) – Arrays: eindimensional, mehrdimensional
-9. [Code strukturieren – Methoden](/lectures/09/09.md) – Methoden, Parameter, Rückgabewerte, Rekursion
+8. [Text und Eingabe – Strings und Konsole](/lectures/08/08.md) – Strings, Konsolenein- und -ausgabe, Formatierung
+9. [Daten in Reihe – Arrays](/lectures/09/09.md) – Arrays: eindimensional, mehrdimensional
+10. [Methoden vertiefen – Überladung und Rekursion](/lectures/10/10.md) – Überladung, optionale Parameter, `params`, Rekursion
 
 ### Teil 4: Einführung in die Objektorientierung
 
-10. [Baupläne für Objekte – Klassen](/lectures/10/10.md) – Klassen, Objekte, Felder, Konstruktoren
-11. [Strukturen und Organisation – Structs, Namespaces, Sichtbarkeit](/lectures/11/11.md) – Structs, Namespaces, Sichtbarkeit
-12. [Datensammlungen – Collections](/lectures/12/12.md) – Listen, Dictionaries und weitere Collections
+11. [Baupläne für Objekte – Klassen](/lectures/11/11.md) – Klassen, Objekte, Felder, Konstruktoren
+12. [Strukturen und Organisation – Structs, Namespaces, Sichtbarkeit](/lectures/12/12.md) – Structs, Namespaces, Sichtbarkeit
+13. [Datensammlungen – Collections](/lectures/13/13.md) – Listen, Dictionaries und weitere Collections
 
 ### Teil 5: Robustheit
 
-13. [Robuster Code – Ausnahmebehandlung](/lectures/13/13.md) – `try`, `catch`, `finally`
+14. [Robuster Code – Ausnahmebehandlung](/lectures/14/14.md) – `try`, `catch`, `finally`
 
 ---
 

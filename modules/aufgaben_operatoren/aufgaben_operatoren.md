@@ -53,7 +53,7 @@ summe += zahl % 10;  zahl /= 10;   // summe = 14, zahl = 0
 Console.WriteLine($"Quersumme: {summe}");
 ```
 
-**Woran scheitern beide Wege bei längeren Zahlen?** Beide sind fest auf vier Stellen zugeschnitten. Bei Weg 1 bräuchte man für jede weitere Stelle eine neue Zeile mit einem neuen Divisor — und man müsste die Stellenzahl vorher kennen. Weg 2 ist interessanter: Er besteht aus **viermal exakt derselben Zeile**. Und am Ende ist `zahl` genau 0 — ein natürliches Signal, dass alle Ziffern verarbeitet sind. Wenn man „wiederhole diese Zeile, solange `zahl` größer als 0 ist" ausdrücken könnte, würde der Algorithmus für beliebig lange Zahlen funktionieren. Genau das ermöglichen Schleifen, die wir in Vorlesung 6 kennenlernen — dort greifen wir die Quersumme in den [Schleifen-Aufgaben](/modules/aufgaben_schleifen/aufgaben_schleifen.md) wieder auf.
+**Woran scheitern beide Wege bei längeren Zahlen?** Beide sind fest auf vier Stellen zugeschnitten. Bei Weg 1 bräuchte man für jede weitere Stelle eine neue Zeile mit einem neuen Divisor — und man müsste die Stellenzahl vorher kennen. Weg 2 ist interessanter: Er besteht aus **viermal exakt derselben Zeile**. Und am Ende ist `zahl` genau 0 — ein natürliches Signal, dass alle Ziffern verarbeitet sind. Wenn man „wiederhole diese Zeile, solange `zahl` größer als 0 ist" ausdrücken könnte, würde der Algorithmus für beliebig lange Zahlen funktionieren. Genau das ermöglichen Schleifen, die wir in Vorlesung 7 kennenlernen — dort greifen wir die Quersumme in den [Schleifen-Aufgaben](/modules/aufgaben_schleifen/aufgaben_schleifen.md) wieder auf.
 
 Das Muster aus `% 10` und `/ 10` taucht bei vielen Algorithmen (Zahlensysteme, Palindrom-Prüfung, Stellenwertanalyse) immer wieder auf.
 

@@ -11,6 +11,8 @@ classes: wide
 
 Stell dir vor, du bräuchtest dieselbe Berechnung an zehn verschiedenen Stellen in deinem Programm – und dann ändert sich die Formel. Ohne Methoden müsstest du zehn Stellen anpassen, und du würdest garantiert eine vergessen. Mit einer Methode änderst du einmal, und alles funktioniert. Das ist der Kern von wiederverwendbarem Code.
 
+Tatsächlich arbeiten wir schon seit der ersten Vorlesung mit Methoden: `Console.WriteLine` und `int.Parse` sind Methoden, die andere für uns geschrieben haben, und selbst `Main` ist eine Methode – diejenige, mit der jedes Programm startet. Jetzt lernen wir, eigene zu schreiben.
+
 Methoden sind direkter Ausdruck von **Zerlegung** (*Decomposition*) als einem der Grundprinzipien des Computational Thinking: Ein komplexes Problem wird in kleinere, benennbare Teilprobleme aufgeteilt – jede Methode löst genau eines davon. Wer lernt, Aufgaben sauber in Methoden zu zerlegen, denkt bereits wie eine Softwareentwicklerin.
 
 ## Aufbau einer Methode
@@ -48,15 +50,17 @@ Der Aufruf sieht so aus – das Ergebnis kann direkt in einer Variable gespeiche
 
 ```csharp
 double f = Kreisfläche(5.0);
-Console.WriteLine($"Fläche: {f:F2}"); // 78,54
+Console.WriteLine($"Fläche: {f}"); // 78,53981633974483
 
-// Oder direkt eingebettet:
-Console.WriteLine($"Fläche: {Kreisfläche(3.0):F2}"); // 28,27
+// Oder direkt eingebettet – hier gleich als Argument einer anderen Methode:
+Console.WriteLine($"Fläche: {Math.Round(Kreisfläche(3.0), 2)}"); // 28,27
 ```
+
+Im zweiten Aufruf wird zuerst `Kreisfläche(3.0)` ausgewertet, und deren Ergebnis wird dann an `Math.Round` übergeben, das auf zwei Nachkommastellen rundet. Methodenaufrufe lassen sich also genauso verschachteln wie Rechenausdrücke.
 
 ## Methoden ohne Rückgabewert (`void`)
 
-Nicht jede Methode berechnet ein Ergebnis. Manche führen eine Aktion aus — etwas ausgeben, eine Datei schreiben, einen Zustand verändern. Solche Methoden haben den Rückgabetyp `void` (englisch für „leer") und kein `return` mit Wert:
+Nicht jede Methode berechnet ein Ergebnis. Manche führen eine Aktion aus — etwas ausgeben, eine Datei schreiben, einen Zustand verändern. Das folgende Beispiel verpackt eine `if`/`else`-Kette, wie wir sie bei den [Verzweigungen](/modules/if_else/if_else.md) geschrieben haben, in eine Methode, die man mit beliebigen Punktzahlen aufrufen kann. Solche Methoden haben den Rückgabetyp `void` (englisch für „leer") und kein `return` mit Wert:
 
 ```csharp
 static void ZeigeNotenInfo(int punkte)
@@ -111,39 +115,10 @@ static double Kreisfläche(double radius) => Math.PI * radius * radius;
 
 Beide Varianten sind identisch – die Kurzform ist bei einfachen Berechnungen lesbarer, die Standardform besser geeignet, wenn mehrere Schritte nötig sind.
 
-## Variable Parameteranzahl mit `params`
-
-Die Kurzform macht einzelne Methoden kompakter – aber was ist mit der Anzahl der Parameter selbst? Manchmal weiß man beim Schreiben einer Methode nicht, wie viele Argumente übergeben werden – man will eine Methode aufrufen wie `Summe(1, 2, 3)` oder `Summe(1, 2, 3, 4, 5)`, ohne für jede Anzahl eine eigene Überladung zu schreiben. Dafür gibt es das Schlüsselwort `params`:
-
-```csharp
-static int Summe(params int[] zahlen)
-{
-    int summe = 0;
-    foreach (int z in zahlen)
-        summe += z;
-    return summe;
-}
-```
-
-Der Aufrufer kann beliebig viele Argumente übergeben – oder auch ein Array:
-
-```csharp
-Console.WriteLine(Summe(1, 2, 3));          // 6
-Console.WriteLine(Summe(10, 20, 30, 40));   // 100
-Console.WriteLine(Summe());                 // 0 – auch kein Argument ist erlaubt
-
-int[] werte = { 5, 10, 15 };
-Console.WriteLine(Summe(werte));            // 30 – Array direkt übergeben
-```
-
-`params` muss der letzte Parameter in der Signatur sein und darf nur einmal vorkommen. `params` begegnet uns in der Praxis häufiger, als man denkt: `Console.WriteLine("{0} und {1}", a, b)` nutzt intern `params object?[]`, ebenso `string.Format`. Wer eigene Methoden mit `params` schreibt, folgt also demselben Muster wie die Standardbibliothek.
-{: .notice--primary}
-
-Übung: Schreibe Methoden `Maximum(int a, int b)`, `Minimum(int a, int b)` und `Durchschnitt(params double[] werte)`. Nutze wo sinnvoll die Kurzform mit `=>`.
+Übung: Schreibe Methoden `Maximum(int a, int b)` und `Minimum(int a, int b)` mit dem ternären Operator und der Kurzform `=>`. Schreibe dann `Maximum3(int a, int b, int c)` und `Median3(int a, int b, int c)` für drei Zahlen, und zwar so, dass du möglichst viel von den bereits geschriebenen Methoden wiederverwendest. Teste `Median3` mit allen sechs Reihenfolgen von `1, 2, 3`.
 {: .notice--info}
 
 ## Weitere Quellen
 
 - [Methoden – Microsoft Learn](https://learn.microsoft.com/de-de/dotnet/csharp/programming-guide/classes-and-structs/methods)
 - [Expression-bodied Members – Microsoft Learn](https://learn.microsoft.com/de-de/dotnet/csharp/programming-guide/statements-expressions-operators/expression-bodied-members)
-- [params-Schlüsselwort – Microsoft Learn](https://learn.microsoft.com/de-de/dotnet/csharp/language-reference/keywords/params)

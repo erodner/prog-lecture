@@ -27,7 +27,7 @@ Die Seite ist dann unter `http://localhost:4000` erreichbar.
 ## Struktur
 
 ```
-lectures/       # Eine Datei pro Vorlesungseinheit (00–13)
+lectures/       # Eine Datei pro Vorlesungseinheit (00–14)
 modules/        # Einzelne Lehrmodule mit Inhalt und Codebeispielen
 assets/         # Bilder und statische Dateien
 _data/          # Navigation und Autorenprofile

@@ -36,7 +36,7 @@ Das klingt zunächst wie eine Einschränkung, ist aber ein Schutzmechanismus: Ma
 
 Scope erklärt, welche Variablen sichtbar sind. Aber was passiert mit den Werten, die man einer Methode übergibt? Werden sie kopiert, oder arbeitet die Methode mit dem Original?
 
-Bei Werttypen (`int`, `double`, `bool` usw.) bekommt die Methode standardmäßig eine **Kopie** — nicht das Original. Dieses Verhalten kennen wir bereits vom Thema Werttypen und Referenztypen. Änderungen innerhalb der Methode bleiben dort, ohne auf die aufrufende Stelle durchzuschlagen:
+Bei den Typen, die wir bisher kennen (`int`, `double`, `bool`, `char` usw.), bekommt die Methode standardmäßig eine **Kopie** — nicht das Original. Der Parameter ist eine neue, eigene Variable, die beim Aufruf mit dem übergebenen Wert befüllt wird. Änderungen innerhalb der Methode bleiben dort, ohne auf die aufrufende Stelle durchzuschlagen:
 
 ```csharp
 static void Verdoppeln(int x)
@@ -50,11 +50,11 @@ Verdoppeln(zahl);
 Console.WriteLine($"Nach Aufruf: {zahl}"); // 10 – unverändert!
 ```
 
-Das ist das Standardverhalten für alle primitiven Typen (`int`, `double`, `bool`, `char`). Der Vorteil: Man kann einer Methode Werte übergeben, ohne befürchten zu müssen, dass sie diese unbeabsichtigt verändert. Die Methode ist eine Black Box – sie bekommt ihre Eingabe und liefert eine Ausgabe, ohne Seiteneffekte.
+Der Vorteil: Man kann einer Methode Werte übergeben, ohne befürchten zu müssen, dass sie diese unbeabsichtigt verändert. Die Methode ist eine Black Box – sie bekommt ihre Eingabe und liefert eine Ausgabe, ohne Seiteneffekte.
 
 ## Call by Reference mit `ref`
 
-Call by Value ist sicher und vorhersagbar – aber manchmal reicht es nicht aus. Was, wenn eine Methode nicht nur ein Ergebnis berechnen, sondern eine bestehende Variable direkt verändern soll? Zum Beispiel eine Tausch-Operation, die zwei Variablen vertauscht – mit Kopien wäre das unmöglich. Was aber, wenn eine Methode den ursprünglichen Wert tatsächlich verändern soll? Dafür gibt es `ref` — die Methode bekommt dann eine Referenz auf die originale Variable, nicht auf eine Kopie:
+Call by Value ist sicher und vorhersagbar – aber manchmal reicht es nicht aus. Was, wenn eine Methode nicht nur ein Ergebnis berechnen, sondern eine bestehende Variable direkt verändern soll? Zum Beispiel eine Tausch-Operation, die zwei Variablen vertauscht – mit Kopien wäre das unmöglich. Dafür gibt es `ref` — die Methode bekommt dann eine Referenz auf die originale Variable, nicht auf eine Kopie:
 
 ```csharp
 static void Verdoppeln(ref int x)
@@ -74,63 +74,52 @@ Das `ref`-Schlüsselwort muss sowohl in der Methodensignatur als auch beim Aufru
 
 ## Ausgabe-Parameter mit `out`
 
-Eine Methode kann nur einen Wert per `return` zurückgeben. Was tun, wenn man mehrere Ergebnisse braucht — z.B. Minimum und Maximum gleichzeitig? Eine Möglichkeit bietet `out`: Die Methode schreibt ihre Ergebnisse direkt in die angegebenen Variablen. Anders als `ref` muss die Variable vorher nicht initialisiert sein — die Methode ist verpflichtet, ihr einen Wert zuzuweisen:
+Eine Methode kann nur einen Wert per `return` zurückgeben. Was tun, wenn man mehrere Ergebnisse braucht? Ein typisches Beispiel: Eine Dauer in Minuten soll in Stunden und Restminuten zerlegt werden – mit den Operatoren `/` und `%` aus der Vorlesung zu [arithmetischen Operatoren](/modules/operatoren_arithmetik/operatoren_arithmetik.md) ist das schnell gerechnet, aber das Ergebnis besteht aus *zwei* Zahlen.
+
+Eine Möglichkeit bietet `out`: Die Methode schreibt ihre Ergebnisse direkt in die angegebenen Variablen. Anders als `ref` muss die Variable vorher nicht initialisiert sein — die Methode ist verpflichtet, ihr einen Wert zuzuweisen:
 
 ```csharp
-static void MinMax(int[] arr, out int min, out int max)
+static void InStundenUndMinuten(int gesamtMinuten, out int stunden, out int minuten)
 {
-    min = arr[0];
-    max = arr[0];
-    foreach (int x in arr)
-    {
-        if (x < min) min = x;
-        if (x > max) max = x;
-    }
+    stunden = gesamtMinuten / 60;
+    minuten = gesamtMinuten % 60;
 }
 
-int[] zahlen = { 3, 1, 7, 2, 9 };
-MinMax(zahlen, out int minimum, out int maximum);
-Console.WriteLine($"Min: {minimum}, Max: {maximum}"); // Min: 1, Max: 9
+InStundenUndMinuten(135, out int h, out int m);
+Console.WriteLine($"{h} h {m} min"); // 2 h 15 min
 ```
 
-Ein bekanntes Beispiel aus der BCL ist `int.TryParse`: Es gibt per `return` einen `bool` zurück (Erfolg ja/nein) und schreibt das geparste Ergebnis per `out` in eine Variable.
+Ein bekanntes Beispiel aus der BCL ist `int.TryParse`, das wir bei der [Typkonvertierung](/modules/typkonvertierung/typkonvertierung.md) schon benutzt haben: Es gibt per `return` einen `bool` zurück (Erfolg ja/nein) und schreibt das geparste Ergebnis per `out` in eine Variable.
 
 ## Mehrere Rückgabewerte mit Tupeln
 
 Mit `out` lassen sich zwar mehrere Werte zurückgeben, aber die Syntax ist etwas umständlich und der Aufrufer muss die `out`-Variablen explizit deklarieren. Seit C# 7 gibt es eine elegantere Alternative: Eine modernere und oft lesbarere Alternative zu `out` ist die Rückgabe eines **Tupels**. Ein Tupel fasst mehrere Werte zu einem einzigen Rückgabetyp zusammen, ohne dass man dafür eine eigene Klasse definieren muss:
 
 ```csharp
-static (int min, int max) MinMax(int[] arr)
+static (int stunden, int minuten) InStundenUndMinuten(int gesamtMinuten)
 {
-    int min = arr[0];
-    int max = arr[0];
-    foreach (int x in arr)
-    {
-        if (x < min) min = x;
-        if (x > max) max = x;
-    }
-    return (min, max);
+    return (gesamtMinuten / 60, gesamtMinuten % 60);
 }
 ```
 
-Der Aufrufer kann die Rückgabe entweder als ganzes Tupel speichern oder direkt in einzelne Variablen **dekonstruieren**:
+Der Aufrufer kann die Rückgabe entweder als ganzes Tupel speichern oder direkt in einzelne Variablen **dekonstruieren**. Hier ist einer der Fälle, in denen sich `var` lohnt (siehe [Datentypen](/modules/datentypen/datentypen.md)): Statt `(int stunden, int minuten) dauer` überlassen wir den Tupeltyp dem Compiler:
 
 ```csharp
-int[] zahlen = { 3, 1, 7, 2, 9 };
-
 // Als Tupel:
-var ergebnis = MinMax(zahlen);
-Console.WriteLine($"Min: {ergebnis.min}, Max: {ergebnis.max}");
+var dauer = InStundenUndMinuten(135);
+Console.WriteLine($"{dauer.stunden} h {dauer.minuten} min"); // 2 h 15 min
 
 // Dekonstruiert in einzelne Variablen:
-var (minimum, maximum) = MinMax(zahlen);
-Console.WriteLine($"Min: {minimum}, Max: {maximum}"); // Min: 1, Max: 9
+var (h, m) = InStundenUndMinuten(135);
+Console.WriteLine($"{h} h {m} min"); // 2 h 15 min
 ```
+
+Verglichen mit der `out`-Variante steht das Ergebnis jetzt dort, wo man es erwartet: links vom `=`.
 
 Tupel eignen sich gut, wenn eine Methode zwei bis drei zusammengehörige Werte zurückgibt. Für komplexere Datenstrukturen mit eigenem Verhalten ist eine Klasse die bessere Wahl.
 {: .notice--primary}
 
-Übung: Schreibe eine Methode `Statistik(double[] werte)`, die ein Tupel `(double min, double max, double durchschnitt)` zurückgibt und alle drei Kennzahlen in einem Durchlauf berechnet.
+Übung: Schreibe eine Methode `Sortiere(int a, int b, int c)`, die die drei Zahlen als Tupel `(int kleinste, int mittlere, int größte)` zurückgibt. Schreibe anschließend eine Methode `SortiereVariablen(ref int a, ref int b, ref int c)`, die die drei Variablen des Aufrufers direkt in aufsteigende Reihenfolge bringt – mit einer Hilfsmethode `Tausche(ref int x, ref int y)`. Welche der beiden Varianten würdest du lieber benutzen?
 {: .notice--info}
 
 ## Weitere Quellen

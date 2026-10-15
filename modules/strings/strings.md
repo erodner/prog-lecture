@@ -79,7 +79,7 @@ string csv = string.Join(", ", "rot", "grün", "blau"); // "rot, grün, blau"
 Für viele Einzelteile (z.B. in einer Schleife) wird der `+`-Operator ineffizient, weil bei jeder Verkettung ein neuer String entsteht. `StringBuilder` löst das, indem er intern einen veränderbaren Puffer verwendet:
 
 ```csharp
-var sb = new System.Text.StringBuilder();
+System.Text.StringBuilder sb = new System.Text.StringBuilder();
 for (int i = 0; i < 5; i++)
     sb.Append(i + " ");
 Console.WriteLine(sb.ToString()); // "0 1 2 3 4 "

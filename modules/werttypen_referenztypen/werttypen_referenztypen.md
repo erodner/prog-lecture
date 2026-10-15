@@ -108,6 +108,25 @@ Console.WriteLine(backup[0]); // 0 — das "Backup" wurde mitverändert
 Wenn man ein echtes Backup braucht, muss man `Clone()` verwenden.
 {: .notice--warning}
 
+## Arrays als Parameter
+
+Bei den [Gültigkeitsbereichen](/modules/scope/scope.md) haben wir gesehen, dass eine Methode eine Kopie ihres Arguments bekommt (Call by Value) und das Original deshalb nicht verändern kann. Das gilt auch für Arrays – nur wird eben die *Referenz* kopiert, nicht das Array selbst. Methode und Aufrufer zeigen danach auf dieselben Daten:
+
+```csharp
+static void AllesNullen(int[] werte)
+{
+    for (int i = 0; i < werte.Length; i++)
+        werte[i] = 0;
+}
+
+int[] punkte = { 12, 7, 20 };
+AllesNullen(punkte);
+Console.WriteLine(punkte[0]); // 0 – das Array des Aufrufers wurde verändert!
+```
+
+Ohne `ref` kann die Methode also zwar nicht festlegen, auf *welches* Array `punkte` zeigt, wohl aber den *Inhalt* dieses Arrays verändern. Das ist oft gewollt, etwa bei `Array.Sort`, das ein Array an Ort und Stelle sortiert. Wer eine Methode schreibt, die ein übergebenes Array verändert, sollte das aber im Namen deutlich machen, damit der Aufrufer nicht überrascht wird.
+{: .notice--primary}
+
 
 ## Weitere Quellen
 

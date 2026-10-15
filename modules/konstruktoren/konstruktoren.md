@@ -59,8 +59,8 @@ class Kreis
     public double Umfang() => 2 * Math.PI * radius;
 }
 
-var k1 = new Kreis();       // radius = 1
-var k2 = new Kreis(5.0);    // radius = 5
+Kreis k1 = new Kreis();       // radius = 1
+Kreis k2 = new Kreis(5.0);    // radius = 5
 ```
 
 ## Konstruktor mit Validierung
@@ -92,7 +92,7 @@ class Student
 }
 ```
 
-So entsteht zwar kein Objekt mit leerem Namen — aber eines mit Platzhalterwerten, und der aufrufende Code merkt davon nichts, sofern niemand die Konsolenausgabe liest. Eigentlich wollen wir, dass `new Student("", -5)` gar kein Objekt erzeugt. Genau das ermöglichen [Exceptions](/modules/exceptions/exceptions.md), die wir in Vorlesung 13 kennenlernen: Mit ihnen kann ein Konstruktor die Erzeugung des Objekts abbrechen.
+So entsteht zwar kein Objekt mit leerem Namen — aber eines mit Platzhalterwerten, und der aufrufende Code merkt davon nichts, sofern niemand die Konsolenausgabe liest. Eigentlich wollen wir, dass `new Student("", -5)` gar kein Objekt erzeugt. Genau das ermöglichen [Exceptions](/modules/exceptions/exceptions.md), die wir in Vorlesung 14 kennenlernen: Mit ihnen kann ein Konstruktor die Erzeugung des Objekts abbrechen.
 {: .notice--warning}
 
 Übung: Erweitere die Klasse `Rechteck` um einen Konstruktor, der nur eine Seitenlänge nimmt (für ein Quadrat).

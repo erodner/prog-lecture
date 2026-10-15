@@ -38,7 +38,7 @@ class Konto
     public static double EuroInDollar(double euro) => euro * 1.08;
 }
 
-var k = new Konto();
+Konto k = new Konto();
 k.Einzahlen(500);
 k.Abheben(200);
 Console.WriteLine(k.Stand); // 300

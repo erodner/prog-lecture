@@ -124,7 +124,7 @@ class Automat
 
 - **Validierung gehört in die Methoden:** `Waehlen` prüft drei Fehlerfälle (nicht gefunden, ausverkauft, zu wenig Guthaben), bevor die eigentliche Aktion stattfindet. Das schützt den inneren Zustand des Objekts.
 - **`Guthaben` hat `private set`:** Nur der Automat selbst darf das Guthaben ändern — von außen kann man nur über `Einwerfen` und `Rueckgeld` darauf zugreifen. Das ist *Kapselung*.
-- **`Waehlen` gibt `bool` zurück:** So kann der Aufrufer erkennen, ob die Ausgabe geklappt hat. (In Vorlesung 13 lernen wir mit Exceptions eine Alternative kennen — für einen *erwartbaren* Fall wie „ausverkauft" bleibt `bool` aber die passende Wahl.)
+- **`Waehlen` gibt `bool` zurück:** So kann der Aufrufer erkennen, ob die Ausgabe geklappt hat. (In Vorlesung 14 lernen wir mit Exceptions eine Alternative kennen — für einen *erwartbaren* Fall wie „ausverkauft" bleibt `bool` aber die passende Wahl.)
 
 </details>
 
@@ -200,6 +200,6 @@ class Bankkonto
 }
 ```
 
-Das Prinzip: `Ueberweisen` enthält fast keine eigene Logik — sie **orchestriert** nur die bestehenden Methoden in der richtigen Reihenfolge. Die Validierung steckt in `Abheben` und `Einzahlen` und muss nicht wiederholt werden. Wichtig ist, den Rückgabewert von `Abheben` tatsächlich auszuwerten: Würde `Ueberweisen` ihn ignorieren, entstünde genau der Fehler aus Schritt 3 — Geld aus dem Nichts. Dass der Compiler uns nicht zwingt, einen `bool`-Rückgabewert zu prüfen, ist eine Schwäche dieses Ansatzes; in Vorlesung 13 sehen wir, wie Exceptions das lösen.
+Das Prinzip: `Ueberweisen` enthält fast keine eigene Logik — sie **orchestriert** nur die bestehenden Methoden in der richtigen Reihenfolge. Die Validierung steckt in `Abheben` und `Einzahlen` und muss nicht wiederholt werden. Wichtig ist, den Rückgabewert von `Abheben` tatsächlich auszuwerten: Würde `Ueberweisen` ihn ignorieren, entstünde genau der Fehler aus Schritt 3 — Geld aus dem Nichts. Dass der Compiler uns nicht zwingt, einen `bool`-Rückgabewert zu prüfen, ist eine Schwäche dieses Ansatzes; in Vorlesung 14 sehen wir, wie Exceptions das lösen.
 
 </details>

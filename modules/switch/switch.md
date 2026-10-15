@@ -99,7 +99,7 @@ Natürlich funktioniert auch ein einfaches `if` mit Enum-Vergleichen, etwa `if (
 
 ## switch mit Strings
 
-`switch` funktioniert nicht nur mit Zahlen, sondern auch mit Strings. Das ist nützlich für Menüs oder Befehlseingaben. Wie bei allen String-Vergleichen wird zwischen Groß- und Kleinschreibung unterschieden — deshalb empfiehlt sich ein `ToLower()` vor dem Vergleich. `ToLower()` liefert den Text in Kleinbuchstaben; weitere solcher String-Methoden lernen wir in Vorlesung 7 kennen:
+`switch` funktioniert nicht nur mit Zahlen, sondern auch mit Strings. Das ist nützlich für Menüs oder Befehlseingaben. Wie bei allen String-Vergleichen wird zwischen Groß- und Kleinschreibung unterschieden — deshalb empfiehlt sich ein `ToLower()` vor dem Vergleich. `ToLower()` liefert den Text in Kleinbuchstaben; weitere solcher String-Methoden lernen wir in Vorlesung 8 kennen:
 
 ```csharp
 string befehl = Console.ReadLine();

@@ -43,7 +43,7 @@ class Temperatur
     public double GibFahrenheit() => GibCelsius() * 9 / 5 + 32;
 }
 
-var t = new Temperatur();
+Temperatur t = new Temperatur();
 t.SetzeCelsius(100);
 Console.WriteLine(t.GibFahrenheit());  // 212
 Console.WriteLine(t.GibCelsius());     // 100

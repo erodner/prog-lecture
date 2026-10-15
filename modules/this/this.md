@@ -60,7 +60,7 @@ class Verbindung
     public Verbindung(string host) : this(host, 443) { }
 }
 
-var v = new Verbindung("api.htw-berlin.de");
+Verbindung v = new Verbindung("api.htw-berlin.de");
 // host = "api.htw-berlin.de", port = 443, timeout = 30
 ```
 

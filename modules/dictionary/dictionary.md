@@ -55,7 +55,7 @@ Console.WriteLine(einwohner.Count); // 2
 
 ## Iteration
 
-Neben dem gezielten Zugriff über einzelne Schlüssel möchte man häufig alle Einträge eines Dictionary durchlaufen — etwa um eine Übersicht auszugeben. Beim Durchlaufen eines Dictionary erhält man `KeyValuePair`-Objekte mit `.Key` und `.Value`. Die Kurzform mit Dekonstruktion (`var (stadt, anzahl)`) ist lesbarer:
+Neben dem gezielten Zugriff über einzelne Schlüssel möchte man häufig alle Einträge eines Dictionary durchlaufen — etwa um eine Übersicht auszugeben. Beim Durchlaufen eines Dictionary erhält man `KeyValuePair`-Objekte mit `.Key` und `.Value`. Die Kurzform mit Dekonstruktion (`var (stadt, anzahl)`) ist lesbarer. Wie bei den Tupeln ist `var` hier sinnvoll, weil der ausgeschriebene Typ nur stören würde:
 
 ```csharp
 foreach (KeyValuePair<string, int> paar in einwohner)

@@ -67,7 +67,7 @@ class Person
     public string Email { get; private set; }  // nur intern setzbar
 }
 
-var p = new Person { Name = "Anna", Alter = 21 };
+Person p = new Person { Name = "Anna", Alter = 21 };
 Console.WriteLine(p.Name); // Anna
 ```
 
@@ -100,7 +100,7 @@ class Student
 }
 ```
 
-Anders als `Einzahlen` kann ein `set`-Accessor keinen `bool` zurückgeben — er hat keinen Rückgabewert. Uns bleibt hier nur, den ungültigen Wert zu ignorieren und eine Meldung auszugeben. Das ist unbefriedigend: Der aufrufende Code bemerkt nicht, dass `student.Semester = 42` gescheitert ist, und arbeitet mit dem alten Wert weiter. Eine saubere Lösung für genau dieses Problem lernen wir in Vorlesung 13 mit [Exceptions](/modules/exceptions/exceptions.md) kennen.
+Anders als `Einzahlen` kann ein `set`-Accessor keinen `bool` zurückgeben — er hat keinen Rückgabewert. Uns bleibt hier nur, den ungültigen Wert zu ignorieren und eine Meldung auszugeben. Das ist unbefriedigend: Der aufrufende Code bemerkt nicht, dass `student.Semester = 42` gescheitert ist, und arbeitet mit dem alten Wert weiter. Eine saubere Lösung für genau dieses Problem lernen wir in Vorlesung 14 mit [Exceptions](/modules/exceptions/exceptions.md) kennen.
 {: .notice--warning}
 
 Übung: Erstelle eine Klasse `Produkt` mit Properties `Name` (string, nur lesbar nach Erstellung) und `Preis` (double, muss positiv sein). Verwende ein Auto-Property für `Name` und ein Property mit Validierung für `Preis`.

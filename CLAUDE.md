@@ -24,7 +24,7 @@ export SDKROOT=$(xcrun --show-sdk-path)
 ## Content Architecture
 
 **Two-level content model:**
-- `lectures/NN/NN.md` — 14 lecture units (00–13), each a navigational hub linking to modules
+- `lectures/NN/NN.md` — 15 lecture units (00–14), each a navigational hub linking to modules
 - `modules/<name>/<name>.md` — 50+ standalone learning modules with explanations, C# code examples, and exercises
 
 Lectures are the "table of contents"; modules contain the actual teaching content. Lectures reference modules via relative Markdown links like `[Title](/modules/name/name.md)`.
@@ -32,15 +32,17 @@ Lectures are the "table of contents"; modules contain the actual teaching conten
 **Course progression:**
 - Lectures 00–01: Setup, Hello World
 - Lectures 02–04: Types (incl. enums), debugging, operators
-- Lectures 05–06: Control flow (if/else, loops)
-- Lectures 07–08: Strings, arrays, value/reference types, nullable
-- Lecture 09: Methods, scope, overloading, recursion
-- Lectures 10–11: OOP (classes, properties, constructors, instance/static methods, this, structs, namespaces, visibility)
-- Lecture 12: Collections (List, Dictionary, Queue, Stack, HashSet)
-- Lecture 13: Exception handling (try/catch, custom exceptions, design guidelines)
+- Lecture 05: Control flow (if/else, switch, ternary)
+- Lecture 06: Basic methods (definition, parameters, return values, scope, ref/out, tuples) — deliberately before loops; must not use loops, arrays or string formatting
+- Lecture 07: Loops
+- Lectures 08–09: Strings, arrays, value/reference types, nullable
+- Lecture 10: Methods in depth (overloading, optional parameters, params, recursion)
+- Lectures 11–12: OOP (classes, properties, constructors, instance/static methods, this, structs, namespaces, visibility)
+- Lecture 13: Collections (List, Dictionary, Queue, Stack, HashSet)
+- Lecture 14: Exception handling (try/catch, custom exceptions, design guidelines)
 
 **Computational Thinking modules:**
-- `modules/aufgaben_<topic>/aufgaben_<topic>.md` — Exercises with collapsible solutions for lectures 02, 04, 05, 06, 08, 09, 10, 12
+- `modules/aufgaben_<topic>/aufgaben_<topic>.md` — Exercises with collapsible solutions for lectures 02, 04, 05, 07, 09, 10, 11, 13
 - Linked in lecture tables with 🧩 emoji prefix
 - Solutions use `<details markdown="1"><summary>Lösung anzeigen</summary>` (the `markdown="1"` is required for kramdown to render Markdown inside HTML)
 
@@ -56,6 +58,7 @@ Lectures are the "table of contents"; modules contain the actual teaching conten
 - Connecting prose between code blocks is expected — no "code dump" style
 - No LINQ module (was removed intentionally)
 - Enums belong in lecture 02 (types), not in the OOP section
+- `var` only where the type is non-trivial (e.g. tuples); write simple and class types explicitly
 
 ## Writing Style Preferences
 

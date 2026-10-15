@@ -116,10 +116,42 @@ Console.WriteLine(Umsatzsteuer(new double[] { 100, 50, 50 }, 0.07)); // 14
 
 Der Aufrufer hat vier Möglichkeiten — alle heißen `Umsatzsteuer`, und der Compiler findet die richtige Variante anhand der Argumente.
 
+## Variable Parameteranzahl mit `params`
+
+Ein Schönheitsfehler bleibt: Wer mehrere Positionen übergeben will, muss beim Aufruf erst ein Array bauen – `new double[] { 100, 50, 50 }`. Manchmal möchte man eine Methode einfach wie `Summe(1, 2, 3)` oder `Summe(1, 2, 3, 4, 5)` aufrufen, ohne für jede Anzahl eine eigene Überladung zu schreiben und ohne den Umweg über ein Array. Dafür gibt es das Schlüsselwort `params`:
+
+```csharp
+static int Summe(params int[] zahlen)
+{
+    int summe = 0;
+    foreach (int z in zahlen)
+        summe += z;
+    return summe;
+}
+```
+
+Innerhalb der Methode ist `zahlen` ein ganz normales Array, das wir mit den Mitteln aus der Vorlesung zu [Arrays und Schleifen](/modules/arrays_schleifen/arrays_schleifen.md) durchlaufen. Der Aufrufer dagegen kann beliebig viele Argumente übergeben – oder auch ein fertiges Array:
+
+```csharp
+Console.WriteLine(Summe(1, 2, 3));          // 6
+Console.WriteLine(Summe(10, 20, 30, 40));   // 100
+Console.WriteLine(Summe());                 // 0 – auch kein Argument ist erlaubt
+
+int[] werte = { 5, 10, 15 };
+Console.WriteLine(Summe(werte));            // 30 – Array direkt übergeben
+```
+
+`params` muss der letzte Parameter in der Signatur sein und darf nur einmal vorkommen. `params` begegnet uns in der Praxis häufiger, als man denkt: `Console.WriteLine("{0} und {1}", a, b)` nutzt intern `params object?[]`, ebenso `string.Format`. Wer eigene Methoden mit `params` schreibt, folgt also demselben Muster wie die Standardbibliothek.
+{: .notice--primary}
+
 Übung: Schreibe eine Methode `Rabatt(double preis)`, die 10 % Rabatt berechnet, und eine Überladung `Rabatt(double preis, double prozent)` mit wählbarem Rabattsatz. Überlege dann, ob sich das Problem eleganter mit einem einzigen optionalen Parameter lösen lässt.
+{: .notice--info}
+
+Übung: Schreibe eine Methode `Durchschnitt(params double[] werte)`. Was soll passieren, wenn sie ohne Argumente aufgerufen wird? Entscheide dich für ein sinnvolles Verhalten und begründe es.
 {: .notice--info}
 
 ## Weitere Quellen
 
 - [Methodenüberladung – Microsoft Learn](https://learn.microsoft.com/de-de/dotnet/standard/design-guidelines/member-overloading)
 - [Optionale und benannte Argumente – Microsoft Learn](https://learn.microsoft.com/de-de/dotnet/csharp/programming-guide/classes-and-structs/named-and-optional-arguments)
+- [params-Schlüsselwort – Microsoft Learn](https://learn.microsoft.com/de-de/dotnet/csharp/language-reference/keywords/params)

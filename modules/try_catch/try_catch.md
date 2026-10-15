@@ -109,7 +109,7 @@ static double Teilen(double a, double b)
 }
 ```
 
-Damit können wir endlich die Lücke schließen, die uns in Vorlesung 10 begegnet ist. Dort haben wir ungültige Werte mit `bool`-Rückgabewerten oder Konsolenmeldungen abgewiesen — beim [Semester-Property](/modules/properties/properties.md) und im [Student-Konstruktor](/modules/konstruktoren/konstruktoren.md) blieb uns sogar nur, einen Ersatzwert zu verwenden, weil Setter und Konstruktoren nichts zurückgeben können. Mit `throw` kann der Konstruktor die Erzeugung des Objekts jetzt tatsächlich abbrechen:
+Damit können wir endlich die Lücke schließen, die uns in Vorlesung 11 begegnet ist. Dort haben wir ungültige Werte mit `bool`-Rückgabewerten oder Konsolenmeldungen abgewiesen — beim [Semester-Property](/modules/properties/properties.md) und im [Student-Konstruktor](/modules/konstruktoren/konstruktoren.md) blieb uns sogar nur, einen Ersatzwert zu verwenden, weil Setter und Konstruktoren nichts zurückgeben können. Mit `throw` kann der Konstruktor die Erzeugung des Objekts jetzt tatsächlich abbrechen:
 
 ```csharp
 public Student(string name, int matrikelnummer)
