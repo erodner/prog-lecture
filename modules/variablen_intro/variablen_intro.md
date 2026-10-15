@@ -52,19 +52,35 @@ Console.WriteLine(punkte); // 25
 
 Der alte Wert wird dabei überschrieben — er ist danach nicht mehr zugänglich.
 
-## Mehrere Variablen kombinieren
+## Variablen ausgeben
 
-Variablen verschiedener Typen können in einem Programm zusammenarbeiten:
+Bei der [Ausgabe](/modules/ausgabe/ausgabe.md) haben wir Text und Zahlen mit `+` verbunden. Das funktioniert genauso mit Variablen:
 
 ```csharp
 string name = "Anna";
 int alter = 21;
 double note = 1.7;
 
+Console.WriteLine(name + " ist " + alter + " Jahre alt und hat die Note " + note + ".");
+```
+
+Bei mehr als zwei, drei Bestandteilen wird das schnell unübersichtlich – man verliert leicht den Überblick über Anführungszeichen und Leerzeichen. Deshalb gibt es eine elegantere Schreibweise, die **String-Interpolation**: Ein `$` vor dem String erlaubt es, Variablen direkt in geschweiften Klammern `{...}` in den Text einzubetten:
+
+```csharp
 Console.WriteLine($"{name} ist {alter} Jahre alt und hat die Note {note}.");
 ```
 
-Übung: Deklariere Variablen für deinen Namen, dein Alter und deine Lieblingsfarbe. Gib alle drei in einem Satz aus.
+Beide Zeilen erzeugen dieselbe Ausgabe, aber die zweite liest sich fast wie der fertige Satz. In den Klammern dürfen nicht nur Variablen stehen, sondern beliebige Ausdrücke – sie werden ausgewertet, bevor der Text zusammengesetzt wird:
+
+```csharp
+int geburtsjahr = 2004;
+Console.WriteLine($"{name} wird {2025 - geburtsjahr} Jahre alt.");
+```
+
+Im Zweifel String-Interpolation statt `+`: Sie ist lesbarer, und die Klammerfallen aus der Ausgabe (`"Ergebnis: " + 3 + 4`) gibt es dort nicht. Weitere Möglichkeiten, etwa zur Formatierung von Zahlen, sehen wir später bei den Strings.
+{: .notice--primary}
+
+Übung: Deklariere Variablen für Breite und Höhe eines Rechtecks in Zentimetern sowie für seinen Namen (z. B. `"Tischplatte"`). Gib in einem Satz Name, Fläche und Umfang aus – einmal mit `+` und einmal mit String-Interpolation. Ändere danach nur die Breite und prüfe, dass sich alle berechneten Werte mit ändern.
 {: .notice--info}
 
 ## Weitere Quellen
