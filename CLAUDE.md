@@ -33,10 +33,10 @@ Lectures are the "table of contents"; modules contain the actual teaching conten
 - Lectures 00–01: Setup, Hello World
 - Lectures 02–04: Types (incl. enums), debugging, operators
 - Lecture 05: Control flow (if/else, switch, ternary)
-- Lecture 06: Basic methods (definition, parameters, return values, scope, ref/out, tuples) — deliberately before loops; must not use loops, arrays or string formatting
+- Lecture 06: Basic methods (definition, parameters, return values, scope, call by value, tuples) — deliberately before loops; must not use loops, arrays or string formatting
 - Lecture 07: Loops
 - Lectures 08–09: Strings, arrays, value/reference types, nullable
-- Lecture 10: Methods in depth (overloading, optional parameters, params, recursion)
+- Lecture 10: Methods in depth (ref/out, overloading, optional parameters, params, recursion)
 - Lectures 11–12: OOP (classes, properties, constructors, instance/static methods, this, structs, namespaces, visibility)
 - Lecture 13: Collections (List, Dictionary, Queue, Stack, HashSet)
 - Lecture 14: Exception handling (try/catch, custom exceptions, design guidelines)

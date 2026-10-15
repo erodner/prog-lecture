@@ -40,14 +40,14 @@ Die Vorlesung besteht aus:
 ### Teil 2: Kontrollstrukturen und Methoden
 
 5. [Entscheidungen im Code – Bedingte Anweisungen](/lectures/05/05.md) – `if`, `else`, `switch`
-6. [Code strukturieren – Methoden](/lectures/06/06.md) – Methoden, Parameter, Rückgabewerte, Gültigkeitsbereiche
+6. [Code strukturieren – Methoden](/lectures/06/06.md) – Methoden, Parameter, Rückgabewerte, Gültigkeitsbereiche, Tupel
 7. [Wiederholung strukturieren – Schleifen](/lectures/07/07.md) – `while`, `for`, `do-while`
 
 ### Teil 3: Daten
 
 8. [Text und Eingabe – Strings und Konsole](/lectures/08/08.md) – Strings, Konsolenein- und -ausgabe, Formatierung
 9. [Daten in Reihe – Arrays](/lectures/09/09.md) – Arrays: eindimensional, mehrdimensional
-10. [Methoden vertiefen – Überladung und Rekursion](/lectures/10/10.md) – Überladung, optionale Parameter, `params`, Rekursion
+10. [Methoden vertiefen – Parameter, Überladung und Rekursion](/lectures/10/10.md) – `ref`, `out`, Überladung, optionale Parameter, `params`, Rekursion
 
 ### Teil 4: Einführung in die Objektorientierung
 

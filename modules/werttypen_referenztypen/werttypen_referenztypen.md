@@ -124,7 +124,7 @@ AllesNullen(punkte);
 Console.WriteLine(punkte[0]); // 0 – das Array des Aufrufers wurde verändert!
 ```
 
-Ohne `ref` kann die Methode also zwar nicht festlegen, auf *welches* Array `punkte` zeigt, wohl aber den *Inhalt* dieses Arrays verändern. Das ist oft gewollt, etwa bei `Array.Sort`, das ein Array an Ort und Stelle sortiert. Wer eine Methode schreibt, die ein übergebenes Array verändert, sollte das aber im Namen deutlich machen, damit der Aufrufer nicht überrascht wird.
+Die Methode kann also zwar nicht festlegen, auf *welches* Array `punkte` zeigt, wohl aber den *Inhalt* dieses Arrays verändern. Das ist oft gewollt, etwa bei `Array.Sort`, das ein Array an Ort und Stelle sortiert. Wer eine Methode schreibt, die ein übergebenes Array verändert, sollte das aber im Namen deutlich machen, damit der Aufrufer nicht überrascht wird.
 {: .notice--primary}
 
 
